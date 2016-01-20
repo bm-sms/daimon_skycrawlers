@@ -7,12 +7,11 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
     end
 
     def test_on_fetch
-      @crawler.on_fetch do |body|
+      # TODO Mock it
+      @crawler.fetch 'http://example.com' do |url, header, body|
+        assert { url == 'http://example.com' }
         assert body
       end
-
-      # TODO Mock it
-      @crawler.fetch 'http://example.com'
     end
   end
 end

@@ -3,33 +3,24 @@ require 'uri'
 
 module DaimonSkycrawlers
   class Crawler
-    def on_fetch(&block)
-      callbacks[:on_fetch] << block
-    end
-
     def fetch(url)
       res = request(url)
 
-      callbacks[:on_fetch].each do |callback|
-        # TODO Use raw response header
-        callback.call res.body
-      end
+      # TODO Use raw response header
+      yield url, nil, res.body
 
       urls = retrieve_links(res.body)
 
-      schedule_to_next_fetch urls
+      enqueue_next_urls urls
     end
 
     private
-
-    def callbacks(&block)
-      @callbacks ||= Hash.new {|hash, key| hash[key] = [] }
-    end
 
     # TODO Support HTTP methods other than GET ?
     def request(url)
       uri = URI(url)
 
+      # TODO Support HTTPS
       Net::HTTP.start(uri.host, uri.port) {|http|
         path = uri.path
         path = '/' + path unless path.start_with?('/')
@@ -43,7 +34,7 @@ module DaimonSkycrawlers
       []
     end
 
-    def schedule_to_next_fetch(urls)
+    def enqueue_next_urls(urls)
       # TODO Implement this
     end
   end
