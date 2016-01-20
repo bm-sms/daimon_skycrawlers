@@ -1,3 +1,5 @@
+require 'perfectqueue'
+
 require "daimon_skycrawlers/version"
 
 module DaimonSkycrawlers
