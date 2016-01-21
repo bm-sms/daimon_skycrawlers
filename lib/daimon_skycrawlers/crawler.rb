@@ -22,6 +22,8 @@ module DaimonSkycrawlers
 
     def initialize(base_url, options = {})
       @connection = Faraday.new(base_url, options) do |faraday|
+        faraday.adapter Faraday.default_adapter
+
         if block_given?
           yield faraday
         end
