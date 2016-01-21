@@ -1,0 +1,12 @@
+# <%= name %>
+
+TODO: Write description.
+
+## Usage
+
+```
+$ bundle install
+$ bundle exec ruby crawler.rb &
+$ bundle exec ruby processor.rb &
+$ bundle exec ruby enqueue.rb http://example.com/
+```
