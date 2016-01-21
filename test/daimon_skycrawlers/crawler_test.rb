@@ -14,10 +14,10 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
     end
 
     def test_on_fetch
-      @crawler.fetch "/" do |url, response|
+      @crawler.fetch "/" do |url, headers, body|
         assert_equal("http://example.com/", url)
-        assert_equal({}, response.headers)
-        assert_equal("body", response.body)
+        assert_equal({}, headers)
+        assert_equal("body", body)
       end
     end
   end
