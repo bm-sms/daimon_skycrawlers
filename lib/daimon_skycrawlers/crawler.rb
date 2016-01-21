@@ -5,8 +5,8 @@ require 'nokogiri'
 
 module DaimonSkycrawlers
   class Crawler
-    def initialize(url, options = {})
-      @connection = Faraday.new(url, options) do |faraday|
+    def initialize(base_url, options = {})
+      @connection = Faraday.new(base_url, options) do |faraday|
         if block_given?
           yield faraday
         end
