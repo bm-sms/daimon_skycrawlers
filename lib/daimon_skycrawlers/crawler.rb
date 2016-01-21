@@ -36,7 +36,11 @@ module DaimonSkycrawlers
 
       url = @connection.url_prefix + path
 
-      yield url.to_s, response.headers, response.body if block_given?
+      data = [url.to_s, response.headers, response.body]
+
+      yield *data if block_given?
+
+      schedule_to_process *data
 
       urls = retrieve_links(response.body)
 
@@ -52,6 +56,10 @@ module DaimonSkycrawlers
     end
 
     private
+
+    def schedule_to_process(url, headers, body)
+      DaimonSkycrawlers::Processor.enqueue_http_response(url, headers, body)
+    end
 
     def retrieve_links(html)
       links = []
