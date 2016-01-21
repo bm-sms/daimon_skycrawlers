@@ -23,11 +23,10 @@ Then /^processor receives the following message:$/ do |message|
   data = nil
 
   begin
-    Timeout.timeout(3) do
+    Timeout.timeout(5) do
       # XXX dirty way...
       while true
         data = File.read(@processor_out_path)
-        puts data
         raise Timeout::Error if Regexp.compile(Regexp.escape(message)) =~ data
         sleep 0.2
       end
