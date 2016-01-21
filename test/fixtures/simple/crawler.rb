@@ -5,4 +5,5 @@ p '* Crawler', DaimonSkycrawlers::VERSION
 
 DaimonSkycrawlers.target_url = 'http://example.com'
 
-DaimonSkycrawlers.run :crawler
+# XXX konna kanji?
+# DaimonSkycrawlers.run :crawler

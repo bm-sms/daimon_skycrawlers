@@ -3,8 +3,8 @@ require 'daimon_skycrawlers'
 
 p '* Processor', DaimonSkycrawlers::VERSION
 
-DaimonSkycrawlers.register_processor do |url, header, body|
-  p '* process!', url
+DaimonSkycrawlers.register_processor do |data|
+  p '* process!', data[:url]
 end
 
-DaimonSkycrawlers.run :processor
+DaimonSkycrawlers.scheduler.run

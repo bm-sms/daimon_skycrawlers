@@ -4,10 +4,20 @@ module DaimonSkycrawlers
 
     consume_from_queue 'daimon-skycrawler.http-response'
 
-    def process(message)
-      # Implement sub class
+    class << self
+      def register(&block)
+        processors << block
+      end
 
-      p '* ResponseHandler', message # XXX Remove this
+      def processors
+        @processors ||= []
+      end
+    end
+
+    def process(message)
+      self.class.processors.each do |processor|
+        processor.call message
+      end
     end
   end
 end
