@@ -39,9 +39,9 @@ module DaimonSkycrawlers
 
       data = [url.to_s, response.headers, response.body]
 
-      yield *data if block_given?
+      yield(*data) if block_given?
 
-      schedule_to_process *data
+      schedule_to_process(*data)
 
       urls = retrieve_links(response.body)
 
