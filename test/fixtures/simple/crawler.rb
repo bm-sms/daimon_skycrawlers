@@ -5,6 +5,6 @@ crawer = DaimonSkycrawlers::Crawler.new('http://example.com')
 
 DaimonSkycrawlers.register_crawler(crawer)
 
-crawer.fetch('/', 1)
+crawer.fetch('/', depth: 1)
 
 DaimonSkycrawlers::Crawler.run

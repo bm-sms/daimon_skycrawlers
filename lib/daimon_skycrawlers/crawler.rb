@@ -32,8 +32,7 @@ module DaimonSkycrawlers
 
     # TODO Support POST when we need
     # TODO `params` should be a part of `path`. such as `path == "/hoi?hi=yoyo"`.
-    # TODO `depth` should be keyword argument
-    def fetch(path, depth = 3, params = {})
+    def fetch(path, params = {}, depth: 3)
       response = get(path)
 
       url = @connection.url_prefix + path
