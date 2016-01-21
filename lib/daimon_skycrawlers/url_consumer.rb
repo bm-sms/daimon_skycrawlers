@@ -10,8 +10,8 @@ module DaimonSkycrawlers
     def process(message)
       crawler = Crawler.new
 
-      crawler.fetch message[:url] do |url, header, body|
-        DaimonSkycrawlers::Processor.enqueue_http_response url, header, body
+      crawler.fetch(message[:url]) do |url, header, body|
+        DaimonSkycrawlers::Processor.enqueue_http_response(url, header, body)
       end
     end
   end

@@ -16,7 +16,7 @@ module DaimonSkycrawlers
       end
 
       def enqueue_url(url)
-        SongkickQueue.publish 'daimon-skycrawler.url', url: url
+        SongkickQueue.publish('daimon-skycrawler.url', url: url)
       end
     end
 

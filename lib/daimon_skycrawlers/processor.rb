@@ -11,7 +11,7 @@ module DaimonSkycrawlers
       end
 
       def enqueue_http_response(url, header, body)
-        SongkickQueue.publish 'daimon-skycrawler.http-response', url: url, header: header, body: body
+        SongkickQueue.publish('daimon-skycrawler.http-response', url: url, header: header, body: body)
       end
     end
   end
