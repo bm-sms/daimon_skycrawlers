@@ -22,6 +22,7 @@ module DaimonSkycrawlers
     def process(message)
       url = message[:url]
 
+      # XXX When several crawlers are registed, how should they behave?
       self.class.crawlers.each do |crawler|
         crawler.fetch(url)
       end
