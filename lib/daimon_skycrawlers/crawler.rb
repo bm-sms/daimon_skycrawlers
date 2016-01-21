@@ -36,7 +36,7 @@ module DaimonSkycrawlers
 
       url = @connection.url_prefix + path
 
-      yield url.to_s, response.headers, response.body
+      yield url.to_s, response.headers, response.body if block_given?
 
       urls = retrieve_links(response.body)
 
