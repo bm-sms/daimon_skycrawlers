@@ -11,6 +11,7 @@ module DaimonSkycrawlers
       end
 
       def enqueue_http_response(url, headers, body)
+        body.force_encoding("UTF-8")
         SongkickQueue.publish('daimon-skycrawler.http-response', url: url, headers: headers, body: body)
       end
     end

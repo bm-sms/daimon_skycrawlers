@@ -15,8 +15,8 @@ module DaimonSkycrawlers
         SongkickQueue::Worker.new(process_name, [URLConsumer]).run
       end
 
-      def enqueue_url(url)
-        SongkickQueue.publish('daimon-skycrawler.url', url: url)
+      def enqueue_url(url, depth)
+        SongkickQueue.publish('daimon-skycrawler.url', url: url, depth: depth)
       end
     end
 
@@ -31,16 +31,22 @@ module DaimonSkycrawlers
     end
 
     # TODO Support POST when we need
-    def fetch(path, params = {})
+    # TODO `params` should be a part of `path`. such as `path == "/hoi?hi=yoyo"`.
+    # TODO `depth` should be keyword argument
+    def fetch(path, depth = 3, params = {})
       response = get(path)
 
       url = @connection.url_prefix + path
 
-      yield url.to_s, response.headers, response.body
+      data = [url.to_s, response.headers, response.body]
+
+      yield *data if block_given?
+
+      schedule_to_process *data
 
       urls = retrieve_links(response.body)
 
-      enqueue_next_urls(urls)
+      enqueue_next_urls(urls, depth - 1)
     end
 
     def get(path, params = {})
@@ -53,17 +59,25 @@ module DaimonSkycrawlers
 
     private
 
+    def schedule_to_process(url, headers, body)
+      DaimonSkycrawlers::Processor.enqueue_http_response(url, headers, body)
+    end
+
     def retrieve_links(html)
       links = []
-      html = Nokogiri::HTML(html)
+      html = Nokogiri::HTML(html.force_encoding("utf-8"))
       html.search("a").each do |element|
         links << element["href"]
       end
       links
     end
 
-    def enqueue_next_urls(urls)
-      # TODO Implement this
+    def enqueue_next_urls(urls, depth)
+      return if depth <= 0
+
+      urls.each do |url|
+        self.class.enqueue_url(url, depth)
+      end
     end
   end
 end

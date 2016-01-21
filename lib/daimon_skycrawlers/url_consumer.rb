@@ -7,12 +7,23 @@ module DaimonSkycrawlers
 
     consume_from_queue 'daimon-skycrawler.url'
 
+    class << self
+      def register(crawler)
+        crawlers << crawler
+      end
+
+      def crawlers
+        @crawlers ||= []
+      end
+    end
+
     def process(message)
       url = message[:url]
-      crawler = Crawler.new(url)
+      depth = message[:depth]
 
-      crawler.fetch(url) do |url, headers, body|
-        DaimonSkycrawlers::Processor.enqueue_http_response(url, headers, body)
+      # XXX When several crawlers are registed, how should they behave?
+      self.class.crawlers.each do |crawler|
+        crawler.fetch(url, depth)
       end
     end
   end
