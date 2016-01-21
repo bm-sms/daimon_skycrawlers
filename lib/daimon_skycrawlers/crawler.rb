@@ -5,8 +5,8 @@ require 'nokogiri'
 
 module DaimonSkycrawlers
   class Crawler
-    def initialize(url, options = {})
-      @connection = Faraday.new(url, options) do |faraday|
+    def initialize(base_url, options = {})
+      @connection = Faraday.new(base_url, options) do |faraday|
         if block_given?
           yield faraday
         end
@@ -14,22 +14,24 @@ module DaimonSkycrawlers
     end
 
     # TODO Support POST when we need
-    def fetch(url, params = {})
-      response = get(url)
+    def fetch(path, params = {})
+      response = get(path)
 
-      yield url, response
+      url = @connection.url_prefix + path
+
+      yield url.to_s, response.headers, response.body
 
       urls = retrieve_links(response.body)
 
-      enqueue_next_urls urls
+      enqueue_next_urls(urls)
     end
 
-    def get(url, params = {})
-      @connection.get(url, params)
+    def get(path, params = {})
+      @connection.get(path, params)
     end
 
-    def post(url, params = {})
-      @connection.post(url, params)
+    def post(path, params = {})
+      @connection.post(path, params)
     end
 
     private
