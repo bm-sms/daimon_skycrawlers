@@ -1,45 +1,34 @@
-require 'digest/md5'
-
-require 'perfectqueue'
+require 'singleton'
 
 module DaimonSkycrawlers
   # XXX It may just a data store?
   class Scheduler
-    def initialize(config)
-      @config = config
-    end
+    include Singleton
 
-    def init
-      PerfectQueue.open(@config) do |queue|
-        queue.client.init_database
+    def initialize
+      # TODO Configure from outside
+      SongkickQueue.configure do |config|
+        config.logger = Logger.new(STDOUT)
+        config.host = '127.0.0.1'
+        config.port = 5672
+        # config.username = 'guest'
+        # config.password = 'guest'
+        config.vhost = '/'
+        config.max_reconnect_attempts = 10
+        config.network_recovery_interval = 1.0
       end
     end
 
-    def run
-      PerfectQueue::Worker.run(Dispatch) do
-        @config
-      end
+    def run(process_name: 'daimon-skycrawler')
+      SongkickQueue::Worker.new(process_name, [URLConsumer, HTTPResponseConsumer]).run
     end
-
-    # TODO Hide perfectqueue API from outside.
 
     def enqueue_url(url)
-      open do |queue|
-        queue.submit "url:#{Digest::MD5.hexdigest(url)}", 'url', url: url
-      end
+      SongkickQueue.publish 'daimon-skycrawler.url', url: url
     end
 
     def enqueue_http_response(url, header, body)
-      open do |queue|
-        # TODO Use cache info for key
-        queue.submit "response:#{Digest::MD5.hexdigest(url)}", 'http-response', url: url, header: header, body: body
-      end
-    end
-
-    private
-
-    def open(&block)
-      PerfectQueue.open @config, &block
+      SongkickQueue.publish 'daimon-skycrawler.http-response', url: url, header: header, body: body
     end
   end
 end
