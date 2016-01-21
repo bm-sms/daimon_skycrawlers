@@ -12,8 +12,6 @@ module DaimonSkycrawlers
         crawlers << crawler
       end
 
-      private
-
       def crawlers
         @crawlers ||= []
       end
