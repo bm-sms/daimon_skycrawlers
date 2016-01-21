@@ -71,7 +71,9 @@ module DaimonSkycrawlers
     end
 
     def enqueue_next_urls(urls)
-      # TODO Implement this
+      urls.each do |url|
+        self.class.enqueue_url(url)
+      end
     end
   end
 end
