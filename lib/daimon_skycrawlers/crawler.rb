@@ -14,22 +14,22 @@ module DaimonSkycrawlers
     end
 
     # TODO Support POST when we need
-    def fetch(url, params = {})
-      response = get(url)
+    def fetch(path, params = {})
+      response = get(path)
 
-      yield url, response
+      yield path, response
 
       urls = retrieve_links(response.body)
 
       enqueue_next_urls urls
     end
 
-    def get(url, params = {})
-      @connection.get(url, params)
+    def get(path, params = {})
+      @connection.get(path, params)
     end
 
-    def post(url, params = {})
-      @connection.post(url, params)
+    def post(path, params = {})
+      @connection.post(path, params)
     end
 
     private
