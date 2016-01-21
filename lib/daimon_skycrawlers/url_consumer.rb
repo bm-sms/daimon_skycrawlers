@@ -19,10 +19,11 @@ module DaimonSkycrawlers
 
     def process(message)
       url = message[:url]
+      depth = message[:depth]
 
       # XXX When several crawlers are registed, how should they behave?
       self.class.crawlers.each do |crawler|
-        crawler.fetch(url)
+        crawler.fetch(url, depth)
       end
     end
   end
