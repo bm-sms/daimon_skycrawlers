@@ -3,8 +3,22 @@ require 'uri'
 require 'faraday'
 require 'nokogiri'
 
+require 'daimon_skycrawlers/version'
+require 'daimon_skycrawlers/configure_songkick_queue'
+require 'daimon_skycrawlers/url_consumer'
+
 module DaimonSkycrawlers
   class Crawler
+    class << self
+      def run(process_name: 'daimon-skycrawler')
+        SongkickQueue::Worker.new(process_name, [URLConsumer]).run
+      end
+
+      def enqueue_url(url)
+        SongkickQueue.publish 'daimon-skycrawler.url', url: url
+      end
+    end
+
     def initialize(base_url, options = {})
       @connection = Faraday.new(base_url, options) do |faraday|
         if block_given?
