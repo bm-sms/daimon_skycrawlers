@@ -17,7 +17,9 @@ module DaimonSkycrawlers
     def fetch(path, params = {})
       response = get(path)
 
-      yield path, response
+      url = @connection.url_prefix + path
+
+      yield url.to_s, response
 
       urls = retrieve_links(response.body)
 
