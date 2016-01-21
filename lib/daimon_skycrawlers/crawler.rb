@@ -11,7 +11,7 @@ require 'nokogiri'
 module DaimonSkycrawlers
   class Crawler
     class << self
-      def run(process_name: 'daimon-skycrawler')
+      def run(process_name: 'daimon-skycrawler:url')
         SongkickQueue::Worker.new(process_name, [URLConsumer]).run
       end
 
