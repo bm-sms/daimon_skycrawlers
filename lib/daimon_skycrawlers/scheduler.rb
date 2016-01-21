@@ -19,7 +19,9 @@ module DaimonSkycrawlers
       end
     end
 
-    # TODO Hide SongkickQueue API from outside.
+    def run(process_name: 'daimon-skycrawler')
+      SongkickQueue::Worker.new(process_name, [URLConsumer, HTTPResponseConsumer]).run
+    end
 
     def enqueue_url(url)
       SongkickQueue.publish 'daimon-skycrawler.url', url: url
