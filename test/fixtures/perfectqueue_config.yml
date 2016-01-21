@@ -1,4 +1,0 @@
-type: rdb_compat
-url: 'mysql://root:@localhost/daimon_skycrawlers_test'
-table: perfectqueue
-poll_interval: 0.5
