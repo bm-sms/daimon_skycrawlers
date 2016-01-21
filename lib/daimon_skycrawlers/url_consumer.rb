@@ -1,3 +1,6 @@
+require 'daimon_skycrawlers/crawler'
+require 'daimon_skycrawlers/processor'
+
 module DaimonSkycrawlers
   class URLConsumer
     include SongkickQueue::Consumer
@@ -5,10 +8,11 @@ module DaimonSkycrawlers
     consume_from_queue 'daimon-skycrawler.url'
 
     def process(message)
-      crawler = Crawler.new
+      url = message[:url]
+      crawler = Crawler.new(url)
 
-      crawler.fetch message[:url] do |url, header, body|
-        DaimonSkycrawlers.scheduler.enqueue_http_response url, header, body
+      crawler.fetch(url) do |url, headers, body|
+        DaimonSkycrawlers::Processor.enqueue_http_response(url, headers, body)
       end
     end
   end

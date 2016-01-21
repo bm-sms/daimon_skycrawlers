@@ -1,7 +1,7 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'daimon_skycrawlers'
-
-require 'faraday'
+require 'daimon_skycrawlers/crawler'
+require 'daimon_skycrawlers/processor'
 
 require 'test/unit'
 require 'pry'
