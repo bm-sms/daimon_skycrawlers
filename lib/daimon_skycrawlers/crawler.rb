@@ -1,5 +1,7 @@
-require 'faraday'
 require 'uri'
+
+require 'faraday'
+require 'nokogiri'
 
 module DaimonSkycrawlers
   class Crawler
