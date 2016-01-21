@@ -1,37 +1,44 @@
-require 'net/http'
+require 'faraday'
 require 'uri'
 
 module DaimonSkycrawlers
   class Crawler
-    def fetch(url)
-      res = request(url)
+    def initialize(url, options = {})
+      @connection = Faraday.new(url, options) do |faraday|
+        if block_given?
+          yield faraday
+        end
+      end
+    end
 
-      # TODO Use raw response header
-      yield url, nil, res.body
+    # TODO Support POST when we need
+    def fetch(url, params = {})
+      response = get(url)
 
-      urls = retrieve_links(res.body)
+      yield url, response
+
+      urls = retrieve_links(response.body)
 
       enqueue_next_urls urls
     end
 
-    private
-
-    # TODO Support HTTP methods other than GET ?
-    def request(url)
-      uri = URI(url)
-
-      # TODO Support HTTPS
-      Net::HTTP.start(uri.host, uri.port) {|http|
-        path = uri.path
-        path = '/' + path unless path.start_with?('/')
-
-        http.get(path)
-      }
+    def get(url, params = {})
+      @connection.get(url, params)
     end
 
+    def post(url, params = {})
+      @connection.post(url, params)
+    end
+
+    private
+
     def retrieve_links(html)
-      # TODO Implement this
-      []
+      links = []
+      html = Nokogiri::HTML(html)
+      html.search("a").each do |element|
+        links << element["href"]
+      end
+      links
     end
 
     def enqueue_next_urls(urls)
