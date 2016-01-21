@@ -7,12 +7,23 @@ module DaimonSkycrawlers
 
     consume_from_queue 'daimon-skycrawler.url'
 
+    class << self
+      def register(crawler)
+        crawlers << crawler
+      end
+
+      private
+
+      def crawlers
+        @crawlers ||= []
+      end
+    end
+
     def process(message)
       url = message[:url]
-      crawler = Crawler.new(url)
 
-      crawler.fetch(url) do |url, headers, body|
-        DaimonSkycrawlers::Processor.enqueue_http_response(url, headers, body)
+      self.class.crawlers.each do |crawler|
+        crawler.fetch(url)
       end
     end
   end

@@ -16,7 +16,7 @@ module DaimonSkycrawlers
 
     def process(message)
       self.class.processors.each do |processor|
-        processor.call message
+        processor.call(message)
       end
     end
   end

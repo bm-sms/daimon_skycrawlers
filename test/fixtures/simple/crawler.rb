@@ -1,9 +1,12 @@
 require 'bundler/setup'
-require 'daimon_skycrawlers'
+require 'daimon_skycrawlers/crawler'
 
 p '* Crawler', DaimonSkycrawlers::VERSION
 
-DaimonSkycrawlers.target_url = 'http://example.com'
+crawer = DaimonSkycrawlers::Crawler.new('http://example.com')
 
-# XXX konna kanji?
-# DaimonSkycrawlers.run :crawler
+DaimonSkycrawlers.register_crawler(crawer)
+
+crawer.fetch '/'
+
+DaimonSkycrawlers::Crawler.run

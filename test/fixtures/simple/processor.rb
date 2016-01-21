@@ -1,5 +1,5 @@
 require 'bundler/setup'
-require 'daimon_skycrawlers'
+require 'daimon_skycrawlers/processor'
 
 p '* Processor', DaimonSkycrawlers::VERSION
 
@@ -7,4 +7,4 @@ DaimonSkycrawlers.register_processor do |data|
   p '* process!', data[:url]
 end
 
-DaimonSkycrawlers.scheduler.run
+DaimonSkycrawlers::Processor.run
