@@ -21,7 +21,7 @@ module DaimonSkycrawlers
 
       urls = retrieve_links(response.body)
 
-      enqueue_next_urls urls
+      enqueue_next_urls(urls)
     end
 
     def get(path, params = {})
