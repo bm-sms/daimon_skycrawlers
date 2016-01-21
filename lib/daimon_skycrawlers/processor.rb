@@ -1,4 +1,4 @@
-require 'daimon_skycrawlers/version'
+require 'daimon_skycrawlers'
 require 'daimon_skycrawlers/configure_songkick_queue'
 require 'daimon_skycrawlers/url_consumer'
 require 'daimon_skycrawlers/http_response_consumer'

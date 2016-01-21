@@ -1,11 +1,12 @@
 require 'uri'
 
-require 'faraday'
-require 'nokogiri'
-
+require 'daimon_skycrawlers'
 require 'daimon_skycrawlers/version'
 require 'daimon_skycrawlers/configure_songkick_queue'
 require 'daimon_skycrawlers/url_consumer'
+
+require 'faraday'
+require 'nokogiri'
 
 module DaimonSkycrawlers
   class Crawler
