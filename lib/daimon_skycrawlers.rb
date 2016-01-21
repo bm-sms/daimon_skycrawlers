@@ -1,6 +1,3 @@
-require 'pathname'
-require 'yaml'
-
 require 'bundler/setup'
 require 'songkick_queue'
 
