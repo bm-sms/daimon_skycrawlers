@@ -3,8 +3,6 @@ require 'daimon_skycrawlers'
 require 'daimon_skycrawlers/crawler'
 require 'daimon_skycrawlers/processor'
 
-require 'faraday'
-
 require 'test/unit'
 require 'pry'
 require 'tapp'
