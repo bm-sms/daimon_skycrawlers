@@ -15,7 +15,7 @@ module DaimonSkycrawlers
         [
           "README.md",
         ].each do |path|
-          template("#{path}.tt", "#{name}/#{path}")
+          template("#{path}.erb", "#{name}/#{path}")
         end
       end
 
