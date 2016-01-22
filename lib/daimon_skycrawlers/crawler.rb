@@ -73,10 +73,9 @@ module DaimonSkycrawlers
     end
 
     def retrieve_links(html)
-      links = []
       html = Nokogiri::HTML(html.force_encoding("utf-8"))
-      html.search("a").each do |element|
-        links << element["href"]
+      links = html.search("a").map do |element|
+        element["href"]
       end
       apply_filters(links) || []
     end
