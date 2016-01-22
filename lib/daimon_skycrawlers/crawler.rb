@@ -5,11 +5,9 @@ require 'daimon_skycrawlers/version'
 require 'daimon_skycrawlers/configure_songkick_queue'
 require 'daimon_skycrawlers/url_consumer'
 require 'daimon_skycrawlers/storage'
-require 'daimon_skycrawlers/storage/rdb'
 require 'daimon_skycrawlers/parser'
 
 require 'faraday'
-require 'nokogiri'
 
 module DaimonSkycrawlers
   class Crawler
