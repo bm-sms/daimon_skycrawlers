@@ -30,6 +30,14 @@ module DaimonSkycrawlers
       end
     end
 
+    def append_filter(filter = nil, &block)
+      if block_given?
+        @filters << block
+      else
+        @filters << filter
+      end
+    end
+
     # TODO Support POST when we need
     # TODO `params` should be a part of `path`. such as `path == "/hoi?hi=yoyo"`.
     def fetch(path, params = {}, depth: 3)
@@ -68,6 +76,15 @@ module DaimonSkycrawlers
       html = Nokogiri::HTML(html.force_encoding("utf-8"))
       html.search("a").each do |element|
         links << element["href"]
+      end
+      apply_filters(links)
+    end
+
+    def apply_filters(links)
+      @filters.each do |filter|
+        links = links.select do |link|
+          filter.call(link)
+        end
       end
       links
     end
