@@ -21,18 +21,19 @@ module DaimonSkycrawlers
     end
 
     def initialize(base_url, options = {})
-      if block_given?
-        @connection = Faraday.new(base_url, options) do |faraday|
-          yield faraday
-        end
-      else
-        @connection = Faraday.new(base_url, options)
+      @base_url = base_url
+    end
+
+    def setup_connection(options = {})
+      @connection = Faraday.new(@base_url, options) do |faraday|
+        yield faraday
       end
     end
 
     # TODO Support POST when we need
     # TODO `params` should be a part of `path`. such as `path == "/hoi?hi=yoyo"`.
     def fetch(path, params = {}, depth: 3)
+      @connection ||= Faraday.new(@base_url)
       response = get(path)
 
       url = @connection.url_prefix + path
