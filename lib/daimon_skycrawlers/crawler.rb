@@ -22,6 +22,8 @@ module DaimonSkycrawlers
       end
     end
 
+    attr_writer :storage
+
     def initialize(base_url, options = {})
       @base_url = base_url
       @options = options
@@ -42,6 +44,10 @@ module DaimonSkycrawlers
       end
     end
 
+    def storage
+      @storage ||= Storage::RDB.new
+    end
+
     # TODO Support POST when we need
     # TODO `params` should be a part of `path`. such as `path == "/hoi?hi=yoyo"`.
     def fetch(path, params = {}, depth: 3)
@@ -54,7 +60,6 @@ module DaimonSkycrawlers
 
       yield(*data) if block_given?
 
-      storage = Storage::RDB.new
       storage.save(*data)
 
       schedule_to_process(url.to_s)
