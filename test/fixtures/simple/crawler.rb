@@ -1,11 +1,15 @@
 require 'bundler/setup'
 require 'daimon_skycrawlers/crawler'
 
-crawer = DaimonSkycrawlers::Crawler.new('http://example.com')
+base_url = 'http://example.com'
 
-DaimonSkycrawlers.register_crawler(crawer)
+crawler = DaimonSkycrawlers::Crawler.new(base_url)
+crawler.parser.append_filter do |url|
+  url.start_with?(base_url)
+end
 
-DaimonSkycrawlers::Crawler.enqueu_url()
-#crawer.fetch('/', depth: 1)
+DaimonSkycrawlers.register_crawler(crawler)
+
+DaimonSkycrawlers::Crawler.enqueue_url(base_url, depth: 2)
 
 DaimonSkycrawlers::Crawler.run
