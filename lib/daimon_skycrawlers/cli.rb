@@ -4,7 +4,7 @@ require 'daimon_skycrawlers/version'
 
 module DaimonSkycrawlers
   class CLI < Thor
-    register(Generator::New, "generate", "generate NAME", "Generate new project")
+    register(Generator::New, "new", "new NAME", "Create new project")
 
     desc "version", "Show version"
     def version
