@@ -5,10 +5,9 @@ require 'daimon_skycrawlers/version'
 require 'daimon_skycrawlers/configure_songkick_queue'
 require 'daimon_skycrawlers/url_consumer'
 require 'daimon_skycrawlers/storage'
-require 'daimon_skycrawlers/storage/rdb'
+require 'daimon_skycrawlers/parser'
 
 require 'faraday'
-require 'nokogiri'
 
 module DaimonSkycrawlers
   class Crawler
@@ -23,6 +22,7 @@ module DaimonSkycrawlers
     end
 
     attr_writer :storage
+    attr_writer :parser
 
     def initialize(base_url, options = {})
       @base_url = base_url
@@ -36,16 +36,12 @@ module DaimonSkycrawlers
       end
     end
 
-    def append_filter(filter = nil, &block)
-      if block_given?
-        @filters << block
-      else
-        @filters << filter
-      end
-    end
-
     def storage
       @storage ||= Storage::RDB.new
+    end
+
+    def parser
+      @parser ||= Parser::Default.new
     end
 
     # TODO Support POST when we need
@@ -64,7 +60,8 @@ module DaimonSkycrawlers
 
       schedule_to_process(url.to_s)
 
-      urls = retrieve_links(response.body)
+      parser.parse(response.body)
+      urls = parser.links
 
       enqueue_next_urls(urls, depth - 1)
     end
@@ -81,25 +78,6 @@ module DaimonSkycrawlers
 
     def schedule_to_process(url)
       DaimonSkycrawlers::Processor.enqueue_http_response(url)
-    end
-
-    def retrieve_links(html)
-      html = Nokogiri::HTML(html)
-      links = html.search("a").map do |element|
-        element["href"]
-      end
-      apply_filters(links) || []
-    end
-
-    def apply_filters(links)
-      return if links.nil?
-      return if links.empty?
-      @filters.each do |filter|
-        links = links.select do |link|
-          filter.call(link)
-        end
-      end
-      links
     end
 
     def enqueue_next_urls(urls, depth)
