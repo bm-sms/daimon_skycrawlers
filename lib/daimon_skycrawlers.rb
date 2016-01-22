@@ -4,8 +4,8 @@ require 'daimon_skycrawlers/version'
 
 module DaimonSkycrawlers
   class << self
-    def register_processor(&block)
-      HTTPResponseConsumer.register(&block)
+    def register_processor(processor = nil, &block)
+      HTTPResponseConsumer.register(processor, &block)
     end
 
     def register_crawler(crawler)

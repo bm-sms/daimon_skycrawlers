@@ -7,8 +7,12 @@ module DaimonSkycrawlers
     consume_from_queue 'daimon-skycrawler.http-response'
 
     class << self
-      def register(&block)
-        processors << block
+      def register(processor = nil, &block)
+        if block_given?
+          processors << block
+        else
+          processors << processor
+        end
       end
 
       def processors
