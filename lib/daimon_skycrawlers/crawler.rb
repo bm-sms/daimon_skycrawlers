@@ -22,6 +22,7 @@ module DaimonSkycrawlers
 
     def initialize(base_url, options = {})
       @base_url = base_url
+      @options = options
       @filters = []
     end
 
