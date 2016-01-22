@@ -40,15 +40,6 @@ module DaimonSkycrawlers
       yield parser
     end
 
-    def append_filter(filter = nil, &block)
-      if parser.respond_to?(__callee__)
-        parser.append_filter(filter, &block)
-      else
-        # TODO Use suitable exception
-        raise "#{parser.class} cannot receive #{__callee__}"
-      end
-    end
-
     def storage
       @storage ||= Storage::RDB.new
     end
