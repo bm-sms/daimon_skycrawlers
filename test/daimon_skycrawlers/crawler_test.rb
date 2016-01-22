@@ -36,13 +36,11 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
         faraday.adapter :test, stubs
       end
       @crawler.storage = DaimonSkycrawlers::Storage::Null.new
-      @crawler.configure_parser do |parser|
-        parser.append_filter do |link|
-          link.start_with?("http://www.clear-code.com/blog/")
-        end
-        parser.append_filter do |link|
-          %r!/2015/8/29.html\z! =~ link
-        end
+      @crawler.parser.append_filter do |link|
+        link.start_with?("http://www.clear-code.com/blog/")
+      end
+      @crawler.parser.append_filter do |link|
+        %r!/2015/8/29.html\z! =~ link
       end
       mock(@crawler).enqueue_next_urls(["http://www.clear-code.com/blog/2015/8/29.html"], 0)
     end

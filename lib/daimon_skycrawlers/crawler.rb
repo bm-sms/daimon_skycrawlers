@@ -36,10 +36,6 @@ module DaimonSkycrawlers
       end
     end
 
-    def configure_parser
-      yield parser
-    end
-
     def storage
       @storage ||= Storage::RDB.new
     end
