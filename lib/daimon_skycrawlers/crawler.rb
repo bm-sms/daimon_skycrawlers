@@ -4,6 +4,8 @@ require 'daimon_skycrawlers'
 require 'daimon_skycrawlers/version'
 require 'daimon_skycrawlers/configure_songkick_queue'
 require 'daimon_skycrawlers/url_consumer'
+require 'daimon_skycrawlers/storage'
+require 'daimon_skycrawlers/storage/rdb'
 
 require 'faraday'
 require 'nokogiri'
@@ -20,8 +22,11 @@ module DaimonSkycrawlers
       end
     end
 
+    attr_writer :storage
+
     def initialize(base_url, options = {})
       @base_url = base_url
+      @options = options
       @filters = []
     end
 
@@ -39,6 +44,10 @@ module DaimonSkycrawlers
       end
     end
 
+    def storage
+      @storage ||= Storage::RDB.new
+    end
+
     # TODO Support POST when we need
     # TODO `params` should be a part of `path`. such as `path == "/hoi?hi=yoyo"`.
     def fetch(path, params = {}, depth: 3)
@@ -51,7 +60,9 @@ module DaimonSkycrawlers
 
       yield(*data) if block_given?
 
-      schedule_to_process(*data)
+      storage.save(*data)
+
+      schedule_to_process(url.to_s)
 
       urls = retrieve_links(response.body)
 
@@ -68,12 +79,12 @@ module DaimonSkycrawlers
 
     private
 
-    def schedule_to_process(url, headers, body)
-      DaimonSkycrawlers::Processor.enqueue_http_response(url, headers, body)
+    def schedule_to_process(url)
+      DaimonSkycrawlers::Processor.enqueue_http_response(url)
     end
 
     def retrieve_links(html)
-      html = Nokogiri::HTML(html.force_encoding("utf-8"))
+      html = Nokogiri::HTML(html)
       links = html.search("a").map do |element|
         element["href"]
       end

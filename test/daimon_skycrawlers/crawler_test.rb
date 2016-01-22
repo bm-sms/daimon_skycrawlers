@@ -12,6 +12,7 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
       @crawler.setup_connection do |faraday|
         faraday.adapter :test, stubs
       end
+      @crawler.storage = DaimonSkycrawlers::Storage::Null.new
     end
 
     def test_on_fetch
@@ -34,6 +35,7 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
       @crawler.setup_connection do |faraday|
         faraday.adapter :test, stubs
       end
+      @crawler.storage = DaimonSkycrawlers::Storage::Null.new
       @crawler.append_filter do |link|
         link.start_with?("http://www.clear-code.com/blog/")
       end

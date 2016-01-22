@@ -10,9 +10,8 @@ module DaimonSkycrawlers
         SongkickQueue::Worker.new(process_name, [HTTPResponseConsumer]).run
       end
 
-      def enqueue_http_response(url, headers, body)
-        body.force_encoding("UTF-8")
-        SongkickQueue.publish('daimon-skycrawler.http-response', url: url, headers: headers, body: body)
+      def enqueue_http_response(url)
+        SongkickQueue.publish('daimon-skycrawler.http-response', url: url)
       end
     end
   end
