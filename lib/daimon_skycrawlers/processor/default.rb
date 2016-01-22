@@ -1,11 +1,16 @@
+require "daimon_skycrawlers/storage/rdb"
+
 module DaimonSkycrawlers
   class Processor
     class Default
       def call(message)
-        puts "URL: #{message[:url]}"
-        puts "Body: #{message[:body].bytesize} bytes"
+        url = message[:url]
+        storage = DaimonSkycrawlers::Storage::RDB.new
+        page = storage.find(url)
+        puts "URL: #{page.url}"
+        puts "Body: #{page.body.bytesize} bytes"
         puts "Headers:"
-        messages[:headers].each do |key, value|
+        page.headers.each do |key, value|
           puts "  #{key}: #{value}"
         end
       end
