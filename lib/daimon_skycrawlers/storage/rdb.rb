@@ -11,7 +11,7 @@ module DaimonSkycrawlers
 
       def save(url, headers, body)
         Page.create(url: url,
-                    headers: headers,
+                    headers: JSON.generate(headers),
                     body: body,
                     last_modified_at: headers["Last-Modified"],
                     etag: headers["ETag"])
