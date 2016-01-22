@@ -22,11 +22,20 @@ module DaimonSkycrawlers
 
     def initialize(base_url, options = {})
       @base_url = base_url
+      @filters = []
     end
 
     def setup_connection(options = {})
       @connection = Faraday.new(@base_url, options) do |faraday|
         yield faraday
+      end
+    end
+
+    def append_filter(filter = nil, &block)
+      if block_given?
+        @filters << block
+      else
+        @filters << filter
       end
     end
 
@@ -68,6 +77,17 @@ module DaimonSkycrawlers
       html = Nokogiri::HTML(html.force_encoding("utf-8"))
       html.search("a").each do |element|
         links << element["href"]
+      end
+      apply_filters(links)
+    end
+
+    def apply_filters(links)
+      return if links.nil?
+      return if links.empty?
+      @filters.each do |filter|
+        links = links.select do |link|
+          filter.call(link)
+        end
       end
       links
     end

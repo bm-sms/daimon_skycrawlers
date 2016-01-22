@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta name="generator" content="tDiary 4.2.1.20160108">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="author" content="クリアコード">
+	
+	<link rel="start" title="最新" href="./">
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="icon" href="/favicon.png">
+	    <meta property="og:url" content="http://www.clear-code.com/blog/">
+    <meta property="og:title" content="ククログ">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="http://www.clear-code.com/common/images/icon.png">
+    <meta property="og:site_name" content="ククログ">
+
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	<script src="js/00default.js?4.2.1.2016010820160122"></script>
+	<script src="js/amazon.js?4.2.1.2016010820160122"></script>
+	<script src="js/amazon_bitly.js?4.2.1.2016010820160122"></script>
+	<script src="js/nicovideo.js?4.2.1.2016010820160122"></script>
+		<script><!--
+		$tDiary.style = 'markdown';
+		$tDiary.plugin.bitly = new Object();
+		$tDiary.plugin.bitly.login = 'clearcode';
+		$tDiary.plugin.bitly.apiKey = 'R_cf75a522fa1a6e56094ef0e993b48ec3';
+		//-->
+		</script>
+	<link rel="stylesheet" href="theme/base.css" media="all">
+	<link rel="stylesheet" href="theme/clear-code/clear-code.css" title="clear-code" media="all">
+	<title>ククログ</title>
+	
+  <link rel="author" href="https://plus.google.com/+ClearCode" />
+	<script type="text/javascript" src="//s.hatena.ne.jp/js/HatenaStar.js"></script>
+	<script type="text/javascript"><!--
+		Hatena.Star.SiteConfig = {
+			entryNodes: {
+				'div.section': {
+					uri: 'h3 a',
+					title: 'h3',
+					container: 'h3'
+				}
+			}
+		};
+		(function() {
+			if (!window.addEventListener) {
+				return;
+			}
+
+			var NodeInsert = function(evt) {
+				Hatena.Star.EntryLoader.loadNewEntries(evt.target);
+			};
+			window.addEventListener('AutoPagerize_DOMNodeInserted', NodeInsert, false);
+			window.addEventListener('AutoPatchWork.DOMNodeInserted', NodeInsert, false);
+		})();
+	//--></script>
+	<style type="text/css"><!--
+	//--></style>
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.clear-code.com/blog/index.rdf">
+	<style type="text/css" media="all"><!--
+	div.sequel {
+		font-size: 75%;
+		text-align: right;
+		margin: 0px;
+	}
+	--></style>
+  <meta property="fb:admins"
+        content="kouhei.sutou">
+  <meta property="og:locale" content="ja_JP">
+</head>
+<body>
+<div class="whole-content">
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="header">
+  <span class="company"><a href="../">株式会社クリアコード</a></span>
+</div>
+
+<div id="topic-path">
+  <span class="topic-path-content"><a href="../">株式会社クリアコード</a></span> &gt;
+  <span class="topic-path-content">ククログ</span>
+</div>
+
+<div class="facebook-buttons">
+
+  <div class="fb-like"
+       data-send="true"
+       data-href="http://www.facebook.com/pages/ClearCode/122528181133574"
+       data-show-faces="true"></div>
+
+</div>
+
+<h1><a href="./">ククログ</a></h1>
+
+<ul class="advertisings">
+  <li class="advertising">ククログの記事は<a href="../license/#blog">CC BY-SA 4.0とGFDLのデュアルライセンス</a>で自由に利用できます。</li>
+  <li class="advertising">クリアコードは<a href="../recruitment/">プログラミングが楽しいソフトウェア開発者を1名募集</a>しています。</li>
+  <li class="advertising">クリアコードは<a href="../services/">フリーソフトウェア開発で培った技術力を提供</a>しています。<a href="../services/#mozilla">特にMozilla製品（Mozilla FirefoxとMozilla Thunderbird）</a>と<a href="../services/#ruby">Ruby</a>に関連した開発を得意としています。</li>
+</ul>
+
+
+<div class="adminmenu">
+<span class="adminmenu"><a href="./latest/1.html" rel="next">&laquo;前10日分</a></span>
+</div>
+<div class="category-list">
+  <span class="category-list-label">タグ:</span> <ul class="categories"><li class="category"><a href="category/cutter.html" title="Cutter">Cutter</a></li>
+<li class="category"><a href="category/fluentd.html" title="Fluentd">Fluentd</a></li>
+<li class="category"><a href="category/git.html" title="Git">Git</a></li>
+<li class="category"><a href="category/groonga.html" title="Groonga">Groonga</a></li>
+<li class="category"><a href="category/javascript.html" title="JavaScript">JavaScript</a></li>
+<li class="category"><a href="category/milter-manager.html" title="milter manager">milter manager</a></li>
+<li class="category"><a href="category/mozilla.html" title="Mozilla">Mozilla</a></li>
+<li class="category"><a href="category/ruby.html" title="Ruby">Ruby</a></li>
+<li class="category"><a href="category/uxu.html" title="UxU">UxU</a></li>
+<li class="category"><a href="category/internship.html" title="インターンシップ">インターンシップ</a></li>
+<li class="category"><a href="category/clear-code.html" title="クリアなコード">クリアなコード</a></li>
+<li class="category"><a href="category/test.html" title="テスト">テスト</a></li>
+<li class="category"><a href="category/company.html" title="会社">会社</a></li></ul>
+</div>
+
+<hr class="sep">
+
+
+	
+<div class="day autopagerize_page_element">
+<h2></h2>
+
+<div class="body">
+
+<div class="section">
+
+<h3><a href="./2016/1/20.html">ワークライフバランス推進の取り組み</a></h3>
+<p>クリアコードでは社員全員が働きやすい環境をつくることによって、全ての社員がその能力を十分に発揮できるようにすることを目的として、10月からワークライフバランスの推進に取り組んでいます。今回はその取り組みを紹介します。</p>
+
+<p>なお、この記事は取り組みの様子の社外への紹介だけでなく、クリアコード社員に向けての周知も兼ねています。</p>
+
+<h4>ワークライフバランスに取り組むきっかけ</h4>
+
+<p>クリアコードは創業から今年で10年となり、社員のライフステージも変化してきています。設立当初は一人暮らしの社員がほとんどでしたが、結婚して共働きをしている社員や、子育て中の社員が増えてきました。</p>
+
+<p>そのような変化にともない、家事や子育てと仕事を両立したい、あるいは自己啓発の時間を確保したいといった声が聞かれるようになりました。以前からフレックスタイム制の導入、残業時間削減、有給休暇の100%取得などを行ってきましたが、家族と過ごす時間を増やす、自己啓発の機会を作るためには別の施策の必要性が増してきました。
+そこで現在、<a href="http://www.hataraku.metro.tokyo.jp/equal/ryoritu/josei/">東京都の中小企業ワークライフバランス推進助成金</a>という制度を活用して、ワークライフバランスの推進に取り組んでいます。</p>
+
+<h4>ワークライフバランス実態調査</h4>
+
+<p>ワークライフバランス推進の最初の取り組みとして、社員がワークライフバランスについてどのように考えているのか、その実態を調査することにしました。<a href="http://www.city.shinjuku.lg.jp/content/000084942.pdf">新宿区のワーク・ライフ・バランスに関する企業および従業員の意識・実態調査報告書</a>にある「ワーク・ライフ・バランスに関する従業員の意識・実態調査アンケート」調査票を使って社内アンケートを実施した結果からは、次の課題が見えてきました。</p>
+
+<ul>
+<li>就業規則があまり理解されていない</li>
+<li>柔軟な働き方を推進するための法制度について認知されていない</li>
+<li>仕事とプラベートの調和を図りたいが、実際は仕事を優先している（ただしワークライフバランスはまあまあ取れているという人がほとんど）</li>
+<li>時間短縮勤務と在宅勤務を望む人が多い</li>
+</ul>
+
+<h4>就業規則があまり理解されていない</h4>
+
+<p>アンケートでは会社の制度として様々なワークライフバランス支援策の有無と利用の意思についての質問がありましたが、支援策の有無については回答がバラバラであったことから、就業規則等が正しく認識されていないことがわかりました。</p>
+
+<p>なお、アンケートで取り上げた各制度のクリアコードにおける有無は以下のとおりです。</p>
+
+<dl>
+<dt>Q 法定を超える育児休業、介護休業制度</dt>
+<dd>A ありません。法定通りの育児介護休業規程となっています。利用実績はありません。</dd>
+
+<dt>Q 短時間勤務制度</dt>
+<dd>A あります。 育児介護のため1日6時間勤務にする制度があります。利用実績はありません。</dd>
+
+<dt>Q フレックス勤務制度</dt>
+<dd>A あります。2008年に導入し、すべての社員が利用しています。</dd>
+
+<dt>Q 始業・終業時刻の繰り上げ・繰り下げ</dt>
+<dd>A ありません。フレックス勤務制度を活用することで同等の効果が期待できます。</dd>
+
+<dt>Q 残業の免除</dt>
+<dd>A あります。育児期間中の残業を免除する制度があります。ただし、最近は全社員がほぼ残業0となっており、申請する必要がありません。</dd>
+
+<dt>Q 残業時間の削減</dt>
+<dd>A あります。就業規則で定めたものではありませんが、毎月残業時間が0になるように全社で取り組んでいます。
+  残業をした社員には、フレックス勤務制度を活用して、早帰りを推奨しています。</dd>
+
+<dt>Q 転勤への配慮</dt>
+<dd>A ありません。ただし、就業規則ではそのような規定はありませんが、これまでに会社都合で転居を伴なう転勤を命じたことはありません。（この設問は、全国に事業所があるような会社内での転勤を想定したものです。）</dd>
+
+<dt>Q 勤務地限定・選択制度</dt>
+<dd>A ありません。ただし、就業規則ではそのような規定はありませんが、勤務地は基本クリアコード本社であり、勤務地を限定する必要はありません。（この設問は、全国に事業所があるような会社内での転勤を想定したものです。）</dd>
+
+<dt>Q 再雇用制度</dt>
+<dd>A ありません。ただし、一度クリアコードを辞めた人を再び迎え入れるためだけの特別な制度は設けていないということで、辞めた人を迎え入れないというわけではありません。</dd>
+
+<dt>Q メンタルヘルスの相談窓口の設置</dt>
+<dd>A ありません。ただし、メンタルヘルスの不調についての相談に応えることはできませんが、治療のために通院しやすいよう勤務時間の変更や休暇を取得しやくすることはできます。</dd>
+
+</dl>
+
+<p>就業規則は社員であればRedmine上で誰でも見られるようになっています。
+クリアコードの社員の皆さんは、ぜひこの機会に就業規則に目を通してみてください。
+また就業規則の疑問点や、改善のアイデアがあれば、是非聞かせて下さい。</p>
+
+<h4>まとめ</h4>
+
+<p>今回はクリアコードにおけるワークライフバランス推進の取り組みについて紹介しました。就業規則から自社のワークライフバランスへの取組状況が見えてくると思います。読者の皆さんも、久しぶりに就業規則を読んでみてはいかがでしょうか。今回扱えなかった課題への対応はまたの機会に紹介します。</p>
+<div class="social-widgets">
+  <div class="inline-social-widgets">
+<a href="http://b.hatena.ne.jp/entry/http://www.clear-code.com/blog/2016/1/20.html"
+   class="hatena-bookmark-button"
+   data-hatena-bookmark-layout="standard"
+   title="このエントリーをはてなブックマークに追加"
+   ><img src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+         width="20"
+         height="20"
+         style="border: none;"
+         alt="このエントリーをはてなブックマークに追加"></a>
+<a href="http://twitter.com/share"
+   class="twitter-share-button"
+   data-lang="ja"
+   data-url="http://www.clear-code.com/blog/2016/1/20.html"
+   data-via="_clear_code"
+   data-text="ワークライフバランス推進の取り組み - ククログ(2016-01-20)">ツイートする</a>
+  </div>
+<div class="social-widget-twitter-follow">
+  <a href="http://twitter.com/_clear_code"
+	  class="twitter-follow-button"
+	  data-lang="ja">フォローする</a>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-like"
+       data-href="http://www.clear-code.com/blog/2016/1/20.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-comments"
+		 data-href="http://www.clear-code.com/blog/2016/1/20.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+</div>
+<div class="tag-list">
+タグ: <a href="category/company.html" title="会社">会社</a></div>
+
+</div>
+
+<span class="date">2016-01-20</span>
+
+</div>
+
+<div class="comment">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+		<div class="referer">
+		
+		</div>
+</div>
+
+	<hr class="sep">
+	
+<div class="day autopagerize_page_element">
+<h2></h2>
+
+<div class="body">
+
+<div class="section">
+
+<h3><a href="./2016/1/15.html">Groongaプラグイン自作入門 - コマンド詳細編</a></h3>
+<h4>はじめに</h4>
+
+<p><a href="http://www.clear-code.com/blog/2015/12/10.html">Groongaのプラグイン自作入門</a>では、プラグインの雛形を作成できる<a href="https://github.com/myokoym/grnplum">grnplum</a>というgemを使って実際に「hi」と出力するだけのgreetコマンドを作成しました。
+今回は、このgreetコマンドを拡張しながら、コマンドについてもう少しだけ詳しくみていきます。
+具体的には次の2つのことについてどうやったらいいのか、というのを説明します。</p>
+
+<ul>
+<li>パラメータを受けとるには</li>
+<li>結果を返すには</li>
+</ul>
+
+<h4>パラメータを受けとるには</h4>
+
+<p>コマンドでは、通常何らかのパラメータを受け取ってその挙動をカスタマイズできるようにします。</p>
+
+<p>これを実現するには、<code>GRN_PLUGIN_REGISTER</code>で、greetコマンドが受けつけるパラメータを宣言します。
+例えば、<code>foo</code>と<code>bar</code>と<code>baz</code>という3つのパラメータを受けとることができるようにするには、次のように<code>grn_plugin_expr_var_init</code>を呼びだして変数<code>vars</code>を初期化し、<code>grn_plugin_command_create</code>の引数として渡します。</p>
+<div class="highlight"><pre>grn_rc
+GRN_PLUGIN_REGISTER(grn_ctx *ctx)
+{
+  grn_expr_var vars[3];
+
+  grn_plugin_expr_var_init(ctx, &amp;vars[0], &quot;foo&quot;, -1);
+  grn_plugin_expr_var_init(ctx, &amp;vars[1], &quot;bar&quot;, -1);
+  grn_plugin_expr_var_init(ctx, &amp;vars[2], &quot;baz&quot;, -1);
+  grn_plugin_command_create(ctx, &quot;greet&quot;, -1, command_greet, 3, vars);
+  ...
+</pre></div>
+<p>コマンドを実装する<code>command_greet</code>では、<code>grn_plugin_proc_get_var</code>を使って値を受けとります。</p>
+<div class="highlight"><pre>static grn_obj *
+command_greet(grn_ctx *ctx, int nargs, grn_obj **args, grn_user_data *user_data)
+{
+  grn_obj *var;
+  var = grn_plugin_proc_get_var(ctx, user_data, &quot;foo&quot;, -1);
+  if (GRN_TEXT_LEN(var) &gt; 0) {
+    /* fooが指定されているとき */
+  }
+}
+</pre></div>
+<p>例えば、<code>http://localhost:10041/d/greet?foo=1</code>というURL経由でGroonga HTTPサーバーへとアクセスしたとき、<code>GRN_TEXT_VALUE</code>を使って変数<code>var</code>の値を取りだすと<code>1</code>が得られます。</p>
+
+<h4>結果を返すには</h4>
+
+<p>コマンドの目的とする処理が終わったら、何らかの整形した結果を返すことでしょう。</p>
+
+<p>Groongaでは、<a href="http://groonga.org/ja/docs/reference/command/output_format.html">出力形式</a>にあるように</p>
+<div class="highlight"><pre><span class="k">[HEADER, BODY]</span>
+</pre></div>
+<p>HEADER部分と、BODY部分からなる配列で構成されています。前回の記事では、BODY部分が&quot;hi&quot;だったわけです。</p>
+
+<p>これをもう少し複雑な構造をもった形で出力するにはどうすればいいのでしょうか。</p>
+
+<p>BODY部分では、<a href="http://groonga.org/ja/docs/reference/commands/select.html">selectコマンド</a>のようにN件のデータを配列<code>[...]</code>で表現するものと、<a href="http://groonga.org/ja/docs/reference/commands/status.html">statusコマンド</a>のように、ハッシュ<code>{...}</code>で表現するものとがあります。
+それぞれどのようにしたらいいか説明します。</p>
+
+<h5>結果を配列で返すには</h5>
+
+<p>配列で結果を返すには、次のように<code>grn_output_array_open</code>と<code>grn_ctx_output_array_close</code>をペアで使います。</p>
+<div class="highlight"><pre><span class="vg">grn_ctx_output_array_open</span><span class="p">(</span><span class="vg">ctx</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="il">2</span><span class="p">);</span>
+<span class="vg">grn_ctx_output_int32</span><span class="p">(</span><span class="vg">ctx</span><span class="p">,</span><span class="w"> </span><span class="il">1</span><span class="p">);</span>
+<span class="vg">grn_ctx_output_int32</span><span class="p">(</span><span class="vg">ctx</span><span class="p">,</span><span class="w"> </span><span class="il">2</span><span class="p">);</span>
+<span class="vg">grn_ctx_output_array_close</span><span class="p">(</span><span class="vg">ctx</span><span class="p">);</span>
+</pre></div>
+<p><code>grn_ctx_output_array_open</code>の第3引数は何個の要素をもつかというのを指定します。
+上記の例では、int32型の値「1」と「2」を出力しているので、BODY部分の結果は<code>[1,2]</code>となります。</p>
+
+<h5>結果をハッシュで返すには</h5>
+
+<p>ハッシュで結果を返すには、次のように<code>grn_output_map_open</code>と<code>grn_output_map_close</code>をペアで使います。</p>
+<div class="highlight"><pre><span class="vg">grn_ctx_output_map_open</span><span class="p">(</span><span class="vg">ctx</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="il">2</span><span class="p">);</span>
+<span class="vg">grn_ctx_output_cstr</span><span class="p">(</span><span class="vg">ctx</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;key1&quot;</span><span class="p">);</span>
+<span class="vg">grn_ctx_output_int32</span><span class="p">(</span><span class="vg">ctx</span><span class="p">,</span><span class="w"> </span><span class="il">1</span><span class="p">);</span>
+<span class="vg">grn_ctx_output_cstr</span><span class="p">(</span><span class="vg">ctx</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;key2&quot;</span><span class="p">);</span>
+<span class="vg">grn_ctx_output_int32</span><span class="p">(</span><span class="vg">ctx</span><span class="p">,</span><span class="w"> </span><span class="il">2</span><span class="p">);</span>
+<span class="vg">grn_ctx_output_map_close</span><span class="p">(</span><span class="vg">ctx</span><span class="p">);</span>
+</pre></div>
+<p><code>grn_output_map_open</code>の第3引数も何個の要素をもつかというのを指定します。
+上記の例では、「key1」の値が「1」、「key2」の値が「2」であるハッシュを出力しているので、BODY部分の結果は<code>{&quot;key1&quot;:1, &quot;key2&quot;:2}</code>となります。</p>
+
+<h4>まとめ</h4>
+
+<p>今回は、Groongaプラグイン自作入門として、コマンドの実装をもう少し詳しく紹介してみました。
+Groongaの機能拡張に興味がある人は参考にしてみてください。</p>
+<div class="social-widgets">
+  <div class="inline-social-widgets">
+<a href="http://b.hatena.ne.jp/entry/http://www.clear-code.com/blog/2016/1/15.html"
+   class="hatena-bookmark-button"
+   data-hatena-bookmark-layout="standard"
+   title="このエントリーをはてなブックマークに追加"
+   ><img src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+         width="20"
+         height="20"
+         style="border: none;"
+         alt="このエントリーをはてなブックマークに追加"></a>
+<a href="http://twitter.com/share"
+   class="twitter-share-button"
+   data-lang="ja"
+   data-url="http://www.clear-code.com/blog/2016/1/15.html"
+   data-via="_clear_code"
+   data-text="Groongaプラグイン自作入門 - コマンド詳細編 - ククログ(2016-01-15)">ツイートする</a>
+  </div>
+<div class="social-widget-twitter-follow">
+  <a href="http://twitter.com/_clear_code"
+	  class="twitter-follow-button"
+	  data-lang="ja">フォローする</a>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-like"
+       data-href="http://www.clear-code.com/blog/2016/1/15.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-comments"
+		 data-href="http://www.clear-code.com/blog/2016/1/15.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+</div>
+
+</div>
+
+<span class="date">2016-01-15</span>
+
+</div>
+
+<div class="comment">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+		<div class="referer">
+		
+		</div>
+</div>
+
+	<hr class="sep">
+	
+<div class="day autopagerize_page_element">
+<h2></h2>
+
+<div class="body">
+
+<div class="section">
+
+<h3><a href="./2016/1/7.html">OSS Gateワークショップ2016-01-30開催のおしらせ</a></h3>
+<p>2015年10月に<a href="http://www.clear-code.com/blog/2015/10/20.html">「OSS Gate」という取り組みを開始</a>しました。</p>
+
+<p>OSS Gateとは「OSS開発に参加する人を増やす取り組み」です。OSS開発に参加する人を増やすためにOSS Gateでは次の知見をベースにしています。</p>
+
+<ul>
+<li>OSS開発に未参加の人は参加方法がわからないだけであり、参加方法がわかればOSS開発に参加できる</li>
+</ul>
+
+<p>この知見を活かしたワークショップを2016年1月30日（土）に開催します。それが<a href="https://oss-gate.doorkeeper.jp/events/36359">OSS Gateワークショップ2016-01-30</a>です。</p>
+
+<p>以下、ワークショップについて説明するので、次の項目に該当する方はぜひお申し込みください。また、まわりに該当する方がいる人はぜひこのワークショップを教えてあげてください。</p>
+
+<ul>
+<li>OSSの開発に参加したいけどまだ参加したことがない</li>
+<li>OSSの開発に参加したことはあるけどまだ自信がない</li>
+<li>すでにOSSの開発に参加していて↑のような人たちをサポートしたい</li>
+</ul>
+
+<h4>ワークショップの内容</h4>
+
+<p>このワークショップは「OSSの開発に参加する」を実際に体験するワークショップです。実際に体験することで「OSSの開発に参加する方法」がわかり、その後はワークショップ形式でのサポートがなくてもOSSの開発に参加できるようになる、という流れを目指しています。</p>
+
+<p>そのために、次のような流れで実際にOSSの開発に参加します。</p>
+
+<ol>
+<li>開発対象のOSSを1つ決める</li>
+<li>↑をREADMEなどのドキュメントを参照しながら実際に動かしてみる</li>
+<li>多くの場合、↑の作業の中でうまくいかないところ・わかりにくいところがあるので、それを開発対象のOSSにフィードバックする</li>
+</ol>
+
+<p>短くまとめると「ユーザーとして使って気になったところをフィードバック」です。</p>
+
+<p>OSSの開発に参加していない人でもユーザーとしては使っています。それに「気になったところをフィードバック」というアクションを加えているだけです。</p>
+
+<p>いつもならうまく動かなかったときに「Twitterにつぶやく」としているところを、「それOSSの開発に参加するチャンスだよ！こうやればいいんだよ！」と一緒にやってみる、ということです。</p>
+
+<p>さらに、開発対象のOSSには参加者をサポートする人（メンター）が開発に参加しているOSSを選びます。開発に参加している人がその場にいるので「こんなフィードバックで大丈夫かな。。。」と心配な人でも安心です。「大丈夫だよ！」と後押ししてくれます。</p>
+
+<p>どうですか？今までOSSの開発に参加したことがなくてもこのワークショップでOSSの開発に参加できそうな気がしてきませんか？</p>
+
+<p>なお、自分はこのOSSの開発に参加したい！という人はそのOSSを開発対象のOSSにしたり、時間が余った人はフィードバックするだけではなく改善案をパッチにしよう、既存のバグ報告が自分の環境でも再現するか確認してフィードバックしよう、など参加者にあわせてこの内容をカスタマイズする予定です。そのため、OSSの開発に参加したことはあるけどまだ自信はない、という方もお待ちしています。</p>
+
+<h4>メンター募集</h4>
+
+<p>このワークショップではOSSの開発に参加したい人をサポートする人「メンター」も募集しています。OSSの開発に参加する人を増やしたい人はぜひ協力してください。</p>
+
+<p>ワークショップの内容は前述の通り簡単なものです。「やってみようよ！難しくないから！」を体験するためだからです。そのため、メンターはすごいスキルや経験がある必要はありません。OSSの開発に参加した経験があれば大丈夫です。</p>
+
+<p>ワークショップでのメンターの役割は「一緒にやってくれる人」です。「こういうときはこうするのが正解だ」というような完璧な答えを参加者に教えることは求めていません。OSSはさまざまなので完璧な答えなんてありませんし。</p>
+
+<p>そうではなく、参加者がはじめてのフィードバックをしていて不安なときに一緒に作業してください。そのとき、「自分はこう考えてこうやっているよ」とか「自分がフィードバックをもらうときはこうだとうれしいんだよね」とか伝えながら一緒に作業してください。経験者の考えや受け取る側の考えは不安を軽減することに役立つはずです。</p>
+
+<p>なお、メンターは自分がまだ開発に参加していないOSSでもサポートできるのかと不安になる必要はありません。このワークショップは、まだどのOSSの開発にも参加していない人に「難しくないよ！やってみようよ！」ということを体験してもらうワークショップです。メンターの人だって大丈夫です。「難しくないよ！やってみようよ！」</p>
+
+<h4>開催の背景</h4>
+
+<p>このワークショップを開催する背景についても少し触れておきます。</p>
+
+<p>2015年10月に<a href="http://www.clear-code.com/blog/2015/10/20.html">「OSS Gate」という取り組みを開始</a>したあと、賛同してくれた人たちで、この取り組みで成果をだすにはどうしたらよいかということを話し合いました。それが2015年12月15日に開催した<a href="https://oss-gate.doorkeeper.jp/events/33335">OSS Gate を立ち上げよう</a>というイベントです。このときの内容は<a href="https://github.com/oss-gate/meetup/tree/master/2015-12-15">GitHubのoss-gate/meetupリポジトリーの2015-12-15/ディレクトリー以下</a>に記録してあります。</p>
+
+<p>この話し合いには、OSS Gateをはじめるきっかけとなった<a href="http://www.clear-code.com/blog/2015/7/2.html">OSS Hack 4 Beginners</a>・<a href="http://www.clear-code.com/blog/2015/7/14.html">OSS Hack Weekend</a>というイベントに参加していない人も多数いました。イベントに参加していない人たちにはOSS Gateがベースとしている「OSS開発に未参加の人は参加方法がわからないだけであり、参加方法がわかればOSS開発に参加できる」という知見がまだ実感としてピンときていないようでした。そのため、一度、OSS Hack 4 Beginners・OSS Hack Weekend相当のイベントを体験することにしました。知見がピンときていれば、話し合いで考えたアイディアをよりうまく実現したり、新しいもっとよいアイディアを思いつくなど今後のOSS Gateの活動にプラスに作用しそうだからです。</p>
+
+<p>これが今回のワークショップを実施することにした背景です。</p>
+
+<p>参加者にとっては「OSSの開発に参加するきっかけ」となるためのワークショップですが、OSS Gateを推進する人たちにとっては「これからOSS Gateをうまく進めるためのフィードバックを得る機会」としてのワークショップでもあります。</p>
+
+<p>OSS Gateに賛同してくれる方で都合のあう方はぜひご参加ください。そして、このワークショップで得たフィードバックを今後の活動に活かしていきましょう。</p>
+
+<h4>まとめ</h4>
+
+<p>「OSS開発に参加する人を増やす取り組み」であるOSS Gateの1回目のワークショップ開催について告知しました。参加者・メンターともに募集しています。以下のイベントページから応募してください。</p>
+
+<ul>
+<li><a href="https://oss-gate.doorkeeper.jp/events/36359">OSS Gateワークショップ2016-01-30</a></li>
+</ul>
+
+<p>まわりに興味のありそうな人を知っている人はぜひ教えてあげてください。</p>
+<div class="social-widgets">
+  <div class="inline-social-widgets">
+<a href="http://b.hatena.ne.jp/entry/http://www.clear-code.com/blog/2016/1/7.html"
+   class="hatena-bookmark-button"
+   data-hatena-bookmark-layout="standard"
+   title="このエントリーをはてなブックマークに追加"
+   ><img src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+         width="20"
+         height="20"
+         style="border: none;"
+         alt="このエントリーをはてなブックマークに追加"></a>
+<a href="http://twitter.com/share"
+   class="twitter-share-button"
+   data-lang="ja"
+   data-url="http://www.clear-code.com/blog/2016/1/7.html"
+   data-via="_clear_code"
+   data-text="OSS Gateワークショップ2016-01-30開催のおしらせ - ククログ(2016-01-07)">ツイートする</a>
+  </div>
+<div class="social-widget-twitter-follow">
+  <a href="http://twitter.com/_clear_code"
+	  class="twitter-follow-button"
+	  data-lang="ja">フォローする</a>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-like"
+       data-href="http://www.clear-code.com/blog/2016/1/7.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-comments"
+		 data-href="http://www.clear-code.com/blog/2016/1/7.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+</div>
+
+</div>
+
+<span class="date">2016-01-07</span>
+
+</div>
+
+<div class="comment">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+		<div class="referer">
+		
+		</div>
+</div>
+
+	<hr class="sep">
+	
+<div class="day autopagerize_page_element">
+<h2></h2>
+
+<div class="body">
+
+<div class="section">
+
+<h3><a href="./2016/1/6.html">2016年にやりたいことと2015年のまとめ</a></h3>
+<p>年のはじめなので、2016年にやりたいことと2015年のまとめを書きます。</p>
+
+<h4>2016年にやりたいこと</h4>
+
+<p>まず、今年やりたいことです。</p>
+
+<p>設立当時からクリアコードが大事にしていることは次の2つです。</p>
+
+<ul>
+<li>継続的にフリーソフトウェアの考えを実践すること</li>
+<li>ソフトウェアを継続して改良してくいくためにクリアなコードを書くこと</li>
+</ul>
+
+<p>これらを実現するために、<a href="http://www.clear-code.com/blog/2015/1/7.html">2015年のはじめには次のことをやりたい</a>としていました。</p>
+
+<ul>
+<li>世の中にフリーソフトウェアの開発に関わる人を増やす</li>
+<li>世の中によいコードを書く人を増やす</li>
+</ul>
+
+<p>前者の「世の中にフリーソフトウェアの開発に関わる人を増やす」に関しては、SEゼミで<a href="http://www.clear-code.com/blog/2015/7/2.html">OSS Hack 4 Beginners</a>・OSS Hack Weekendというワークショップを開催することで実践しました。これらはフリーソフトウェアの開発を体験するワークショップでした。</p>
+
+<p>フリーソフトウェアの開発を通じて関わる人を増やすという取り組みはあまりうまくできませんでした。サポートはしていましたが、まわりの人たちを巻き込むという点ではあまり成果はありませんでした。ただ、まったくなかったわけではなく、数人くらいは関わる人が増えました。</p>
+
+<p>「<a href="http://groonga.org/ja/blog/2015/09/22/learn-full-text-search-with-groonga-announce.html">Groongaで学ぶ全文検索</a>」という定期的にユーザーとイベントをはじめたのですが、この機会も活用すればより成果があがるかもしれません。</p>
+
+<p>後者の「世の中によいコードを書く人を増やす」に関しては、<a href="http://www.clear-code.com/blog/2015/3/31.html">schooで2回目のリーダブルコードのWeb授業を開催</a>・「<a href="/services/code-reader/readable-code-workshop.html">リーダブルコードワークショップ</a>」の開催・<a href="http://www.clear-code.com/blog/2015/4/8.html">WEB+DB PRESSの新人向け特集「1年目から身につけたい！ チーム開発6つの心得」の執筆</a>という形で実践しました。実践した内容はわかりやすいのですが、それらでどの程度効果があったかを測れなかったので、成果をどう評価するかに関しては難しいところです。リーダブルコードワークショップのように直接対象者と会う機会があるものに関してはフィードバックをもらえました。フィードバック結果からは成果があったと言えます。</p>
+
+<p>ブログにクリアなコードを書く方法をまとめる活動は例年通り実践していました。ただ、今年は少なかったです。今年は次のことについてまとめましたが、これもどれだけの人の役に立ったかを測る方法がないため成果があったかを評価するのは難しいです。</p>
+
+<ul>
+<li><a href="http://www.clear-code.com/blog/2015/2/23.html">クリアなコードの作り方: 専用の機能を使う</a></li>
+<li><a href="http://www.clear-code.com/blog/2015/3/25.html">クリアなコードの作り方: 正規表現はマッチしすぎに気をつける</a></li>
+</ul>
+
+<p>2016年は2015年にやりたかった次のことを強化していきます。</p>
+
+<ul>
+<li>世の中にフリーソフトウェアの開発に関わる人を増やす</li>
+<li>世の中によいコードを書く人を増やす</li>
+</ul>
+
+<p>前者に関しては<a href="http://www.clear-code.com/blog/2015/10/20.html">OSS Gate</a>の活動と日々のフリーソフトウェアの開発を通じて実現していきます。</p>
+
+<p>後者に関しては<a href="/services/code-reader/readable-code-workshop.html">リーダブルコードワークショップ</a>は引き続き実施し、ブログに知見を言語化するという点は2015年よりも強化していきます。</p>
+
+<h4>2015年のまとめ</h4>
+
+<p>それでは、2015年のことを月ごとにふりかえります。</p>
+
+<h5>1月</h5>
+
+<p><a href="http://www.clear-code.com/blog/2015/1/14.html">Heroku Meetup #13 新年会で「HerokuでGroonga」と題してHerokuでGroongaを使う方法を紹介</a>しました。この方法でHerokuでGroongaを利用している方はいるでしょうか。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/1/15.html">PbuilderとCowbuilderの性能比較</a>はdebパッケージ作成時間を計測した結果をまとめました。debパッケージをどうやって作成するかを検討する際に参考にしてください。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/1/30.html">CROSS 2015 全文検索エンジン群雄割拠〜あなたが使うべきはどれだ！〜でGroongaを紹介</a>しました。Groonga以外はすべてJavaベースの全文検索エンジンでしたが、会場にはJavaベースの全文検索エンジンを使っているユーザーと同じくらいGroonga関連プロダクトを使っているユーザーもいました。</p>
+
+<h5>2月</h5>
+
+<p><a href="http://www.clear-code.com/blog/2015/2/4.html">Effective Rubyという本を紹介</a>しました。著者の主張のうち気に入らないものがあるという観点から紹介しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/2/17.html">mrubyのVMのデバッグ方法</a>をまとめました。久しぶりにデバッグしようとしたら忘れていたからです。</p>
+
+<p>クリアなコードの書き方として<a href="http://www.clear-code.com/blog/2015/2/23.html">専用の機能を使う書き方</a>を紹介しました。初級者向けの話です。</p>
+
+<h5>3月</h5>
+
+<p><a href="http://www.clear-code.com/blog/2015/3/4.html">Debianのバグ報告ツールであるreportbugを使用したバグ報告</a>の具体的な手順をまとめました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/3/9.html">「実践リーダブルコード」というワークショップを開催</a>しました。「読む人が読みやすいならリーダブル」という標語を思いついたのはこのときです。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/3/17.html">Emacs上で動くメールクライアントであるMewでHTMLで整形されたコミットメールを読む方法</a>をまとめました。クリアなコードを書くにあたり、コミットを読むということは大事なことです。それを支援する方法の1つです。なお、クリアコードでMewでメールを読み書きしている人は1人しかいません。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/3/19.html">新しくクリアコードに入社した横山さんがクリアコードに入社した理由</a>をまとめました。それはフリーソフトウェアに関連することを仕事にするためです。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/3/20.html">Software Design 4月号にDebianパッケージを追加する流れを寄稿</a>しました。</p>
+
+<p>クリアなコードの書き方として<a href="http://www.clear-code.com/blog/2015/3/25.html">マッチしすぎる正規表現に気をつけるとよい</a>ということを紹介しました。初心者向けの話です。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/3/27.html">Gitでコミットメールを配信する方法</a>をまとめました。クリアコードで使っている方法です。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/3/30.html">起動時にパスワード認証が完了するまでUIを非表示にする、というThunderbirdの法人向けカスタマイズ事例を紹介</a>しました。</p>
+
+<h5>4月</h5>
+
+<p><a href="http://www.clear-code.com/blog/2015/3/31.html">schooで2回目のリーダブルコードのWeb授業を開催</a>しました。質疑応答でいい回答をしたものがあったので別途まとめました。<a href="http://www.clear-code.com/blog/2015/4/17.html">「新人プログラマーにどうやってリーダブルコードについて伝えるか」についての回答</a>です。回答は「自分がリーダブルコードを書くことによりリーダブルコードを伝える。本を読んでおけとも言わないし、そもそも『リーダブルコード』という用語も使わない。」でした。余談ですが、schooで授業していましたよね？と声をかけられることが数回ありました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/4/8.html">WEB+DB PRESS Vol.86の新人向け特集「1年目から身につけたい！ チーム開発6つの心得」を執筆</a>しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/4/27.html">Markdownで書いたテキストをPDFに変換して納品用ドキュメントを作成する方法</a>をまとめました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/4/28.html">AppVeyorというWindows用CIサービスの使い方</a>をまとめました。</p>
+
+<h5>5月</h5>
+
+<p><a href="http://www.clear-code.com/blog/2015/5/11.html">公式のWindows版PostgreSQLパッケージ用の拡張機能のビルドシステムの作り方</a>をまとめました。PostgreSQLのソースコードなしでビルドする方法です。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/5/18.html">pg_shardとPGroongaを使ったレプリケーション対応の高速日本語全文検索可能なPostgreSQLクラスターの作り方</a>をまとめました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/5/25.html">PostgreSQLアンカンファレンス＠東京（2015/5/30）でPostgreSQLで日本語全文検索する方法を紹介</a>しました。<code>LIKE</code>とpg_bigmとPGroongaについて紹介しました。</p>
+
+<h5>6月</h5>
+
+<p><a href="http://www.clear-code.com/blog/2015/6/2.html">Red Hat系のディストリビューション用のinitrdカスタマイズツールであるDracutを紹介</a>しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/6/6.html">複数のレイアウトのキーボードを接続しながらインプットメソッドフレームワークであるFcitxを使うときに便利なツールを紹介</a>しました。</p>
+
+<p>2014年に引き続き、SEゼミの一部として<a href="http://www.clear-code.com/blog/2015/6/8.html">学生向けにリーダブルコード勉強会を開催</a>しました。メンターが非常に充実した勉強会となり、参加した学生・メンターの満足度も高かったです。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/6/9.html">ConoHa上にDroongaクラスターを設置する手順</a>をまとめました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/6/10.html">複数人のGitHub上のアクティビティをタイムラインで表示するためのツールfluent-plugin-github-activitiesとSharetaryを紹介</a>しました。<a href="http://www.clear-code.com/blog/2015/6/18.html">続編</a>もあります。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/6/12.html">Firefox 29で削除されたセキュリティポリシー機能と、その代替手段を紹介</a>しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/6/15.html">OverlayFSの一種であるunionfs-fuseを使う方法を紹介</a>しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/6/26.html">Groongaがキャッシュしている内容を確認する方法を紹介</a>しました。</p>
+
+<h5>7月</h5>
+
+<p><a href="http://www.clear-code.com/blog/2015/7/1.html">WerckerというCIサービスのDockerバックエンドを使う方法を紹介</a>しました。<a href="http://www.clear-code.com/blog/2015/10/28.html">続編</a>もあります。</p>
+
+<p>SEゼミの一部として<a href="http://www.clear-code.com/blog/2015/7/2.html">OSS Hack 4 BeginnersというOSSの開発に参加したことがない学生向けのイベントを開催</a>しました。このイベントもメンターが非常に充実していました。このイベントが後で登場する「OSS Gate」につながります。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/7/10.html">AngularJSのユニットテストでつまづいた点</a>をまとめました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/7/13.html">CutterというテスティングフレームワークでマルチメディアフレームワークGStreamerをどのように使っているかを紹介</a>しました。</p>
+
+<p>SEゼミのイベントがすべて終わったので<a href="http://www.clear-code.com/blog/2015/7/14.html">SEゼミのコンテンツ作成と進行をしてわかったこと</a>をまとめました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/7/17.html">マルチメディアフレームワークGStreamer 0.10から1.0へ移行する方法を紹介</a>しました。</p>
+
+<h5>8月</h5>
+
+<p><a href="http://www.clear-code.com/blog/2015/8/13.html">ピクシブさんと永和システムマネジメントさん向けにリーダブルコードワークショップを開催</a>しました。「チームメンバーのリーダブルコードを見つけて共有」することを体験するワークショップです。SEゼミでの学生向けのリーダブルコード勉強会の内容を社会人向けにアレンジしたものです。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/8/29.html">RedPenという校正ツールの拡張方法を紹介</a>しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/8/31.html">進捗共有に必要な情報として目的、期日、現状、今後がある</a>ということをまとめました。</p>
+
+<h5>9月</h5>
+
+<p><a href="http://www.clear-code.com/blog/2015/9/4.html">Firefoxの独自ビルド方法</a>を紹介しました。<a href="http://www.clear-code.com/blog/2015/10/26.html">続編</a>もあります。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/9/10.html">Visual Studioなしでmingw-w64だけでWindowsのイベントログに出力する機能を実現する方法</a>を紹介しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/9/17.html">クリアコードとフリーソフトウェアとビジネス</a>についてまとめました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/9/30.html">PostgreSQLで日本語全文検索を実現する拡張機能であるPGroongaがどのようにJSON検索を実装しているか</a>を説明しました。</p>
+
+<h5>10月</h5>
+
+<p><a href="http://www.clear-code.com/blog/2015/10/1.html">Firefox 38以降で急にSSL/TLSのエラーが出るようになった、という問題の原因と対策</a>を紹介しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/10/2.html">Fluentdの新機能であるメモリ上の設定をダンプする方法</a>を紹介しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/10/7.html">ImageMagickを使って動作確認用画像を生成する方法</a>を紹介しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/10/8.html">認められて伸びる・やる気がでるタイプなら依頼者・ユーザーに認めてもらうという方法がある</a>ということを紹介しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/10/9.html">Fluentdの新機能であるプラグインの設定項目を確認する方法</a>を紹介しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/10/13.html">コミットメール配信サービスcommit-email.infoを紹介</a>しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/10/20.html">OSS開発に参加する人を増やす取り組み「OSS Gate」を開始</a>することにしました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/10/22.html">Firefox用アドオンの署名義務化に伴う、一部アドオンのMozilla Add-ons掲載取りやめについて</a>説明しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/10/23.html">Firefoxのメモリ消費の状況を定期的に監視する方法</a>を紹介しました。</p>
+
+<h5>11月</h5>
+
+<p><a href="http://www.clear-code.com/blog/2015/11/9.html">Ruby on RailsでPostgreSQLとPGroongaを使って日本語全文検索を実現する方法</a>を紹介しました。</p>
+
+<p>同様に、<a href="http://www.clear-code.com/blog/2015/11/10.html">Ruby on RailsでMySQLとMroongaを使って日本語全文検索を実現する方法</a>も紹介しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/11/11.html">Fedoraプロジェクトで共同でパッケージをメンテナンスする方法</a>を紹介しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/11/27.html">PostgreSQLカンファレンス2015でPGroongaの実装を紹介</a>しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/11/30.html">軽快で使いやすいオープンソースのメールソフトであるSylpheedのプラグインを作る方法</a>を紹介しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/12/6.html">Groonga Meatup 2015でGroonga族の最新情報を紹介</a>しました。</p>
+
+<h5>12月</h5>
+
+<p><a href="http://www.clear-code.com/blog/2015/12/1.html">FluentdからApache Flume NGへレコードを送る方法</a>を紹介しました。逆に<a href="http://www.clear-code.com/blog/2015/12/2.html">Apache Flume NGからFluentdへレコードを送る方法</a>も紹介しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/12/3.html">FirefoxのJavaScript処理系であるSpiderMonkey固有の<code>__noSuchMethod__</code>機能をES6 Proxyで実現する方法</a>を紹介しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/12/10.html">Groongaプラグインを開発する方法</a>をまとめました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/12/12.html">RubyKaigi 2015でRubyのテスティングフレームワークフレームワークの歴史を紹介</a>しました。また、RubyKaigi 2015をシルバースポンサーとして応援しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/12/14.html">Firefoxを意図的にクラッシュさせる方法</a>を紹介しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/12/15.html">Thunderbirdのエラーコンソールの出力結果を効率よく収集する方法</a>を紹介しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/12/17.html">Firefox用アドオンのデジタル署名の自動化方法</a>を紹介しました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/12/22.html">クリアコードが公開しているFirefox用アドオンCert ImporterとFirefox ESR版の署名要求</a>についてまとめました。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/12/25.html">Firefox・Thunderbirdをクリーンな環境で起動する方法</a>を紹介しました。検証時に便利です。</p>
+
+<p><a href="http://www.clear-code.com/blog/2015/12/28.html">Sytemdのサービスの依存関係を調べるために使える<code>systemd-analyze</code>と<code>systemctl</code>を紹介</a>しました。</p>
+
+<p>ブログにまとめられていませんが、12月は他にも、<a href="http://oss-gate.github.io/">OSS Gate</a>の立ち上げ・<a href="http://www.justsystems.com/jp/">ジャストシステム</a>さん向けに<a href="/services/code-reader/readable-code-workshop.html">リーダブルコードワークショップ</a>を実施をしていました。早いところまとめておきたいところです。</p>
+
+<h4>まとめ</h4>
+
+<p>2016年にやりたいことは2015年にやりたかったことをもっとがんばるということであると宣言しました。</p>
+
+<p>2015年の活動もまとめました。</p>
+
+<p>2015年は発表はGroonga関係のことが多かったです。外向けの活動は発表だけでなくワークショップの実施、雑誌への寄稿などこれまでとは違った形での活動をしてきました。</p>
+
+<p>ブログの内容は自分たちの知見を言語化したものよりも、ツール紹介・機能紹介の方が多かったです。2016年は知見の言語化を強化していきたいです。</p>
+<div class="social-widgets">
+  <div class="inline-social-widgets">
+<a href="http://b.hatena.ne.jp/entry/http://www.clear-code.com/blog/2016/1/6.html"
+   class="hatena-bookmark-button"
+   data-hatena-bookmark-layout="standard"
+   title="このエントリーをはてなブックマークに追加"
+   ><img src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+         width="20"
+         height="20"
+         style="border: none;"
+         alt="このエントリーをはてなブックマークに追加"></a>
+<a href="http://twitter.com/share"
+   class="twitter-share-button"
+   data-lang="ja"
+   data-url="http://www.clear-code.com/blog/2016/1/6.html"
+   data-via="_clear_code"
+   data-text="2016年にやりたいことと2015年のまとめ - ククログ(2016-01-06)">ツイートする</a>
+  </div>
+<div class="social-widget-twitter-follow">
+  <a href="http://twitter.com/_clear_code"
+	  class="twitter-follow-button"
+	  data-lang="ja">フォローする</a>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-like"
+       data-href="http://www.clear-code.com/blog/2016/1/6.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-comments"
+		 data-href="http://www.clear-code.com/blog/2016/1/6.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+</div>
+
+</div>
+
+<span class="date">2016-01-06</span>
+
+</div>
+
+<div class="comment">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+		<div class="referer">
+		
+		</div>
+</div>
+
+	<hr class="sep">
+	
+<div class="day autopagerize_page_element">
+<h2></h2>
+
+<div class="body">
+
+<div class="section">
+
+<h3><a href="./2015/12/28.html">Systemdのサービスの依存関係を調べる方法</a></h3>
+<h4>はじめに</h4>
+
+<p>昨今、大抵のLinuxディストリビューションにおいては、Systemdが標準採用されています。
+ディストリビューションによって提供されているパッケージを使うだけなら、（通常はすでに適切に設定済みのため）普段それほどサービスの依存関係を意識することはありません。
+しかし、独自に開発したソフトウェアをサービスとして動かしたりするときには、サービスの依存関係を正しく指定しないと意図したように動作しないという問題に遭遇することがあります。</p>
+
+<p>今回はそんなときに便利なサービスの依存関係を調べる方法を紹介します。</p>
+
+<h4>実際のサービスの起動順序を確認するには</h4>
+
+<p>まず、意図した順序でサービスが起動しているか調べるには、<code>systemd-analyze</code>コマンドを使います。</p>
+
+<p><code>systemd-analyze</code>にオプションを何も指定しないと、次のように起動にどれだけかかったかを表示します。<span class="footnote"><a name="fm20151228-01-01" href="#f20151228-01-01" title="デフォルトでtimeオプションを指定したのと同じ挙動になるため。">*1</a></span></p>
+<div class="highlight"><pre>% systemd-analyze
+Startup finished in 14.348s <span class="o">(</span>kernel<span class="o">)</span> + 7.952s <span class="o">(</span>userspace<span class="o">)</span> <span class="o">=</span> 22.300s
+</pre></div>
+<p>これに<code>plot</code>オプションをつけて実行すると、SVG形式の結果を得られます。
+適当なファイルにリダイレクトしてブラウザで表示すると良いでしょう。</p>
+<div class="highlight"><pre>% systemd-analyze plot &gt; something.svg
+% firefox something.svg
+</pre></div>
+<p>実際に描画してみた結果は次のようになりました。</p>
+
+<p><img class="photo" src="http://www.clear-code.com/blog/images/20151228_0.png" alt="systemd-analyze plotの結果(の一部)" title="systemd-analyze plotの結果(の一部)" width="590" height="546"></p>
+
+<p>凡例については次の通りになっています。</p>
+
+<p><img class="photo" src="http://www.clear-code.com/blog/images/20151228_1.png" alt="systemd-analyze plotの凡例" title="systemd-analyze plotの凡例" width="192" height="115"></p>
+
+<p>このように、どの順序でサービスが起動されたのか、またどれくらい時間がかかっているのかがわかりやすく表示されます。
+サービスのunitファイルの記述に漏れがあり、意図しないタイミングで起動されてしまっていたケースなどではこれがヒントになります。</p>
+
+<h4>サービスの依存関係を調べるには</h4>
+
+<p>今度は、unitファイルの記述をもとにサービスの依存関係を調べてみましょう。</p>
+
+<p><code>systemctl</code>には<code>list-dependencies</code>というオプションがあり、依存関係を調べてツリー表示できます。
+ここでいう依存関係は<code>Requires=</code>や<code>Wants=</code>といった、必要となるunitに着目した依存関係です。</p>
+
+<p>起動順に着目して調べるには、<code>list-dependencies</code>に<code>--before</code>や<code>--after</code>を併せて指定します。</p>
+
+<p><code>--before</code>を指定するとunitファイルの<code>Before=</code>ディレクティブをたどって依存関係を表示します。
+同様に<code>--after</code>を指定するとunitファイルの<code>After=</code>ディレクティブをたどって依存関係を表示します。</p>
+
+<p>例えば、<code>getty@tty1</code>がどのサービスの前に起動していないといけないことになっているかを調べるには次のようにします。</p>
+<div class="highlight"><pre>% systemctl list-dependencies --before getty@tty1
+getty@tty1.service
+● ├─getty.target
+● │ └─multi-user.target
+● │   ├─systemd-update-utmp-runlevel.service
+● │   └─graphical.target
+● │     └─systemd-update-utmp-runlevel.service
+● └─shutdown.target
+</pre></div>
+<p>これは、実際に<code>getty@tty1.service</code>に以下の記述があることと一致しています。</p>
+<div class="highlight"><pre># If additional gettys are spawned during boot then we should make
+# sure that this is synchronized before getty.target, even though
+# getty.target didn&#39;t actually pull it in.
+Before=getty.target
+IgnoreOnIsolate=yes
+</pre></div>
+<h4>まとめ</h4>
+
+<p>Systemdのサービスの依存関係を調べる方法として、<code>systemd-analyze</code>と<code>systemctl</code>の使い方を紹介しました。
+Systemdで依存関係にまつわるトラブルに遭遇したら、使ってみると便利かも知れません。</p>
+<div class="footnote">
+	<p class="footnote"><a name="f20151228-01-01" href="#fm20151228-01-01">*1</a>&nbsp;デフォルトでtimeオプションを指定したのと同じ挙動になるため。</p>
+</div>
+<div class="sequel">つづき: <a href="http://www.clear-code.com/blog/2016/1/6.html">2016-01-06</a></div>
+<div class="social-widgets">
+  <div class="inline-social-widgets">
+<a href="http://b.hatena.ne.jp/entry/http://www.clear-code.com/blog/2015/12/28.html"
+   class="hatena-bookmark-button"
+   data-hatena-bookmark-layout="standard"
+   title="このエントリーをはてなブックマークに追加"
+   ><img src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+         width="20"
+         height="20"
+         style="border: none;"
+         alt="このエントリーをはてなブックマークに追加"></a>
+<a href="http://twitter.com/share"
+   class="twitter-share-button"
+   data-lang="ja"
+   data-url="http://www.clear-code.com/blog/2015/12/28.html"
+   data-via="_clear_code"
+   data-text="Systemdのサービスの依存関係を調べる方法 - ククログ(2015-12-28)">ツイートする</a>
+  </div>
+<div class="social-widget-twitter-follow">
+  <a href="http://twitter.com/_clear_code"
+	  class="twitter-follow-button"
+	  data-lang="ja">フォローする</a>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-like"
+       data-href="http://www.clear-code.com/blog/2015/12/28.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-comments"
+		 data-href="http://www.clear-code.com/blog/2015/12/28.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+</div>
+
+</div>
+
+<span class="date">2015-12-28</span>
+
+</div>
+
+<div class="comment">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+		<div class="referer">
+		
+		</div>
+</div>
+
+	<hr class="sep">
+	
+<div class="day autopagerize_page_element">
+<h2></h2>
+
+<div class="body">
+
+<div class="section">
+
+<h3><a href="./2015/12/25.html">Firefox・Thunderbirdを、検証用にクリーンな環境で起動する方法</a></h3>
+<p>FirefoxやThunderbirdはアドオンや設定によるカスタマイズが可能ですが、アドオンを多数インストールして様々な設定を変更した状態だと、何か問題が起こった場合にその原因がどこにあるのかを特定しにくくなります。</p>
+
+<p>とりあえずの対応方法としては、「カスタマイズ内容をすべてリセットしてまっさらの状態に戻す」ことによって問題の解消を図るという方法があります。
+FirefoxでもThunderbirdでも、「ヘルプ」メニューから「アドオンを無効化して再起動」を選択したり、Firefoxであれば「トラブルシューティング情報」のタブから「Firefoxをリセット」という操作を行ったりすると、アドオンがインストールされていない状態にすることができます。
+ただ、問題の原因究明には繋がりませんし、普段使いの環境を失う事になるため、問題の深刻度によっては「そこまでしなくてもよい」と思う場合もあるでしょう。</p>
+
+<p>このような場合には、<em>一時的な空のプロファイル</em>を使って、普段使いの環境を残したままでクリーンな状態のFirefoxやThunderbirdを並行して動かすことができます。
+これを使って問題の原因を調査し、本質的な解決を図った上で改めて普段使いの環境にフィードバックすれば、うまくいけば何も失わずに問題を解消できます。</p>
+
+<p>以下はFirefoxの場合の解説ですが、Thunderbirdの場合も同様ですので、適宜読み替えて読んでいただければ幸いです。</p>
+
+<h4>プロファイルとは？</h4>
+
+<p>Firefoxのユーザー設定は、インストール先とは別の「ユーザープロファイル」という場所にまとめて保存されています。
+これは、Windowsであれば<code>C:\Users\（ユーザー名）\Application Data\Roaming</code>配下に保存されています。
+「トラブルシューティング情報」の「プロファイルフォルダ」欄で「ディレクトリを開く」ボタンを押すと、実際に今起動しているFirefoxのプロファイルフォルダを開くこともできます。</p>
+
+<p>ユーザープロファイルは通常は上記の位置にある物が使われますが、フォルダのパスをコマンドラインオプションの<code>-profile</code>の値として与えると、そのフォルダをユーザープロファイルの置き場所としてFirefoxを起動することができます。
+例えば<code>F:\data\firefox</code>の内容をユーザープロファイルとしてFirefoxを起動する場合は、以下のようにします。</p>
+<div class="highlight"><pre>C:\&gt; cd &quot;C:\Program Files (x86)\Mozilla Firefox&quot;
+C:\&gt; firefox.exe -profile &quot;F:\data\firefox&quot;
+</pre></div>
+<p>OS X版のFirefoxも、ターミナルからオプションを指定して起動すれば同様のことができます。</p>
+<div class="highlight"><pre>$ cd /Applications/Firefox.app/Contents/MacOS
+$ ./firefox-bin -profile &quot;/path/to/blank/directory&quot;
+</pre></div>
+<p>この方法で空のフォルダを指定して起動すると、<em>普段使いの環境とは全く別に、アドオンがインストールされておらず、履歴や設定も何も保存されていない、クリーンな状態なFirefoxを起動することができます</em>。
+この状態であれば、使い込まれた状態の環境では容易に試すことができないアドオンのインストールやアンインストール、複数を組み合わせた状態での動作検証などを容易に行えます。</p>
+
+<p>検証を行う機会が多いのであれば、<code>firefox.exe</code>へのショートカットを作成し、プロパティを開いて「リンク先」の欄に以下のような形でコマンドラインオプションを追記しておくことで、コマンドプロンプトを開かずにそのプロファイルでFirefoxを起動することもできます。</p>
+<div class="highlight"><pre>&quot;C:\Program Files (x86)\Mozilla Firefox\firefox.exe&quot; -profile &quot;F:\data\firefox&quot;
+</pre></div>
+<p>ユーザープロファイルのパス自体に空白文字が含まれる場合、それ自体を一続きの文字列として示すために二重引用符で囲う必要があることに注意して下さい。</p>
+
+<p>なお、Windows版とOS X版のFirefox 38およびThunderbird 38以降のバージョンでは、<code>-profile</code>で指定するパスの位置に実際にフォルダが存在しない場合は、フォルダが自動的に作成されるようになっています。
+Linux版のFirefoxやThunderbirdでは、フォルダが存在しないとエラーになります（<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1136620" title="1136620 – -profile option does not create a new directory on linux if the directory does not exist">1136620 – -profile option does not create a new directory on linux if the directory does not exist</a>）。</p>
+
+<h4>普段使いの環境のFirefoxと、新規プロファイルのFirefoxを並行して動作させる</h4>
+
+<p>すでにFirefoxが起動している状態で上記のコマンドを実行しても、既に起動しているFirefoxの別ウィンドウが開かれるだけだったり、タブが1つ開かれるだけだったりという結果になります。
+これは、コマンドラインから起動されたFirefoxが既に起動しているFirefoxを認識して、既に起動しているFirefoxに処理を委譲し（新しいタブを開く、または新しいウィンドウを開く）、新たに起動された方のFirefox自身はすぐに終了してしまうために起こる現象です。</p>
+
+<p>普段使いの環境でインターネット上の情報を検索しながら、クリーンな環境で検証を進める、というような使い方をしたい場合には<code>-no-remote</code>オプションを追加で指定する必要があります。</p>
+<div class="highlight"><pre>C:\&gt; cd &quot;C:\Program Files (x86)\Mozilla Firefox&quot;
+C:\&gt; firefox.exe -profile &quot;F:\data\firefox&quot; -no-remote
+</pre></div>
+<p>このオプションが指定されていると、新たに起動されたFirefoxは既に起動しているFirefoxのことを認識せず、両者を並行して起動できるようになります。
+このオプションは、firefox.exeへのショートカットのリンク先にも指定できます。</p>
+
+<h4>普段使いの環境のFirefoxと、違うバージョンのFirefoxを並行して動作させる</h4>
+
+<p>上記の<code>-profile</code>オプションと<code>-no-remote</code>オプションの組み合わせを使うと、普段使いのFirefoxとは別のバージョンのFirefoxを併用することも可能となります。</p>
+
+<p>例えば、普段はリリース版のFirefox 43を使っていて、それとは別にFirefox 45のベータ版の動作を検証したくなることがあるでしょう。
+このような場合、Firefox 45のベータ版の方を普段のインストール先とは別の場所にインストールして、これらのオプションを指定して起動すれば、普段使いのFirefox 43で調べ物をしながらFirefox 45のベータ版を試すことができます。</p>
+<div class="highlight"><pre>C:\&gt; cd &quot;C:\Program Files (x86)\Mozilla Firefox 45Beta&quot;
+C:\&gt; firefox.exe -profile &quot;F:\data\firefox-beta&quot; -no-remote
+</pre></div>
+<h4>まとめ</h4>
+
+<p>FirefoxやThunderbirdについて、普段使いの環境には影響を与えずに、クリーンな環境や別のバージョンを並行して起動させる方法をご紹介しました。</p>
+
+<p>様々なカスタマイズを行った状態の普段使いの環境で不具合と思われる現象に遭遇して、それをBugzillaやアドオンの作者に報告しても、Firefoxの開発者やアドオンの開発者の環境では問題が再現しないという場合には、原因究明が難しかったり、時には解決を諦めないといけなかったりという事になる場合もあります。</p>
+
+<p>問題の原因をきちんと切り分けて、再現条件を特定するためにも、不具合に遭遇した時はこの記事で紹介している手順でクリーンな環境のFirefoxを起動して、そこから問題が再現する状態を整えるまでの最短の手順を探るようにしましょう。</p>
+<div class="sequel">つづき: <a href="http://www.clear-code.com/blog/2016/1/6.html">2016-01-06</a></div>
+<div class="social-widgets">
+  <div class="inline-social-widgets">
+<a href="http://b.hatena.ne.jp/entry/http://www.clear-code.com/blog/2015/12/25.html"
+   class="hatena-bookmark-button"
+   data-hatena-bookmark-layout="standard"
+   title="このエントリーをはてなブックマークに追加"
+   ><img src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+         width="20"
+         height="20"
+         style="border: none;"
+         alt="このエントリーをはてなブックマークに追加"></a>
+<a href="http://twitter.com/share"
+   class="twitter-share-button"
+   data-lang="ja"
+   data-url="http://www.clear-code.com/blog/2015/12/25.html"
+   data-via="_clear_code"
+   data-text="Firefox・Thunderbirdを、検証用にクリーンな環境で起動する方法 - ククログ(2015-12-25)">ツイートする</a>
+  </div>
+<div class="social-widget-twitter-follow">
+  <a href="http://twitter.com/_clear_code"
+	  class="twitter-follow-button"
+	  data-lang="ja">フォローする</a>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-like"
+       data-href="http://www.clear-code.com/blog/2015/12/25.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-comments"
+		 data-href="http://www.clear-code.com/blog/2015/12/25.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+</div>
+<div class="tag-list">
+タグ: <a href="category/mozilla.html" title="Mozilla">Mozilla</a></div>
+
+</div>
+
+<span class="date">2015-12-25</span>
+
+</div>
+
+<div class="comment">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+		<div class="referer">
+		
+		</div>
+</div>
+
+	<hr class="sep">
+	
+<div class="day autopagerize_page_element">
+<h2></h2>
+
+<div class="body">
+
+<div class="section">
+
+<h3><a href="./2015/12/22.html">Cert Importer 1.4の再公開と、Firefox ESR版での署名要求の無効化設定について</a></h3>
+<p>先日、Firefoxアドオンの署名義務化に伴って<a href="http://www.clear-code.com/blog/2015/10/22.html">いくつかのアドオンのMozilla Add-onsのWebサイト上で配布しないように切り替えた</a>旨をお伝えしましたが、その際、<a href="https://github.com/clear-code/certimporter">Cert Importer（証明書インポータ）</a>だけは、その特性上サイドローディング形式でのインストールが可能な権限を設定して貰えない（本審査が棄却されていた）ために、Firefox 44以降のバージョンでは一切利用できない状態のままとなっておりました。</p>
+
+<p>この度、本件について進展がありましたので、この場にてご報告いたします。</p>
+
+<h4>Cert Importer 1.4のリリース</h4>
+
+<p>Firefoxに新たに認証局証明書をインポートする際には、その証明書を信頼するかどうかの確認が表示されます。
+Cert Importer 1.3までのバージョンは、この確認をスキップして証明書を完全に自動的にインポートする設計となっていましたが、この「確認をスキップする」という点が問題視されていたがために、本アドオンは本審査が棄却される結果となっていました。</p>
+
+<p>これを受けて、Cert Importer 1.4では当該機能を削除し、証明書のインポート時にはユーザ自身の手による明示的な許可の操作を必要とするように仕様を変更しました。
+既に、署名済みのXPIパッケージは<a href="https://github.com/clear-code/certimporter/releases">Cert ImporterのGitHubリポジトリのリリース一覧のページ</a>からダウンロードできるようになっています。</p>
+
+<p>利便性の点では後退する結果となりましたが、悪意ある攻撃者が攻撃用の証明書を完全に自動でインストールするというような悪用のされ方を防ぐためには避けられない変更ですので、何卒ご容赦下さい。</p>
+
+<h4>Firefox 45ESRでの署名要求無効化について</h4>
+
+<p>Firefox 44以降のバージョンではサイドローディングであるかどうかに関わらず、アドオンにはMozillaによる署名が必須となります。
+<a href="http://www.clear-code.com/blog/2015/12/17.html">アドオンのXPIパッケージへの署名申請を自動化する仕組み</a>は既に用意されており、大抵の場合はこれにより署名申請の手間を軽減できるため、大きな混乱は無いと予想されますが、それでも解決不可能な問題が残ります。
+それは、社外秘の情報を含むアドオンの取り扱いについてです。</p>
+
+<p>というのも、現在アドオンに有効な署名を施すことができるのはMozilla Corporationのみであるため、署名を施してもらうためにはアドオンのインストール用パッケージをMozilla Corporationに引き渡す必要があります。
+社内の取り決めや他社とのNDAの都合などからファイルを社外に持ち出せないアドオンの場合、署名を施せないため、やはりFirefox 44以降のバージョンでは利用できないという事態が発生してしまいます。</p>
+
+<p>現在リリースされているFirefox 43までのバージョンや、開発者向けの検証用という位置付けの「Aurora」および「Nightly」では、<code>about:config</code>などを使って隠し設定の<code>xpinstall.signatures.required</code>の値を<code>false</code>に変更することで、署名要求を無効化することができます。
+Firefox 44以降のリリース版およびベータ版ではこの設定自体が機能しなくなり、署名要求を無効化できなくなることが予告されています。</p>
+
+<p>これについて、まだオフィシャルな場所では情報が公開されていませんが、企業利用向けの長期サポート版であるESR版（Firefox 45ESRおよびそれ以降のバージョン）では、署名要求を無効化する隠し設定を引き続き利用できる状態とする方針である旨、Mozilla Japanから連絡を頂いております。
+社外に持ち出せないアドオンを必要とする場合には、この設定を伴ってESR版Firefoxを使うという運用を選択するようにして下さい。</p>
+
+<p>ただしこの措置は、ESR版の運用は技術的な知識のあるシステム管理者がアドオンの安全性を確認した上で行う事が想定されるためということになります。
+一般のユーザがESR版でこの設定を使用し未署名のアドオンを使用することは推奨されませんので、ご注意下さい。</p>
+<div class="sequel">つづき: <a href="http://www.clear-code.com/blog/2016/1/6.html">2016-01-06</a></div>
+<div class="social-widgets">
+  <div class="inline-social-widgets">
+<a href="http://b.hatena.ne.jp/entry/http://www.clear-code.com/blog/2015/12/22.html"
+   class="hatena-bookmark-button"
+   data-hatena-bookmark-layout="standard"
+   title="このエントリーをはてなブックマークに追加"
+   ><img src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+         width="20"
+         height="20"
+         style="border: none;"
+         alt="このエントリーをはてなブックマークに追加"></a>
+<a href="http://twitter.com/share"
+   class="twitter-share-button"
+   data-lang="ja"
+   data-url="http://www.clear-code.com/blog/2015/12/22.html"
+   data-via="_clear_code"
+   data-text="Cert Importer 1.4の再公開と、Firefox ESR版での署名要求の無効化設定について - ククログ(2015-12-22)">ツイートする</a>
+  </div>
+<div class="social-widget-twitter-follow">
+  <a href="http://twitter.com/_clear_code"
+	  class="twitter-follow-button"
+	  data-lang="ja">フォローする</a>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-like"
+       data-href="http://www.clear-code.com/blog/2015/12/22.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-comments"
+		 data-href="http://www.clear-code.com/blog/2015/12/22.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+</div>
+<div class="tag-list">
+タグ: <a href="category/mozilla.html" title="Mozilla">Mozilla</a></div>
+
+</div>
+
+<span class="date">2015-12-22</span>
+
+</div>
+
+<div class="comment">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+		<div class="referer">
+		
+		</div>
+</div>
+
+	<hr class="sep">
+	
+<div class="day autopagerize_page_element">
+<h2></h2>
+
+<div class="body">
+
+<div class="section">
+
+<h3><a href="./2015/12/17.html">Firefox用アドオンのデジタル署名の自動化</a></h3>
+<p>このククログでも既に何度か触れていますが、Firefox 44以降ではアドオンのインストール用パッケージ（XPIパッケージ）について、Mozillaによるデジタル署名が施されていない物はインストールできないようになります。</p>
+
+<p>この変更は、一般の利用者にとっては使い勝手の面であまり変化はありませんが、アドオンを開発・公開する側にとっては大きな影響があります。
+その1つとして、アドオンをMozilla Add-ons以外の方法で頒布する場合に必要なステップが1つ増えるという事が挙げられます。</p>
+
+<p>というのも、Mozillaによるデジタル署名が施された状態のXPIパッケージを入手するには、Mozilla Add-onsのWebサイトにXPIパッケージをアップロードし、場合によってはエディターによる承認を得た上で、署名済みのXPIパッケージを改めてダウンロードしなくてはなりません。
+この作業自体は簡単なのですが、「Webサイトを訪問して、ログインして、フォームを使ってファイルを送信して、署名済みのファイルをダウンロードする」という手作業が必要でした。
+このような定型的な作業を毎回人の手で行うのは非効率であるのみならず、ミスの発生原因になりうるので、可能であれば自動化したいところです。</p>
+
+<p>このような状況を受けて、Mozilla Add-onsのWebサイト側に<a href="https://blog.mozilla.org/addons/2015/11/20/signing-api-now-available/" title="Signing API now available | Mozilla Add-ons Blog">Signing API</a>という物が実装され、上記の作業のある程度の自動化が可能になりました。</p>
+
+<p>上記リンク先の記事では具体的な手順が案内されていますが、「このようにすればコマンド一発で可能」というものではないため、自分でやるには若干ハードルが高いです。
+そのため、アドオンSDKに含まれるコマンドラインツールのjpmに<a href="https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm#jpm_sign">署名APIを使ってXPIに署名するためのサブコマンド</a>が追加されました。
+SDKを使ってアドオンを開発する場合は、これを使うことで署名の申請までを自動化することができます。</p>
+
+<p>それとは別のものとして、SDKを使わないでアドオンを開発する場合向けに、<a href="https://github.com/piroor/makexpi">XPIパッケージの署名申請を支援するBashスクリプト</a>を作成しました。
+この記事では、jpmではなくこのスクリプトを用いてXPIパッケージへのデジタル署名を申請する手順を解説します。</p>
+
+<p>※2015年12月21日追記：<a href="https://blog.mozilla.org/addons/2015/12/18/signing-firefox-add-ons-with-jpm-sign/" title="Signing Firefox add-ons with jpm sign | Mozilla Add-ons Blog">上記の<code>jpm</code>コマンドは、SDKを導入しなくても<code>jpm</code>というNPMパッケージ単体の導入により利用可能になるとのことです</a>。
+よって、<em>基本的にはアドオンのXPIパッケージへの署名には<code>jpm</code>のサブコマンド<code>sign</code>を使うことをお薦めします</em>。
+以下で紹介するスクリプトは、<code>jpm sign</code>ではカバーできない範囲のニーズを満たす必要がある場合にのみ使うようにして下さい。</p>
+
+<h4>スクリプトの動作準備</h4>
+
+<p>署名申請の支援スクリプトは、Ubuntu 14.04LTS上で動作を確認済みです。
+スクリプトそのものはBashスクリプトですが、APIへのアクセスに<code>curl</code>を使用します。
+また、Node.js用のJWTライブラリを使うため、<code>nodejs</code>コマンドおよび<code>npm</code>コマンドが利用可能になっている必要があります。</p>
+
+<p>以下の説明では、例としてUbuntuでの操作手順を示します。
+他の環境で使う場合は、環境依存の記述を適宜読み替えて下さい。</p>
+
+<p>署名申請にの支援スクリプトは複数に分かれているため、スクリプトは単体でダウンロードするのではなく、<a href="https://github.com/piroor/makexpi">スクリプト群一式</a>を作業ディレクトリに保存するようにして下さい。
+例えば以下の要領です。</p>
+<div class="highlight"><pre><span class="nv">$ </span>mkdir -p /tmp/signxpi
+<span class="nv">$ </span><span class="nb">cd</span> /tmp/signxpi
+<span class="nv">$ </span>git clone https://github.com/piroor/makexpi.git
+</pre></div>
+<h4>APIキーの生成</h4>
+
+<p>署名の申請を自動化するにあたっては、<a href="http://qiita.com/kaiinui/items/21ec7cc8a1130a1a103a" title="JWT - JSON Web Token の効用 - Qiita">JSON Web Token（JWT）</a>用のAPIキーが必要です。
+これは、<a href="https://addons.mozilla.org/ja/developers/addon/api/key/" title="API キーを管理 :: 開発者センター :: Add-ons for Firefox">Mozilla Add-onsの開発者センターのAPIキー管理画面</a>で生成できます。
+本記事執筆時点では用途別の複数APIキーの使い分けは考慮されていないようで、生成できるAPIキーは一種類のみとなっています。
+既にAPIキーを生成済みの場合、APIキーを生成し直すと古いAPIキーは無効になる模様ですのでご注意下さい。</p>
+
+<p>APIキーは、「JWT発行者（JWT issuer）」と「JWT秘密鍵（JWT secret）」の2つの文字列のペアとして生成されます。
+APIキーを準備できたら、次のステップに進みます。</p>
+
+<h4>署名申請の送信</h4>
+
+<p>署名申請を行うスクリプトは、リポジトリ内にある<a href="https://github.com/piroor/makexpi/blob/master/sign_xpi.sh" title="makexpi/sign_xpi.sh at master · piroor/makexpi"><code>sign_xpi.sh</code></a>です。
+以下のようにオプションを指定して実行します。</p>
+<div class="highlight"><pre><span class="nv">$ </span>makexpi/sign_xpi.sh -p <span class="s2">&quot;XPIファイルのパス&quot;</span> <span class="se">\</span>
+                      -o <span class="s2">&quot;署名済みファイルの保存先ディレクトリのパス&quot;</span> <span class="se">\</span>
+                      -k <span class="s2">&quot;JWT発行者&quot;</span> <span class="se">\</span>
+                      -s <span class="s2">&quot;JWT秘密鍵&quot;</span> <span class="se">\</span>
+                      -d
+</pre></div>
+<p>例えば、XPIファイルがカレントディレクトリにある「myaddon.xpi」で、署名済みのファイルを同じくカレントディレクトリに保存するのであれば、以下のようになります。</p>
+<div class="highlight"><pre><span class="nv">$ JWT_ISSUER</span><span class="o">=</span>user:xxxxxx:xxx
+<span class="nv">$ JWT_SECRET</span><span class="o">=</span>yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+<span class="nv">$ </span>makexpi/sign_xpi.sh -p <span class="s2">&quot;./myaddon.xpi&quot;</span> <span class="se">\</span>
+                      -o <span class="s2">&quot;./&quot;</span> <span class="se">\</span>
+                      -k <span class="s2">&quot;$JWT_ISSUER&quot;</span> <span class="se">\</span>
+                      -s <span class="s2">&quot;$JWT_SECRET&quot;</span> <span class="se">\</span>
+                      -d
+The file will be uploaded <span class="k">for</span> signing.
+</pre></div>
+<p><code>The file will be uploaded for signing.</code>という出力を得られたでしょうか？
+実は、この時点ではまだファイルは送信されていません。
+<code>-d</code>はいわゆるdry runを行うためのオプションで、このオプションが指定された場合、実際のファイル送信は行われないようになっています。
+dry runに成功したら、改めて<code>-d</code>オプションを外し、実際にファイルを署名申請します。
+（慣れてきたら、dry runでの確認はスキップして構いません。）</p>
+<div class="highlight"><pre><span class="nv">$ </span>makexpi/sign_xpi.sh -p <span class="s2">&quot;./myaddon.xpi&quot;</span> <span class="se">\</span>
+                      -o <span class="s2">&quot;./&quot;</span> <span class="se">\</span>
+                      -k <span class="s2">&quot;$JWT_ISSUER&quot;</span> <span class="se">\</span>
+                      -s <span class="s2">&quot;$JWT_SECRET&quot;</span>
+</pre></div>
+<p>申請に成功し、署名済みのファイルが得られた場合、署名済みのファイルがカレントディレクトリに保存されます。</p>
+
+<p>なお、署名APIは、「アドオンの新しいバージョンをアップロードするためのAPI」という形をとっているため、この時点で、署名申請を行ったバージョンは当該アドオンの新バージョンとして登録されることになります。
+この時、当該バージョンは詳細情報が入力されていない状態になりますので、公開用の（listedな）アドオンの場合は、別途バージョン一覧から詳細情報を入力する必要があります。</p>
+
+<h4>後から署名済みのファイルをダウンロードする</h4>
+
+<p>レビュー待ちなどの理由で署名済みのファイルをすぐには入手できなかった場合、<code>Not signed yet. You must retry downloading after signed.</code>というメッセージが表示されてエラーとなります。
+この場合、レビューが完了して署名済みファイルをダウンロードできるようになった段階で再挑戦する必要があります。
+また、署名済みのファイルを紛失してしまった場合にも、再度ダウンロードしなくてはなりません。</p>
+
+<p>このようなケースでは、<code>download_signed_xpi.sh</code>という別のスクリプトを使います。</p>
+<div class="highlight"><pre><span class="nv">$ </span>makexpi/download_signed_xpi.sh -i <span class="s2">&quot;アドオンの内部ID&quot;</span> <span class="se">\</span>
+                                 -v <span class="s2">&quot;署名済みファイルをダウンロードするバージョン&quot;</span> <span class="se">\</span>
+                                 -o <span class="s2">&quot;署名済みファイルの保存先ディレクトリのパス&quot;</span> <span class="se">\</span>
+                                 -k <span class="s2">&quot;JWT発行者&quot;</span> <span class="se">\</span>
+                                 -s <span class="s2">&quot;JWT秘密鍵&quot;</span>
+</pre></div>
+<p>例えば、アドオンのIDが「<a href="mailto:myaddon@example.com">myaddon@example.com</a>」で、「バージョン1.5」の署名済みのファイルをカレントディレクトリに保存するのであれば、以下のようになります。</p>
+<div class="highlight"><pre><span class="nv">$ JWT_ISSUER</span><span class="o">=</span>user:xxxxxx:xxx
+<span class="nv">$ JWT_SECRET</span><span class="o">=</span>yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+<span class="nv">$ </span>makexpi/download_signed_xpi.sh -i <span class="s2">&quot;myaddon@example.com&quot;</span> <span class="se">\</span>
+                                 -v <span class="s2">&quot;1.5&quot;</span> <span class="se">\</span>
+                                 -o <span class="s2">&quot;./&quot;</span> <span class="se">\</span>
+                                 -k <span class="s2">&quot;$JWT_ISSUER&quot;</span> <span class="se">\</span>
+                                 -s <span class="s2">&quot;$JWT_SECRET&quot;</span>
+</pre></div>
+<h4>まとめ</h4>
+
+<p><a href="https://blog.mozilla.org/addons/2015/12/01/de-coupling-reviews-from-signing-unlisted-add-ons/" title="De-coupling Reviews from Signing Unlisted Add-ons | Mozilla Add-ons Blog">De-coupling Reviews from Signing Unlisted Add-ons | Mozilla Add-ons Blog</a>（<a href="http://piro.sakura.ne.jp/latest/blosxom/mozilla/xul/2015-12-17_decoupling-reviews-from-signing.htm" title="Latest topics &amp;gt; 非公開のアドオンの署名手続きからのレビューの分離について - outsider reflex">私的翻訳</a>）によると、非公開（unlisted）のアドオンについては、人力のレビューを経ずに即座に署名済みのXPIパッケージを入手できるようになっている模様です。</p>
+
+<p>ただ、人力レビューが必要な場合であっても、この署名APIによって「新バージョンリリース時のファイルのアップロード」までは自動化できます。
+署名義務化の発表以降、アドオンの開発や提供、検証にあたって手間が増えた部分はいくつかありますが、こういった部分でささやかながらリリースの自動化をしやすくなってくれたことは、素直に有り難いことだと言えるでしょう。</p>
+<div class="sequel">つづき: <a href="http://www.clear-code.com/blog/2015/12/22.html">2015-12-22</a>, <a href="http://www.clear-code.com/blog/2016/1/6.html">2016-01-06</a></div>
+<div class="social-widgets">
+  <div class="inline-social-widgets">
+<a href="http://b.hatena.ne.jp/entry/http://www.clear-code.com/blog/2015/12/17.html"
+   class="hatena-bookmark-button"
+   data-hatena-bookmark-layout="standard"
+   title="このエントリーをはてなブックマークに追加"
+   ><img src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+         width="20"
+         height="20"
+         style="border: none;"
+         alt="このエントリーをはてなブックマークに追加"></a>
+<a href="http://twitter.com/share"
+   class="twitter-share-button"
+   data-lang="ja"
+   data-url="http://www.clear-code.com/blog/2015/12/17.html"
+   data-via="_clear_code"
+   data-text="Firefox用アドオンのデジタル署名の自動化 - ククログ(2015-12-17)">ツイートする</a>
+  </div>
+<div class="social-widget-twitter-follow">
+  <a href="http://twitter.com/_clear_code"
+	  class="twitter-follow-button"
+	  data-lang="ja">フォローする</a>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-like"
+       data-href="http://www.clear-code.com/blog/2015/12/17.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-comments"
+		 data-href="http://www.clear-code.com/blog/2015/12/17.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+</div>
+<div class="tag-list">
+タグ: <a href="category/mozilla.html" title="Mozilla">Mozilla</a></div>
+
+</div>
+
+<span class="date">2015-12-17</span>
+
+</div>
+
+<div class="comment">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+		<div class="referer">
+		
+		</div>
+</div>
+
+	<hr class="sep">
+	
+<div class="day autopagerize_page_element">
+<h2></h2>
+
+<div class="body">
+
+<div class="section">
+
+<h3><a href="./2015/12/15.html">Thunderbirdのエラーコンソールの出力結果を効率よく収集する方法</a></h3>
+<p>FirefoxやThunderbirdには、内部で発生したエラーの情報やデバッグ用の情報を表示するためのコンソールが内蔵されています。
+FirefoxでもThunderbirdでも、「Ctrl-Shift-J」というキーボードショートカットでこのコンソールを開く事ができます。</p>
+
+<p>FirefoxのエラーコンソールはWeb開発ツール由来の物となっており、表示された内容を簡単に選択してクリップボードにコピーできます。
+しかしながら、Thunderbirdのエラーコンソールは設計上の都合から、1つ1つのログをコピーする事しかできず、また表示可能なログの最大件数も250件に制限されています。
+大量のメッセージが発生する状況ではすぐにログが流れてしまって、有効な情報を収集することができません。</p>
+
+<p>以下は、この制限を実証するための「300件のエラーを報告する」というサンプルコードです。</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">300</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="nx">Components</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">reportError</span><span class="p">(</span><span class="s1">&#39;Error &#39;</span><span class="o">+</span><span class="nx">i</span><span class="p">);</span> <span class="p">};</span> 
+</pre></div>
+<p>これをエラーコンソール内の「コード」欄にコピー＆ペーストして「コードを評価」ボタンをクリックして実行すると、それまで表示されていたログや新規のログの300件のうち最初の50件までは消えてしまい、「Error 51」から「Error 300」までの250件だけが見えるという結果になることが分かります。
+実際の運用上で問題が発生している時に、エラーコンソール内をすさまじい速度でログが流れていってしまうと、原因の切り分けのための調査自体もはかどりません。</p>
+
+<h4>エラーコンソールの最大表示ログ件数を増やす</h4>
+
+<p>幸い、Thunderbirdのエラーコンソールでは任意のコードを実行できます。
+この機能を使えば、エラーコンソール自身の最大表示件数を変える事ができます。</p>
+
+<p>以下のコードをエラーコンソール内の「コード」欄にコピー＆ペーストし、「コードを評価」ボタンをクリックして実行すると、ログの最大件数が99999件に拡大されます。</p>
+<div class="highlight"><pre><span class="nx">Components</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="kr">import</span><span class="p">(</span><span class="s1">&#39;resource://gre/modules/Services.jsm&#39;</span><span class="p">);</span><span class="kd">var</span> <span class="nx">box</span> <span class="o">=</span> <span class="nx">Services</span><span class="p">.</span><span class="nx">wm</span><span class="p">.</span><span class="nx">getMostRecentWindow</span><span class="p">(</span><span class="s1">&#39;global:console&#39;</span><span class="p">).</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;ConsoleBox&#39;</span><span class="p">);</span> <span class="kd">var</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">99999</span> <span class="p">};</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">box</span><span class="p">,</span> <span class="s1">&#39;limit&#39;</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">);</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">box</span><span class="p">,</span> <span class="s1">&#39;fieldMaxLength&#39;</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">);</span>
+</pre></div>
+<p>実際に、続けて以下のようなコードを実行してみると、それまでのログと併せてすべてのログが表示されることを確認できます。</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">300</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="nx">Components</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">reportError</span><span class="p">(</span><span class="s1">&#39;New Error &#39;</span><span class="o">+</span><span class="nx">i</span><span class="p">);</span> <span class="p">};</span> 
+</pre></div>
+<p>この方法は、エラーコンソールを開いた時点より後に出力されるログに対してしか利用できません。
+（エラーコンソールを開く前に大量にログが出ている場合、それらは既に制限を超えて流れてしまっているために、この方法では見る事ができません。）
+とはいえ、エラーコンソールを開いた後の任意のタイミングで再現試験を行える状況であれば十分に有用でしょう。</p>
+
+<p>なお、この変更は「エラーコンソール」のウィンドウを閉じるまでの間のみ有効で、エラーコンソールを開き直したりすると最初の状態（最大250件のみ表示）に戻ります。</p>
+
+<h4>エラーコンソールの内容をクリップボードにコピーする</h4>
+
+<p>また、以下のコードを実行すれば、その時点でコンソールに表示されているすべてのログをまとめてクリップボードにコピーできます。</p>
+<div class="highlight"><pre><span class="nx">Components</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="kr">import</span><span class="p">(</span><span class="s1">&#39;resource://gre/modules/Services.jsm&#39;</span><span class="p">);</span><span class="kd">var</span> <span class="nx">text</span><span class="o">=</span><span class="p">[];</span><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">row</span> <span class="nx">of</span> <span class="nx">Services</span><span class="p">.</span><span class="nx">wm</span><span class="p">.</span><span class="nx">getMostRecentWindow</span><span class="p">(</span><span class="s1">&#39;global:console&#39;</span><span class="p">).</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;ConsoleBox&#39;</span><span class="p">).</span><span class="nx">mConsoleRowBox</span><span class="p">.</span><span class="nx">children</span><span class="p">)</span> <span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="nx">row</span><span class="p">.</span><span class="nx">boxObject</span><span class="p">.</span><span class="nx">height</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="nx">text</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">row</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span> <span class="p">}</span> <span class="p">};</span> <span class="nx">Components</span><span class="p">.</span><span class="nx">classes</span><span class="p">[</span><span class="s1">&#39;@mozilla.org/widget/clipboardhelper;1&#39;</span><span class="p">].</span><span class="nx">getService</span><span class="p">(</span><span class="nx">Components</span><span class="p">.</span><span class="nx">interfaces</span><span class="p">.</span><span class="nx">nsIClipboardHelper</span><span class="p">).</span><span class="nx">copyString</span><span class="p">(</span><span class="nx">text</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;\n---\n&#39;</span><span class="p">));</span>
+</pre></div>
+<p>これなら、ログの件数が多い場合でも容易にログを保存することができます。
+アドオンのエラー情報を作者に伝える場合や、バグトラッキングシステムに問題を報告する時などにご活用下さい。</p>
+<div class="sequel">つづき: <a href="http://www.clear-code.com/blog/2016/1/6.html">2016-01-06</a></div>
+<div class="social-widgets">
+  <div class="inline-social-widgets">
+<a href="http://b.hatena.ne.jp/entry/http://www.clear-code.com/blog/2015/12/15.html"
+   class="hatena-bookmark-button"
+   data-hatena-bookmark-layout="standard"
+   title="このエントリーをはてなブックマークに追加"
+   ><img src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+         width="20"
+         height="20"
+         style="border: none;"
+         alt="このエントリーをはてなブックマークに追加"></a>
+<a href="http://twitter.com/share"
+   class="twitter-share-button"
+   data-lang="ja"
+   data-url="http://www.clear-code.com/blog/2015/12/15.html"
+   data-via="_clear_code"
+   data-text="Thunderbirdのエラーコンソールの出力結果を効率よく収集する方法 - ククログ(2015-12-15)">ツイートする</a>
+  </div>
+<div class="social-widget-twitter-follow">
+  <a href="http://twitter.com/_clear_code"
+	  class="twitter-follow-button"
+	  data-lang="ja">フォローする</a>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-like"
+       data-href="http://www.clear-code.com/blog/2015/12/15.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-comments"
+		 data-href="http://www.clear-code.com/blog/2015/12/15.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+</div>
+<div class="tag-list">
+タグ: <a href="category/mozilla.html" title="Mozilla">Mozilla</a></div>
+
+</div>
+
+<span class="date">2015-12-15</span>
+
+</div>
+
+<div class="comment">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+		<div class="referer">
+		
+		</div>
+</div>
+
+	<hr class="sep">
+	
+<div class="day autopagerize_page_element">
+<h2></h2>
+
+<div class="body">
+
+<div class="section">
+
+<h3><a href="./2015/12/14.html">Firefoxを意図的にクラッシュさせる方法</a></h3>
+<p>Firefoxの導入時の要件として、クラッシュ時のレポートを送信しないようにするという設定を行う事があります。
+この設定が意図通りに反映されているかどうかを確認するために、Firefoxが実際にクラッシュした時の様子を観察したい場合があります。</p>
+
+<p>Firefoxには既知で且つ未修正のクラッシュバグがいくつかあるため、それを突くようなコードを実行すればFirefoxをクラッシュさせる事ができます。
+しかし、クラッシュバグは再現性が低い物もありますし、そもそも新しいバージョンのFirefoxではクラッシュしないように修正されていることも多いです。
+安定してFirefoxをクラッシュさせる方法を把握しておけば、Firefoxをクラッシュさせるための方法をその都度あれこれ調べなくても済みます。</p>
+
+<p>Firefoxにはjs-ctypesという、JavaScriptからC言語製の共有ライブラリの機能を直接呼び出す機能が含まれており、これを使えば、比較的簡単にFirefoxをクラッシュさせられます。
+例えば以下のようなコードを実行すれば、使用中のメモリ領域を強制的に解放してメモリ破壊を引き起こし、Firefoxをクラッシュさせる事ができます。</p>
+<div class="highlight"><pre><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<span class="nx">Components</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="kr">import</span><span class="p">(</span><span class="s1">&#39;resource://gre/modules/ctypes.jsm&#39;</span><span class="p">);</span>
+<span class="c1">// Firefoxの構成ファイルの1つであるnss3.dll（nss3.so）をオープンする。</span>
+<span class="kd">var</span> <span class="nx">library</span> <span class="o">=</span> <span class="nx">ctypes</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">ctypes</span><span class="p">.</span><span class="nx">libraryName</span><span class="p">(</span><span class="s1">&#39;nss3&#39;</span><span class="p">));</span>
+<span class="c1">// 指定したアドレスのメモリを解放する関数を取得する。</span>
+<span class="kd">var</span> <span class="nx">PR_Free</span> <span class="o">=</span> <span class="nx">library</span><span class="p">.</span><span class="nx">declare</span><span class="p">(</span>
+  <span class="s1">&#39;PR_Free&#39;</span><span class="p">,</span>
+  <span class="nx">ctypes</span><span class="p">.</span><span class="nx">default_abi</span><span class="p">,</span>
+  <span class="nx">ctypes</span><span class="p">.</span><span class="nx">void_t</span><span class="p">,</span>
+  <span class="nx">ctypes</span><span class="p">.</span><span class="nx">voidptr_t</span>
+<span class="p">);</span>
+<span class="c1">// 適当なアドレスを指定してメモリを解放する。</span>
+<span class="kd">var</span> <span class="nx">ptr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ctypes</span><span class="p">.</span><span class="nx">voidptr_t</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nx">PR_Free</span><span class="p">(</span><span class="nx">ptr</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+<p>上記のスクリプトを実行するには、js-ctypesを利用する権限（chrome権限）が必要です。
+「スクラッチパッド」を使って実行する場合は以下の手順となります。</p>
+
+<ol>
+<li>Firefoxを起動する。</li>
+<li><code>about:config</code>を開き、<code>devtools.chrome.enabled</code>の値を<code>true</code>に設定する。</li>
+<li>Shift-F4を押すか、「開発ツール」メニューから「スクラッチパッド」を選択してスクラッチパッドを起動する。</li>
+<li>「実行環境」メニューから「ブラウザ」を選択する。</li>
+<li>上記のスクリプトを貼り付けて、ツールバー上の「実行」をクリックする。</li>
+</ol>
+
+<p>なお、メモリ破壊を引き起こしてFirefoxをクラッシュさせると履歴や設定などのデータが破損する場合があります。
+この方法を実際に試す際は、データが壊れてもよいテスト用のプロファイルを使う事を強くお勧めします。</p>
+<div class="sequel">つづき: <a href="http://www.clear-code.com/blog/2016/1/6.html">2016-01-06</a></div>
+<div class="social-widgets">
+  <div class="inline-social-widgets">
+<a href="http://b.hatena.ne.jp/entry/http://www.clear-code.com/blog/2015/12/14.html"
+   class="hatena-bookmark-button"
+   data-hatena-bookmark-layout="standard"
+   title="このエントリーをはてなブックマークに追加"
+   ><img src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+         width="20"
+         height="20"
+         style="border: none;"
+         alt="このエントリーをはてなブックマークに追加"></a>
+<a href="http://twitter.com/share"
+   class="twitter-share-button"
+   data-lang="ja"
+   data-url="http://www.clear-code.com/blog/2015/12/14.html"
+   data-via="_clear_code"
+   data-text="Firefoxを意図的にクラッシュさせる方法 - ククログ(2015-12-14)">ツイートする</a>
+  </div>
+<div class="social-widget-twitter-follow">
+  <a href="http://twitter.com/_clear_code"
+	  class="twitter-follow-button"
+	  data-lang="ja">フォローする</a>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-like"
+       data-href="http://www.clear-code.com/blog/2015/12/14.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+<div class="social-widget-facebook">
+  <div class="fb-comments"
+		 data-href="http://www.clear-code.com/blog/2015/12/14.html"    
+data-send="true"    
+data-width="450"    
+data-show-faces="true"></div>
+</div>
+</div>
+<div class="tag-list">
+タグ: <a href="category/mozilla.html" title="Mozilla">Mozilla</a></div>
+
+</div>
+
+<span class="date">2015-12-14</span>
+
+</div>
+
+<div class="comment">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+		<div class="referer">
+		
+		</div>
+</div>
+
+	<hr class="sep">
+
+<ul class="advertisings">
+  <li class="advertising">ククログの記事は<a href="../license/#blog">CC BY-SA 4.0とGFDLのデュアルライセンス</a>で自由に利用できます。</li>
+  <li class="advertising">クリアコードは<a href="../recruitment/">プログラミングが楽しいソフトウェア開発者を1名募集</a>しています。</li>
+  <li class="advertising">クリアコードは<a href="../services/">フリーソフトウェア開発で培った技術力を提供</a>しています。<a href="../services/#mozilla">特にMozilla製品（Mozilla FirefoxとMozilla Thunderbird）</a>と<a href="../services/#ruby">Ruby</a>に関連した開発を得意としています。</li>
+</ul>
+
+<div class="adminmenu">
+<span class="adminmenu"><a href="./latest/1.html" rel="next">&laquo;前10日分</a></span>
+</div>
+<div class="calendar">
+<div class="year">2008|<a href="./2008/5.html">05</a>|<a href="./2008/6.html">06</a>|<a href="./2008/7.html">07</a>|<a href="./2008/8.html">08</a>|<a href="./2008/9.html">09</a>|<a href="./2008/10.html">10</a>|<a href="./2008/11.html">11</a>|<a href="./2008/12.html">12</a>|</div>
+<div class="year">2009|<a href="./2009/1.html">01</a>|<a href="./2009/2.html">02</a>|<a href="./2009/3.html">03</a>|<a href="./2009/4.html">04</a>|<a href="./2009/5.html">05</a>|<a href="./2009/6.html">06</a>|<a href="./2009/7.html">07</a>|<a href="./2009/8.html">08</a>|<a href="./2009/9.html">09</a>|<a href="./2009/10.html">10</a>|<a href="./2009/11.html">11</a>|<a href="./2009/12.html">12</a>|</div>
+<div class="year">2010|<a href="./2010/1.html">01</a>|<a href="./2010/2.html">02</a>|<a href="./2010/3.html">03</a>|<a href="./2010/4.html">04</a>|<a href="./2010/5.html">05</a>|<a href="./2010/6.html">06</a>|<a href="./2010/7.html">07</a>|<a href="./2010/8.html">08</a>|<a href="./2010/9.html">09</a>|<a href="./2010/10.html">10</a>|<a href="./2010/11.html">11</a>|<a href="./2010/12.html">12</a>|</div>
+<div class="year">2011|<a href="./2011/1.html">01</a>|<a href="./2011/2.html">02</a>|<a href="./2011/3.html">03</a>|<a href="./2011/4.html">04</a>|<a href="./2011/5.html">05</a>|<a href="./2011/6.html">06</a>|<a href="./2011/7.html">07</a>|<a href="./2011/8.html">08</a>|<a href="./2011/9.html">09</a>|<a href="./2011/10.html">10</a>|<a href="./2011/11.html">11</a>|<a href="./2011/12.html">12</a>|</div>
+<div class="year">2012|<a href="./2012/1.html">01</a>|<a href="./2012/2.html">02</a>|<a href="./2012/3.html">03</a>|<a href="./2012/4.html">04</a>|<a href="./2012/5.html">05</a>|<a href="./2012/6.html">06</a>|<a href="./2012/7.html">07</a>|<a href="./2012/8.html">08</a>|<a href="./2012/9.html">09</a>|<a href="./2012/10.html">10</a>|<a href="./2012/11.html">11</a>|<a href="./2012/12.html">12</a>|</div>
+<div class="year">2013|<a href="./2013/1.html">01</a>|<a href="./2013/2.html">02</a>|<a href="./2013/3.html">03</a>|<a href="./2013/4.html">04</a>|<a href="./2013/5.html">05</a>|<a href="./2013/6.html">06</a>|<a href="./2013/7.html">07</a>|<a href="./2013/8.html">08</a>|<a href="./2013/9.html">09</a>|<a href="./2013/10.html">10</a>|<a href="./2013/11.html">11</a>|<a href="./2013/12.html">12</a>|</div>
+<div class="year">2014|<a href="./2014/1.html">01</a>|<a href="./2014/2.html">02</a>|<a href="./2014/3.html">03</a>|<a href="./2014/4.html">04</a>|<a href="./2014/5.html">05</a>|<a href="./2014/6.html">06</a>|<a href="./2014/7.html">07</a>|<a href="./2014/8.html">08</a>|<a href="./2014/9.html">09</a>|<a href="./2014/10.html">10</a>|<a href="./2014/11.html">11</a>|<a href="./2014/12.html">12</a>|</div>
+<div class="year">2015|<a href="./2015/1.html">01</a>|<a href="./2015/2.html">02</a>|<a href="./2015/3.html">03</a>|<a href="./2015/4.html">04</a>|<a href="./2015/5.html">05</a>|<a href="./2015/6.html">06</a>|<a href="./2015/7.html">07</a>|<a href="./2015/8.html">08</a>|<a href="./2015/9.html">09</a>|<a href="./2015/10.html">10</a>|<a href="./2015/11.html">11</a>|<a href="./2015/12.html">12</a>|</div>
+<div class="year">2016|<a href="./2016/1.html">01</a>|</div>
+</div>
+<div class="category-list">
+  <span class="category-list-label">タグ:</span> <ul class="categories"><li class="category"><a href="category/cutter.html" title="Cutter">Cutter</a></li>
+<li class="category"><a href="category/fluentd.html" title="Fluentd">Fluentd</a></li>
+<li class="category"><a href="category/git.html" title="Git">Git</a></li>
+<li class="category"><a href="category/groonga.html" title="Groonga">Groonga</a></li>
+<li class="category"><a href="category/javascript.html" title="JavaScript">JavaScript</a></li>
+<li class="category"><a href="category/milter-manager.html" title="milter manager">milter manager</a></li>
+<li class="category"><a href="category/mozilla.html" title="Mozilla">Mozilla</a></li>
+<li class="category"><a href="category/ruby.html" title="Ruby">Ruby</a></li>
+<li class="category"><a href="category/uxu.html" title="UxU">UxU</a></li>
+<li class="category"><a href="category/internship.html" title="インターンシップ">インターンシップ</a></li>
+<li class="category"><a href="category/clear-code.html" title="クリアなコード">クリアなコード</a></li>
+<li class="category"><a href="category/test.html" title="テスト">テスト</a></li>
+<li class="category"><a href="category/company.html" title="会社">会社</a></li></ul>
+</div>
+  <script type="text/javascript"
+          src="http://b.st-hatena.com/js/bookmark_button.js"
+          charset="utf-8"
+          async="async"></script>
+  <script type="text/javascript"
+          src="http://b.hatena.ne.jp/js/widget.js"
+          charset="utf-8"></script>
+  <script src="http://platform.twitter.com/widgets.js"
+          type="text/javascript">
+    {lang: 'ja'}
+  </script>
+
+<div class="statistics-widgets">
+  <div class="widget">
+    <script language="javascript" type="text/javascript">
+      Hatena.BookmarkWidget.url   = "http://www.clear-code.com/blog/";
+      Hatena.BookmarkWidget.title = "ククログの人気エントリー";
+      Hatena.BookmarkWidget.sort  = "count";
+      Hatena.BookmarkWidget.width = 0;
+      Hatena.BookmarkWidget.num   = 5;
+      Hatena.BookmarkWidget.theme = "default";
+      Hatena.BookmarkWidget.load();
+    </script>
+  </div>
+  <div class="last-empty-block">
+  </div>
+</div>
+<div class="widgets">
+  <a href="http://rubykaigi.org/2015/" style="display:block;margin:8px auto;text-align:center;"><img src="http://rubykaigi.org/2015/images/goodies/banner-160-sponsor.png" alt="RubyKaigi 2015 sponsor"></a>
+  <a href="http://rubykaigi.org/2015/" style="display:block;margin:8px auto;text-align:center;"><img src="http://rubykaigi.org/2015/images/goodies/banner-160-speaker.png" alt="RubyKaigi 2015 speaker"></a>
+  <a href="http://rubykaigi.org/2015/" style="display:block;margin:8px auto;text-align:center;"><img src="http://rubykaigi.org/2015/images/goodies/banner-160-committer.png" alt="RubyKaigi 2015 committer"></a>
+  <a href="http://rubykaigi.org/2014/" style="display:block;margin:8px auto;text-align:center;"><img src="http://rubykaigi.org/2014/images/badge-for-official-sponsor.png" alt="RubyKaigi 2014 official-sponsor"></a>
+  <a href="http://rubykaigi.org/2014/" style="display:block;margin:8px auto;text-align:center;"><img src="http://rubykaigi.org/2014/images/badge-for-speaker.png" alt="RubyKaigi 2014 speaker"></a>
+  <a href="http://rubykaigi.org/2014/" style="display:block;margin:8px auto;text-align:center;"><img src="http://rubykaigi.org/2014/images/badge-for-committer.png" alt="RubyKaigi 2014 committer"></a>
+  <a href="http://rubykaigi.org/2013/" style="display:block;margin:8px auto;text-align:center;"><img src="http://rubykaigi.org/2013/images/badgeOfficialSponsor.png" alt="RubyKaigi 2013 OfficialSponsor"></a>
+  <a href="http://rubykaigi.org/2013/" style="display:block;margin:8px auto;text-align:center;"><img src="http://rubykaigi.org/2013/images/badgeSpeaker.png" alt="RubyKaigi 2013 Speaker"></a>
+  <a href="http://rubykaigi.org/2013/" style="display:block;margin:8px auto;text-align:center;"><img src="http://rubykaigi.org/2013/images/badgeCommitter.png" alt="RubyKaigi 2013 Committer"></a>
+  <a href="http://sapporo.rubykaigi.org/2012/" style="display:block;margin:8px auto;text-align:center;"><img src="http://sapporo.rubykaigi.org/2012/images/goodiesBadge160OfficialSponsor.png" alt="SapporoRubyKaigi 2012 OfficialSponsor"></a>
+  <a href="http://sapporo.rubykaigi.org/2012/" style="display:block;margin:8px auto;text-align:center;"><img src="http://sapporo.rubykaigi.org/2012/images/goodiesBadge160Speaker.png" alt="SapporoRubyKaigi 2012 Speaker"></a>
+  <a href="http://rubykaigi.org/2011/" style="display:block;margin:8px auto;text-align:center;"><img src="http://rubykaigi.org/2011/goodies/badges/160x160sponsor.png" width="160" height="160" alt="RubyKaigi2010 Sponsor" style="border-width: 0px;"></a>
+  <a href="http://rubykaigi.org/2011/" style="display:block;margin:8px auto;text-align:center;"><img src="http://rubykaigi.org/2011/goodies/badges/160x160speaker.png" width="160" height="160" alt="RubyKaigi2010 Speaker" style="border-width: 0px;"></a>
+  <a href="http://rubykaigi.org/2011/" style="display:block;margin:8px auto;text-align:center;"><img src="http://rubykaigi.org/2011/goodies/badges/160x160committer.png" width="160" height="160" alt="RubyKaigi2010 Committer" style="border-width: 0px;"></a>
+  <a href="http://regional.rubykaigi.org/sapporo03/" style="display:block;margin:8px auto;text-align:center;"><img src="http://regional.rubykaigi.org/images/sapporo03/badge_speaker.gif" alt="badge_speaker.gif"></a>
+  <a href="http://rubykaigi.org/2010/" style="display:block;margin:8px auto;text-align:center;"><img src="http://rubykaigi.org/2010/badge/sponsor.png" width="160" height="201" alt="RubyKaigi2010 Sponsor" style="border-width: 0px;"></a>
+  <a href="http://rubykaigi.org/2010/" style="display:block;margin:8px auto;text-align:center;"><img src="http://rubykaigi.org/2010/badge/speaker.png" width="160" height="201" alt="RubyKaigi2010 Speaker" style="border-width: 0px;"></a>
+  <a href="http://rubykaigi.org/2010/" style="display:block;margin:8px auto;text-align:center;"><img src="http://rubykaigi.org/2010/badge/committer.png" width="160" height="201" alt="RubyKaigi2010 Committer" style="border-width: 0px;"></a>
+  <div style="text-align: center; margin-top: 0.5em; margin-bottom: 0.5em;"><a href="http://regional.rubykaigi.org/sapporo02/"><img src="http://ruby-sapporo.org/sappororubykaigi02/sponsor.gif" width="160" height="90" alt="SapporoRubyKaigi02Sponsor" style="border-width: 0px;"></a></div>
+  <div style="text-align: center; margin-top: 0.5em; margin-bottom: 0.5em;"><a href="http://regional.rubykaigi.org/sapporo02/"><img src="http://ruby-sapporo.org/sappororubykaigi02/speaker.gif" width="160" height="90" alt="SapporoRubyKaigi02Speaker" style="border-width: 0px;"></a></div>
+  <div style="text-align: center; margin-top: 0.5em; margin-bottom: 0.5em;"><a href="http://rubykaigi.org/2009/"><img src="http://rubykaigi.org/2009/images/goodies/badges/sponsor.gif" width="160" height="160" alt="RubyKaigi2009Sponsor" style="border-width: 0px;"></a></div>
+  <div style="text-align: center; margin-top: 0.5em; margin-bottom: 0.5em;"><a href="http://rubykaigi.org/2009/"><img src="http://rubykaigi.org/2009/images/goodies/badges/speaker.gif" width="160" height="160" alt="RubyKaigi2009Speaker" style="border-width: 0px;"></a></div>
+  <div style="text-align: center; margin-top: 0.5em; margin-bottom: 0.5em;"><a href="http://jp.rubyist.net/RubyKaigi2008/"><img src="http://userimages.tdiary.net/rubykaigi/20080617_1.png" width="160" height="79" alt="RubyKaigi2008Speaker" style="border-width: 0px;"></a></div>
+</div>
+<div class="menu">
+	<ul>
+		<li id="menu-services"     class="menu-item"><a href="../services/" title="サービス">サービス</a></li>
+		<li id="menu-software"     class="menu-item"><a href="../software/" title="ソフトウェア">ソフトウェア</a></li>
+		<li id="menu-philosophy"   class="menu-item"><a href="../philosophy/" title="理念">理念</a></li>
+		<li id="menu-recruitment"  class="menu-item"><a href="../recruitment/" title="採用情報">採用情報</a></li>
+		<li id="menu-internship"   class="menu-item"><a href="../internship/" title="インターンシップ">インターンシップ</a></li>
+		<li id="menu-about"        class="menu-item"><a href="../about/" title="会社情報">会社情報</a></li>
+		<li id="menu-contact"      class="menu-item"><a href="../contact/" title="お問い合わせ">お問い合わせ</a></li>
+		<li id="menu-blog"         class="menu-item"><a href="./" title="ブログ">ブログ</a></li>
+		<li id="menu-search"       class="menu-item">
+			<form action="/ranguba/search/" method="get">
+				<input type="text" name="query" />
+				<input type="submit" value="検索" />
+			</form>
+		</li>
+	</ul>
+</div>
+
+<div id="footer">
+	<div class="footer-menu">
+		<ul>
+			<li class="footer-menu-item"><a href="../services/" title="サービス">サービス</a></li>
+			<li class="footer-menu-item"><a href="../software/" title="ソフトウェア">ソフトウェア</a></li>
+			<li class="footer-menu-item"><a href="../philosophy/" title="理念">理念</a></li>
+			<li class="footer-menu-item"><a href="../recruitment/" title="採用情報">採用情報</a></li>
+			<li class="footer-menu-item"><a href="../internship/" title="インターンシップ">インターンシップ</a></li>
+			<li class="footer-menu-item"><a href="../about/" title="会社概要">会社概要</a></li>
+			<li class="footer-menu-item"><a href="../license/" title="ライセンス">ライセンス</a></li>
+			<li class="footer-menu-item"><a href="../contact/" title="お問い合わせ">お問い合わせ</a></li>
+		</ul>
+	</div>
+
+  <address>
+    &copy;2008-2016 <a href="../">株式会社クリアコード</a>
+  </address>
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-12143252-2', 'clear-code.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+<div class="footer">
+Generated by <a href="http://www.tdiary.org/">tDiary</a> version 4.2.1.20160108<br>
+Powered by <a href="http://www.ruby-lang.org/">Ruby</a> version 2.1.5-p273
+</div>
+</div>
+</body>
+</html>
