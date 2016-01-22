@@ -4,6 +4,8 @@ require 'daimon_skycrawlers'
 require 'daimon_skycrawlers/version'
 require 'daimon_skycrawlers/configure_songkick_queue'
 require 'daimon_skycrawlers/url_consumer'
+require 'daimon_skycrawlers/storage'
+require 'daimon_skycrawlers/storage/rdb'
 
 require 'faraday'
 require 'nokogiri'
@@ -51,6 +53,9 @@ module DaimonSkycrawlers
       data = [url.to_s, response.headers, response.body]
 
       yield(*data) if block_given?
+
+      storage = Storage::RDB.new(*data)
+      storage.save
 
       schedule_to_process(url.to_s)
 
