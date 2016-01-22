@@ -73,7 +73,7 @@ module DaimonSkycrawlers
     end
 
     def retrieve_links(html)
-      html = Nokogiri::HTML(html.force_encoding("utf-8"))
+      html = Nokogiri::HTML(html)
       links = html.search("a").map do |element|
         element["href"]
       end
