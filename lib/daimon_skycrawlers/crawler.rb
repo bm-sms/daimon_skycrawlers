@@ -78,7 +78,7 @@ module DaimonSkycrawlers
       html.search("a").each do |element|
         links << element["href"]
       end
-      apply_filters(links)
+      apply_filters(links) || []
     end
 
     def apply_filters(links)
