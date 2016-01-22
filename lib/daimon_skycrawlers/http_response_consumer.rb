@@ -1,3 +1,5 @@
+require "daimon_skycrawlers/processor/default"
+
 module DaimonSkycrawlers
   class HTTPResponseConsumer
     include SongkickQueue::Consumer
@@ -12,10 +14,19 @@ module DaimonSkycrawlers
       def processors
         @processors ||= []
       end
+
+      def default_processor
+        DaimonSkycrawlers::Processor::Default.new
+      end
     end
 
     def process(message)
-      self.class.processors.each do |processor|
+      if self.class.processors.empty?
+        processors = self.class.processors
+      else
+        processors = [self.class.default_processor]
+      end
+      processors.each do |processor|
         processor.call(message)
       end
     end
