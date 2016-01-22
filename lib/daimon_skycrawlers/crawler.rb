@@ -54,8 +54,8 @@ module DaimonSkycrawlers
 
       yield(*data) if block_given?
 
-      storage = Storage::RDB.new(*data)
-      storage.save
+      storage = Storage::RDB.new
+      storage.save(*data)
 
       schedule_to_process(url.to_s)
 
