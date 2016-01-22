@@ -11,14 +11,14 @@ module DaimonSkycrawlers
 
       def save(url, headers, body)
         Page.create(url: url,
-                    headers: headers,
+                    headers: JSON.generate(headers),
                     body: body,
-                    last_modified_at: headers["Last-Modified"],
-                    etag: headers["ETag"])
+                    last_modified_at: headers["last-modified"],
+                    etag: headers["etag"])
       end
 
       def find(url)
-        Page.find(url: url)
+        Page.where(url: url).order(last_modified_at: :desc).limit(1)
       end
 
       class Page < ActiveRecord::Base

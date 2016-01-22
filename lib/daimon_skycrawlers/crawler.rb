@@ -16,8 +16,8 @@ module DaimonSkycrawlers
         SongkickQueue::Worker.new(process_name, [URLConsumer]).run
       end
 
-      def enqueue_url(url, depth)
-        SongkickQueue.publish('daimon-skycrawler.url', url: url, depth: depth)
+      def enqueue_url(url, depth: 3, interval: 1)
+        SongkickQueue.publish('daimon-skycrawler.url', url: url, depth: depth, interval: interval)
       end
     end
 
@@ -62,7 +62,7 @@ module DaimonSkycrawlers
       parser.parse(response.body)
       urls = parser.links
 
-      enqueue_next_urls(urls, depth - 1)
+      enqueue_next_urls(urls, depth: depth - 1, interval: 1)
     end
 
     def get(path, params = {})
@@ -79,11 +79,11 @@ module DaimonSkycrawlers
       DaimonSkycrawlers::Processor.enqueue_http_response(url)
     end
 
-    def enqueue_next_urls(urls, depth)
+    def enqueue_next_urls(urls, depth: 3, interval: 1)
       return if depth <= 0
 
       urls.each do |url|
-        self.class.enqueue_url(url, depth)
+        self.class.enqueue_url(url, depth: depth, interval: interval)
       end
     end
   end

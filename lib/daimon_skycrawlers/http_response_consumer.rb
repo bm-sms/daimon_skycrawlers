@@ -22,9 +22,9 @@ module DaimonSkycrawlers
 
     def process(message)
       if self.class.processors.empty?
-        processors = self.class.processors
-      else
         processors = [self.class.default_processor]
+      else
+        processors = self.class.processors
       end
       processors.each do |processor|
         processor.call(message)

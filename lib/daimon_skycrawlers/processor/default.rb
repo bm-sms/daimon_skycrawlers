@@ -7,10 +7,11 @@ module DaimonSkycrawlers
         url = message[:url]
         storage = DaimonSkycrawlers::Storage::RDB.new
         page = storage.find(url)
+        headers = JSON.parse(page.headers)
         puts "URL: #{page.url}"
         puts "Body: #{page.body.bytesize} bytes"
         puts "Headers:"
-        page.headers.each do |key, value|
+        headers.each do |key, value|
           puts "  #{key}: #{value}"
         end
       end
