@@ -13,8 +13,8 @@ module DaimonSkycrawlers
         Page.create(url: url,
                     headers: JSON.generate(headers),
                     body: body,
-                    last_modified_at: headers["Last-Modified"],
-                    etag: headers["ETag"])
+                    last_modified_at: headers["last-modified"],
+                    etag: headers["etag"])
       end
 
       def find(url)
