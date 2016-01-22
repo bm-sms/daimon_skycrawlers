@@ -4,14 +4,21 @@ require "active_record"
 module DaimonSkycrawlers
   module Storage
     class RDB < Base
-      def save
+      def initialize
         ActiveRecord::Base.establish_connection(adapter: "sqlite3",
                                                 database: "storage.db")
-        Page.create(url: @url,
-                    headers: @headers,
-                    body: @body,
-                    last_modified_at: @headers["Last-Modified"],
-                    etag: @headers["ETag"])
+      end
+
+      def save(url, headers, body)
+        Page.create(url: url,
+                    headers: headers,
+                    body: body,
+                    last_modified_at: headers["Last-Modified"],
+                    etag: headers["ETag"])
+      end
+
+      def find(url)
+        Page.find(url: url)
       end
 
       class Page < ActiveRecord::Base

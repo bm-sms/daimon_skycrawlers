@@ -1,13 +1,11 @@
 module DaimonSkycrawlers
   module Storage
     class Base
-      def initialize(url, headers, body)
-        @url = url
-        @headers = headers
-        @body = body
+      def save(url, headers, body)
+        raise "Implement this in subclass"
       end
 
-      def save(url, headers, body)
+      def read(url)
         raise "Implement this in subclass"
       end
     end
