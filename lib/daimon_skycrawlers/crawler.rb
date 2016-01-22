@@ -22,7 +22,6 @@ module DaimonSkycrawlers
 
     def initialize(base_url, options = {})
       @base_url = base_url
-      @connection = Faraday.new(base_url, options)
     end
 
     def setup_connection(options = {})
@@ -34,6 +33,7 @@ module DaimonSkycrawlers
     # TODO Support POST when we need
     # TODO `params` should be a part of `path`. such as `path == "/hoi?hi=yoyo"`.
     def fetch(path, params = {}, depth: 3)
+      @connection ||= Faraday.new(@base_url)
       response = get(path)
 
       url = @connection.url_prefix + path
