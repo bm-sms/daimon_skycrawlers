@@ -36,6 +36,10 @@ module DaimonSkycrawlers
       end
     end
 
+    def configure_parser
+      yield parser
+    end
+
     def append_filter(filter = nil, &block)
       if parser.respond_to?(__callee__)
         parser.append_filter(filter, &block)
