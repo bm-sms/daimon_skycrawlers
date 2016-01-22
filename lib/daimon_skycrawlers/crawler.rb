@@ -51,7 +51,7 @@ module DaimonSkycrawlers
 
       yield(*data) if block_given?
 
-      schedule_to_process(*data)
+      schedule_to_process(url.to_s)
 
       urls = retrieve_links(response.body)
 
@@ -68,8 +68,8 @@ module DaimonSkycrawlers
 
     private
 
-    def schedule_to_process(url, headers, body)
-      DaimonSkycrawlers::Processor.enqueue_http_response(url, headers, body)
+    def schedule_to_process(url)
+      DaimonSkycrawlers::Processor.enqueue_http_response(url)
     end
 
     def retrieve_links(html)
