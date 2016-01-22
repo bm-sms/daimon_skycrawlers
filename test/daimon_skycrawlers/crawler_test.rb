@@ -22,4 +22,29 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
       end
     end
   end
+
+  sub_test_case 'filter' do
+    setup do
+      stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+        stub.get("/blog") {|env|
+          [200, {}, fixture_path("www.clear-code.com/blog.html").read]
+        }
+      end
+      @crawler = ::DaimonSkycrawlers::Crawler.new('http://example.com')
+      @crawler.setup_connection do |faraday|
+        faraday.adapter :test, stubs
+      end
+      @crawler.append_filter do |link|
+        link.start_with?("http://www.clear-code.com/blog/")
+      end
+      @crawler.append_filter do |link|
+        %r!/2015/8/29.html\z! =~ link
+      end
+      mock(@crawler).enqueue_next_urls(["http://www.clear-code.com/blog/2015/8/29.html"], 0)
+    end
+
+    def test_fetch_blog
+      @crawler.fetch("./blog", depth: 1)
+    end
+  end
 end
