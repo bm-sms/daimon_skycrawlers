@@ -82,6 +82,8 @@ module DaimonSkycrawlers
     end
 
     def apply_filters(links)
+      return if links.nil?
+      return if links.empty?
       @filters.each do |filter|
         links = links.select do |link|
           filter.call(link)
