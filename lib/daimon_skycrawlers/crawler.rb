@@ -22,6 +22,7 @@ module DaimonSkycrawlers
 
     def initialize(base_url, options = {})
       @base_url = base_url
+      @filters = []
     end
 
     def setup_connection(options = {})
