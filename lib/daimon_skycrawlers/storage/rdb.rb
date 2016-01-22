@@ -18,7 +18,7 @@ module DaimonSkycrawlers
       end
 
       def find(url)
-        Page.find(url: url)
+        Page.where(url: url).order(last_modified_at: :desc).limit(1)
       end
 
       class Page < ActiveRecord::Base
