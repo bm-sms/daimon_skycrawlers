@@ -22,6 +22,7 @@ module DaimonSkycrawlers
       def copy_files
         [
           "Gemfile",
+          "Rakefile",
           "crawler.rb",
           "enqueue.rb",
           "processor.rb",
