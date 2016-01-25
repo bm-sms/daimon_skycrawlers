@@ -4,9 +4,10 @@ require "active_record"
 module DaimonSkycrawlers
   module Storage
     class RDB < Base
-      def initialize
-        ActiveRecord::Base.establish_connection(adapter: "sqlite3",
-                                                database: "storage.db")
+      def initialize(config_path = "config/database.yml")
+        config = YAML.load_file(config_path)
+        environment = ENV["SKYCRAWLERS_ENV"] || "development"
+        ActiveRecord::Base.establish_connection(config[environment])
       end
 
       def save(url, headers, body)
