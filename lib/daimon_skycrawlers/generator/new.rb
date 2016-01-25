@@ -30,6 +30,12 @@ module DaimonSkycrawlers
         ].each do |path|
           copy_file(path, "#{name}/#{path}")
         end
+        [
+          "db/migrate/create_pages.rb",
+        ].each do |path|
+          migration = "#{Time.now.strftime("%Y%m%d%H%M%S")}_#{File.basename(path)}"
+          copy_file(path, "#{name}/db/migrate/#{migration}")
+        end
       end
     end
   end
