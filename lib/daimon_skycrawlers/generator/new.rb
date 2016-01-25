@@ -14,6 +14,7 @@ module DaimonSkycrawlers
       def create_files
         [
           "README.md",
+          "config/database.yml",
         ].each do |path|
           template("#{path}.erb", "#{name}/#{path}")
         end
