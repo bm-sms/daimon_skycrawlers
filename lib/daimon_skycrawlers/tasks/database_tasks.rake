@@ -44,6 +44,9 @@ end
 Rake::Task["db:seed"].enhance(["db:load_config"])
 Rake::Task["db:load_config"].clear
 
-# define Rails' tasks as no-op
-Rake::Task.define_task("db:environment")
+Rake::Task.define_task("db:environment") do
+  ActiveRecord::Base.configurations = YAML.load_file("config/database.yml")
+  environment = ENV["SKYCRAWLERS_ENV"] || "development"
+  ActiveRecord::Base.establish_connection(environment.to_sym)
+end
 Rake::Task["db:test:deprecated"].clear if Rake::Task.task_defined?("db:test:deprecated")
