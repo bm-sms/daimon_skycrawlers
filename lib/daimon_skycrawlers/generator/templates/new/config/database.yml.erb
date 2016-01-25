@@ -1,0 +1,26 @@
+# PostgreSQL. Versions 8.2 and up are supported.
+#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: <%= name %>_development
+  #username: <%= name %>
+  #password:
+  #host: localhost
+  #port: 5432
+  #schema_search_path: myapp,sharedapp,public
+  #min_messages: notice
+
+test:
+  <<: *default
+  database: <%= name %>_test
+
+production:
+  <<: *default
+  database: <%= name %>_production
+  username: <%= name %>
+  password: <%%= ENV['<%= name.upcase %>_PASSWORD'] %>
