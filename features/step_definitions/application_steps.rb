@@ -16,7 +16,7 @@ end
 
 When /^I run crawler & processor$/ do
   @worker_pids = []
-  dir = Dir.mktmpdir(nil, @current_app_path + 'tmp')
+  dir = Dir.tmpdir
   @processor_log_path = "#{dir}/processor.log"
   @crawler_log_path = "#{dir}/crawler.log"
 
