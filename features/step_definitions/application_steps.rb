@@ -5,6 +5,13 @@ require 'timeout'
 
 Given /^I have the "([^"]*)" application$/ do |path|
   @current_app_path = fixture_path(path)
+
+  Bundler.with_clean_env {
+    Dir.chdir(@current_app_path) do
+      `rm -rf db/*.sqlite3`
+      `bundle exec rake db:migrate`
+    end
+  }
 end
 
 When /^I run crawler & processor$/ do
