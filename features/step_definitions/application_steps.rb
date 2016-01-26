@@ -6,6 +6,8 @@ require 'timeout'
 Given /^I have the "([^"]*)" application$/ do |path|
   @current_app_path = fixture_path(path)
 
+  system 'sudo rabbitmqctl list_queues'
+
   Bundler.with_clean_env do
     Dir.chdir(@current_app_path) do
       `rm -rf db/*.sqlite3`
