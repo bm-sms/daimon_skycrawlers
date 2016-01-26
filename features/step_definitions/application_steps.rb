@@ -47,6 +47,6 @@ end
 
 After do |scenario|
   @worker_pids.each do |pid|
-    Process.kill 'INT', pid
+    Process.kill 'SIGINT', pid
   end
 end
