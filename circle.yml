@@ -6,7 +6,8 @@ machine:
     - rabbitmq-server
 
 database:
-  override: [] # Skip default command: `bundle exec rake db:create db:schema:load --trace`
+  override:
+    - echo 'skip' # Skip default command: `bundle exec rake db:create db:schema:load --trace`
 
 test:
   pre:
