@@ -4,6 +4,15 @@ Welcome to your new gem! In this directory, you'll find the files you need to be
 
 TODO: Delete this and the text above, and describe your gem
 
+## Requirements
+
+- Ruby
+- RabbitMQ
+- RDB
+  - PostgreSQL (default)
+  - MySQL
+  - SQLite3
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -22,7 +31,30 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+1. Create project
+
+        $ bundle exec daimon-skycrawlers new mycrawlers
+        $ cd mycrawlers
+
+2. Install dependencies
+
+        $ bundle install
+
+3. Create database
+
+        $ bundle exec rake db:create
+        $ bundle exec rake db:migrate
+
+4. Open new terminal and run crawler/processor
+
+        $ bundle exec ruby crawler.rb # on new terminal
+        $ bundle exec ruby processor.rb # on new terminal
+
+5. Enqueue task
+
+        $ bundle exec ruby enqueue.rb http://example.com/
+
+6. You'll see `It works with 'http://example.com'` on your terminal which runs your processor!
 
 ## Development
 
