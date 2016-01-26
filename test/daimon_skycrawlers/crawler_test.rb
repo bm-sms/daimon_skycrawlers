@@ -3,11 +3,9 @@ require 'test_helper'
 class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
   sub_test_case 'fetch html' do
     setup do
-      @last_modified_at = Time.now
-      @etag = 'abc'
       stubs = Faraday::Adapter::Test::Stubs.new do |stub|
         stub.head("/") {|env|
-          [200, {'last-modified' => @last_modified_at, 'etag' => @etag}]
+          [200, {}]
         }
         stub.get("/") {|env|
           [200, {}, "body"]
@@ -27,15 +25,32 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
         assert_equal("body", body)
       end
     end
+  end
 
-    sub_test_case 'skip' do
-      setup do
+  sub_test_case 'skip fetching' do
+    setup do
+      @last_modified_at = Time.now
+      @etag = 'abc'
+      stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+        stub.head("/") {|env|
+          [200, {'last-modified' => @last_modified_at, 'etag' => @etag}]
+        }
+        stub.get("/") {|env|
+          [200, {}, "body"]
+        }
+      end
+      @crawler = ::DaimonSkycrawlers::Crawler.new('http://example.com')
+      @crawler.setup_connection do |faraday|
+        faraday.adapter :test, stubs
+      end
+      @crawler.storage = DaimonSkycrawlers::Storage::Null.new
+
         # TODO: Use an assertion
         mock(@crawler).enqueue_next_urls([],
                                          depth: 2,
                                          interval: 1).times(1)
         @crawler.fetch("/")
-      end
+    end
 
       def test_same_last_modified_at
         existing_record = {
@@ -58,7 +73,6 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
         stub(@crawler.storage).find { existing_record }
         @crawler.fetch("/")
       end
-    end
   end
 
   sub_test_case 'filter' do
