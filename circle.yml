@@ -5,6 +5,9 @@ machine:
   services:
     - rabbitmq-server
 
+database:
+  override: [] # Skip default command: `bundle exec rake db:create db:schema:load --trace`
+
 test:
   pre:
     - gem update bundler
