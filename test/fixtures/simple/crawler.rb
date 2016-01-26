@@ -10,6 +10,6 @@ end
 
 DaimonSkycrawlers.register_crawler(crawler)
 
-DaimonSkycrawlers::Crawler.enqueue_url(base_url, depth: 2)
+DaimonSkycrawlers::Crawler.enqueue_url('/', depth: 2)
 
 DaimonSkycrawlers::Crawler.run
