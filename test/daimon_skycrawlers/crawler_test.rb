@@ -3,7 +3,12 @@ require 'test_helper'
 class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
   sub_test_case 'fetch html' do
     setup do
+      @last_modified_at = Time.now
+      @etag = 'abc'
       stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+        stub.head("/") {|env|
+          [200, {'last-modified' => @last_modified_at, 'etag' => @etag}]
+        }
         stub.get("/") {|env|
           [200, {}, "body"]
         }
@@ -29,11 +34,13 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
                                        depth: 2,
                                        interval: 1).times(1)
       @crawler.fetch("/")
-      record = {
+      existing_record = {
         url: "http://example.com/",
         body: "body",
+        last_modified_at: @last_modified_at,
+        etag: @etag,
       }
-      stub(@crawler.storage).find { record }
+      stub(@crawler.storage).find { existing_record }
       @crawler.fetch("/")
     end
   end
@@ -41,6 +48,9 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
   sub_test_case 'filter' do
     setup do
       stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+        stub.head("/") {|env|
+          [200, {}]
+        }
         stub.get("/blog") {|env|
           [200, {}, fixture_path("www.clear-code.com/blog.html").read]
         }
