@@ -4,7 +4,7 @@ require 'tempfile'
 require 'timeout'
 
 Given /^I have the "([^"]*)" application$/ do |path|
-  @current_app_path = TestHelper.fixture_root.join(path)
+  @current_app_path = fixture_path(path)
 end
 
 When /^I run crawler & processor$/ do
