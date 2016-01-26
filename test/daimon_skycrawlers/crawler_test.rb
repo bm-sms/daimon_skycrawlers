@@ -31,11 +31,13 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
     setup do
       @last_modified_at = Time.now
       @etag = 'abc'
+      @n_called_get = 0
       stubs = Faraday::Adapter::Test::Stubs.new do |stub|
         stub.head("/") {|env|
           [200, {'last-modified' => @last_modified_at, 'etag' => @etag}]
         }
         stub.get("/") {|env|
+          @n_called_get += 1
           [200, {}, "body"]
         }
       end
@@ -44,12 +46,6 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
         faraday.adapter :test, stubs
       end
       @crawler.storage = DaimonSkycrawlers::Storage::Null.new
-
-      # TODO: Use an assertion
-      mock(@crawler).enqueue_next_urls([],
-                                       depth: 2,
-                                       interval: 1).times(1)
-      @crawler.fetch("/")
     end
 
     def test_same_last_modified_at
@@ -59,8 +55,10 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
         last_modified_at: @last_modified_at,
         etag: nil,
       }
+      @crawler.fetch("/")
       stub(@crawler.storage).find { existing_record }
       @crawler.fetch("/")
+      assert_equal(1, @n_called_get);
     end
 
     def test_same_etag
@@ -70,8 +68,10 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
         last_modified_at: nil,
         etag: @etag,
       }
+      @crawler.fetch("/")
       stub(@crawler.storage).find { existing_record }
       @crawler.fetch("/")
+      assert_equal(1, @n_called_get);
     end
   end
 
