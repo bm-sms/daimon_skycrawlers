@@ -45,34 +45,34 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
       end
       @crawler.storage = DaimonSkycrawlers::Storage::Null.new
 
-        # TODO: Use an assertion
-        mock(@crawler).enqueue_next_urls([],
-                                         depth: 2,
-                                         interval: 1).times(1)
-        @crawler.fetch("/")
+      # TODO: Use an assertion
+      mock(@crawler).enqueue_next_urls([],
+                                       depth: 2,
+                                       interval: 1).times(1)
+      @crawler.fetch("/")
     end
 
-      def test_same_last_modified_at
-        existing_record = {
-          url: "http://example.com/",
-          body: "body",
-          last_modified_at: @last_modified_at,
-          etag: nil,
-        }
-        stub(@crawler.storage).find { existing_record }
-        @crawler.fetch("/")
-      end
+    def test_same_last_modified_at
+      existing_record = {
+        url: "http://example.com/",
+        body: "body",
+        last_modified_at: @last_modified_at,
+        etag: nil,
+      }
+      stub(@crawler.storage).find { existing_record }
+      @crawler.fetch("/")
+    end
 
-      def test_same_etag
-        existing_record = {
-          url: "http://example.com/",
-          body: "body",
-          last_modified_at: nil,
-          etag: @etag,
-        }
-        stub(@crawler.storage).find { existing_record }
-        @crawler.fetch("/")
-      end
+    def test_same_etag
+      existing_record = {
+        url: "http://example.com/",
+        body: "body",
+        last_modified_at: nil,
+        etag: @etag,
+      }
+      stub(@crawler.storage).find { existing_record }
+      @crawler.fetch("/")
+    end
   end
 
   sub_test_case 'filter' do
