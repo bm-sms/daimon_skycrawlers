@@ -58,7 +58,7 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
       @crawler.fetch("/")
       stub(@crawler.storage).find { existing_record }
       @crawler.fetch("/")
-      assert_equal(1, @n_called_get);
+      assert_equal(1, @n_called_get)
     end
 
     def test_same_etag
@@ -71,7 +71,7 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
       @crawler.fetch("/")
       stub(@crawler.storage).find { existing_record }
       @crawler.fetch("/")
-      assert_equal(1, @n_called_get);
+      assert_equal(1, @n_called_get)
     end
   end
 
