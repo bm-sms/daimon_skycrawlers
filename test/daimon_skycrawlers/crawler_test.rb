@@ -37,7 +37,7 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
         @crawler.fetch("/")
       end
 
-      def test_skip_if_same_last_modified_at
+      def test_same_last_modified_at
         existing_record = {
           url: "http://example.com/",
           body: "body",
@@ -48,7 +48,7 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
         @crawler.fetch("/")
       end
 
-      def test_skip_if_same_etag
+      def test_same_etag
         existing_record = {
           url: "http://example.com/",
           body: "body",
