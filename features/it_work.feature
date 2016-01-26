@@ -4,5 +4,5 @@ Feature: It works
     When I run crawler & processor
     Then processor receives the following message:
     """
-    It works with 'http://example.com/'
+    It works with 'http://example.com'
     """
