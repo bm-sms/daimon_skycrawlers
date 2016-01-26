@@ -22,8 +22,8 @@ When /^I run crawler & processor$/ do
 
   Bundler.with_clean_env do
     Dir.chdir(@current_app_path) do
-      @worker_pids << spawn("bundle exec ruby #{@current_app_path.join('processor.rb')}", out: @processor_log_path, err: @processor_log_path)
-      @worker_pids << spawn("bundle exec ruby #{@current_app_path.join('crawler.rb')}", out: @crawler_log_path, err: @crawler_log_path)
+      @worker_pids << spawn("bundle exec ruby #{@current_app_path.join('processor.rb')}") #, out: @processor_log_path, err: @processor_log_path)
+      @worker_pids << spawn("bundle exec ruby #{@current_app_path.join('crawler.rb')}") #, out: @crawler_log_path, err: @crawler_log_path)
     end
   end
 end
