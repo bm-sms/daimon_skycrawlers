@@ -45,11 +45,13 @@ Then /^processor receives the following message:$/ do |message|
   ensure
     Kernel.puts '* processor'
     Kernel.puts @processor_log_path
+    Kernel.p    File.stat(@processor_log_path)
     Kernel.puts File.read(@processor_log_path)
     Kernel.puts '---'
 
     Kernel.puts '* crawler'
     Kernel.puts @crawler_log_path
+    Kernel.p    File.stat(@crawler_log_path)
     Kernel.puts File.read(@crawler_log_path)
     Kernel.puts '---'
 
