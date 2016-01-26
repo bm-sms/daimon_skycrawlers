@@ -43,6 +43,16 @@ Then /^processor receives the following message:$/ do |message|
   rescue Timeout::Error
     # noop
   ensure
+    Kernel.puts '* processor'
+    Kernel.puts @processor_log_path
+    Kernel.puts File.read(@processor_log_path)
+    Kernel.puts '---'
+
+    Kernel.puts '* crawler'
+    Kernel.puts @crawler_log_path
+    Kernel.puts File.read(@crawler_log_path)
+    Kernel.puts '---'
+
     assert_match message, data
   end
 end
