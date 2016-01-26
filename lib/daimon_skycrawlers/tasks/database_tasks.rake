@@ -44,7 +44,7 @@ end
 Rake::Task["db:seed"].enhance(["db:load_config"])
 Rake::Task["db:load_config"].clear
 
-Rake::Task.define_task("db:environment") do
+Rake::Task.define_task("db:load_config") do
   ActiveRecord::Base.configurations = YAML.load_file("config/database.yml")
   environment = ENV["SKYCRAWLERS_ENV"] || "development"
   ActiveRecord::Base.establish_connection(environment.to_sym)
