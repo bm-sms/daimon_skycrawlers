@@ -14,4 +14,5 @@ test:
     - gem update bundler
 
   override:
-    - echo 'noop' # XXX This is debug
+    - bundle exec rake || true # XXX debug
+    - bundle exec rake
