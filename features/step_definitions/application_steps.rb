@@ -20,6 +20,9 @@ When /^I run crawler & processor$/ do
   @processor_log_path = "#{dir}/processor.log"
   @crawler_log_path = "#{dir}/crawler.log"
 
+  `touch #{@processor_log_path}`
+  `touch #{@crawler_log_path}`
+
   Bundler.with_clean_env do
     Dir.chdir(@current_app_path) do
       @worker_pids << spawn("bundle exec ruby #{@current_app_path.join('processor.rb')}") #, out: @processor_log_path, err: @processor_log_path)
