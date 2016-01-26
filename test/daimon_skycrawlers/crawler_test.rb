@@ -28,7 +28,7 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
       end
     end
 
-    def test_skip_same_url
+    def test_skip_if_same_last_modified_at
       # TODO: Use an assertion
       mock(@crawler).enqueue_next_urls([],
                                        depth: 2,
@@ -38,6 +38,22 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
         url: "http://example.com/",
         body: "body",
         last_modified_at: @last_modified_at,
+        etag: nil,
+      }
+      stub(@crawler.storage).find { existing_record }
+      @crawler.fetch("/")
+    end
+
+    def test_skip_if_same_etag
+      # TODO: Use an assertion
+      mock(@crawler).enqueue_next_urls([],
+                                       depth: 2,
+                                       interval: 1).times(1)
+      @crawler.fetch("/")
+      existing_record = {
+        url: "http://example.com/",
+        body: "body",
+        last_modified_at: nil,
         etag: @etag,
       }
       stub(@crawler.storage).find { existing_record }
