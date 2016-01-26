@@ -17,12 +17,12 @@ end
 When /^I run crawler & processor$/ do
   @worker_pids = []
   dir = Dir.tmpdir
-  @processor_out_path = "#{dir}/processor.log"
-  @crawler_out_path = "#{dir}/crawler_out.log"
+  @processor_log_path = "#{dir}/processor.log"
+  @crawler_log_path = "#{dir}/crawler.log"
 
   Bundler.with_clean_env {
-    @worker_pids << spawn("bundle exec ruby #{@current_app_path.join('crawler.rb')}", out: @crawler_out_path, err: @crawler_out_path)
-    @worker_pids << spawn("bundle exec ruby #{@current_app_path.join('processor.rb')}", out: @processor_out_path, err: @processor_out_path)
+    @worker_pids << spawn("bundle exec ruby #{@current_app_path.join('crawler.rb')}", out: @crawler_log_path, err: @crawler_log_path)
+    @worker_pids << spawn("bundle exec ruby #{@current_app_path.join('processor.rb')}", out: @processor_log_path, err: @processor_log_path)
   }
 end
 
@@ -33,7 +33,7 @@ Then /^processor receives the following message:$/ do |message|
     Timeout.timeout(5) do
       # XXX dirty way...
       while true
-        data = File.read(@processor_out_path)
+        data = File.read(@processor_log_path)
         raise Timeout::Error if Regexp.compile(Regexp.escape(message)) =~ data
         sleep 0.2
       end
