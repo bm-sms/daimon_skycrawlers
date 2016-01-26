@@ -1,0 +1,10 @@
+machine:
+  ruby:
+    version: 2.3.0
+
+  services:
+    - rabbitmq-server
+
+test:
+  pre:
+    - gem update bundler
