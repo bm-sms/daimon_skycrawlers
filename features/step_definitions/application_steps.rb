@@ -9,7 +9,7 @@ Given /^I have the "([^"]*)" application$/ do |path|
   Bundler.with_clean_env do
     Dir.chdir(@current_app_path) do
       `rm -rf db/*.sqlite3`
-      `bundle exec rake db:migrate`
+      `bundle exec rake db:migrate --trace`
     end
   end
 end
