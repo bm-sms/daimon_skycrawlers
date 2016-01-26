@@ -22,6 +22,20 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
         assert_equal("body", body)
       end
     end
+
+    def test_skip_same_url
+      # TODO: Use an assertion
+      mock(@crawler).enqueue_next_urls([],
+                                       depth: 2,
+                                       interval: 1).times(1)
+      @crawler.fetch("/")
+      record = {
+        url: "http://example.com/",
+        body: "body",
+      }
+      stub(@crawler.storage).find { record }
+      @crawler.fetch("/")
+    end
   end
 
   sub_test_case 'filter' do

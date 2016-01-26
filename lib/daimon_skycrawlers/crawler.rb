@@ -51,6 +51,9 @@ module DaimonSkycrawlers
 
       url = @connection.url_prefix + path
 
+      # TODO: Use @connection.head
+      return if skip?(URI.join(@base_url, path))
+
       data = [url.to_s, response.headers, response.body]
 
       yield(*data) if block_given?
@@ -74,6 +77,11 @@ module DaimonSkycrawlers
     end
 
     private
+
+    def skip?(url)
+      # TODO: Check Last-Modified and ETag
+      @storage.find(url)
+    end
 
     def schedule_to_process(url)
       DaimonSkycrawlers::Processor.enqueue_http_response(url)
