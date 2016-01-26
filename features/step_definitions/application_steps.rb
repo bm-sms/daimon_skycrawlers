@@ -4,6 +4,7 @@ require 'tempfile'
 require 'timeout'
 
 Given /^I have the "([^"]*)" application$/ do |path|
+  system 'curl http://example.com/'
   @current_app_path = fixture_path(path)
 
   Bundler.with_clean_env do
