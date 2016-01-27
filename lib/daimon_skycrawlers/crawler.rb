@@ -5,7 +5,6 @@ require 'daimon_skycrawlers/version'
 require 'daimon_skycrawlers/configure_songkick_queue'
 require 'daimon_skycrawlers/url_consumer'
 require 'daimon_skycrawlers/storage'
-require 'daimon_skycrawlers/parser'
 
 require 'faraday'
 
@@ -22,7 +21,6 @@ module DaimonSkycrawlers
     end
 
     attr_writer :storage
-    attr_writer :parser
 
     def initialize(base_url, options = {})
       @base_url = base_url
@@ -37,10 +35,6 @@ module DaimonSkycrawlers
 
     def storage
       @storage ||= Storage::RDB.new
-    end
-
-    def parser
-      @parser ||= Parser::Default.new
     end
 
     # TODO Support POST when we need
@@ -58,11 +52,6 @@ module DaimonSkycrawlers
       storage.save(*data)
 
       schedule_to_process(url.to_s)
-
-      parser.parse(response.body)
-      urls = parser.links
-
-      enqueue_next_urls(urls, depth: depth - 1, interval: 1)
     end
 
     def get(path, params = {})
