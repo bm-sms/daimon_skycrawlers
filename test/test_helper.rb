@@ -11,6 +11,8 @@ require 'pry'
 require 'tapp'
 require 'pathname'
 
+ENV['SKYCRAWLERS_ENV'] ||= 'test'
+
 def fixture_path(path)
   Pathname(__FILE__).dirname + "fixtures" + path
 end

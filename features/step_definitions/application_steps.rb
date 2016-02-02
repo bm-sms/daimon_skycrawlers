@@ -4,19 +4,30 @@ require 'tempfile'
 require 'timeout'
 
 Given /^I have the "([^"]*)" application$/ do |path|
-  @current_app_path = TestHelper.fixture_root.join(path)
+  @current_app_path = fixture_path(path)
+
+  system 'sudo rabbitmqctl list_queues'
+
+  Bundler.with_clean_env do
+    Dir.chdir(@current_app_path) do
+      `rm -rf db/*.sqlite3`
+      `bundle exec rake db:create db:migrate --trace`
+    end
+  end
 end
 
 When /^I run crawler & processor$/ do
   @worker_pids = []
   dir = Dir.tmpdir
-  @processor_out_path = "#{dir}/processor.log"
-  @crawler_out_path = "#{dir}/crawler_out.log"
+  @processor_log_path = "#{dir}/processor.log"
+  @crawler_log_path = "#{dir}/crawler.log"
 
-  Bundler.with_clean_env {
-    @worker_pids << spawn("bundle exec ruby #{@current_app_path.join('crawler.rb')}", out: @crawler_out_path, err: @crawler_out_path)
-    @worker_pids << spawn("bundle exec ruby #{@current_app_path.join('processor.rb')}", out: @processor_out_path, err: @processor_out_path)
-  }
+  Bundler.with_clean_env do
+    Dir.chdir(@current_app_path) do
+      @worker_pids << spawn("bundle exec ruby #{@current_app_path.join('processor.rb')}", out: @processor_log_path, err: @processor_log_path)
+      @worker_pids << spawn("bundle exec ruby #{@current_app_path.join('crawler.rb')}", out: @crawler_log_path, err: @crawler_log_path)
+    end
+  end
 end
 
 Then /^processor receives the following message:$/ do |message|
@@ -26,7 +37,7 @@ Then /^processor receives the following message:$/ do |message|
     Timeout.timeout(5) do
       # XXX dirty way...
       while true
-        data = File.read(@processor_out_path)
+        data = File.read(@processor_log_path)
         raise Timeout::Error if Regexp.compile(Regexp.escape(message)) =~ data
         sleep 0.2
       end
@@ -34,12 +45,24 @@ Then /^processor receives the following message:$/ do |message|
   rescue Timeout::Error
     # noop
   ensure
+    Kernel.puts '* processor'
+    Kernel.puts @processor_log_path
+    Kernel.p    File.stat(@processor_log_path)
+    Kernel.puts File.read(@processor_log_path)
+    Kernel.puts '---'
+
+    Kernel.puts '* crawler'
+    Kernel.puts @crawler_log_path
+    Kernel.p    File.stat(@crawler_log_path)
+    Kernel.puts File.read(@crawler_log_path)
+    Kernel.puts '---'
+
     assert_match message, data
   end
 end
 
 After do |scenario|
   @worker_pids.each do |pid|
-    Process.kill 'INT', pid
+    Process.kill 'SIGINT', pid
   end
 end

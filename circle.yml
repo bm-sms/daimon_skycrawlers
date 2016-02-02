@@ -1,0 +1,18 @@
+machine:
+  ruby:
+    version: 2.3.0
+
+  services:
+    - rabbitmq-server
+
+database:
+  override:
+    - echo 'skip' # Skip default command: `bundle exec rake db:create db:schema:load --trace`
+
+test:
+  pre:
+    - gem update bundler
+
+  override:
+    - bundle exec rake || true # XXX debug
+    - bundle exec rake
