@@ -26,9 +26,10 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
 
   sub_test_case 'filter' do
     setup do
+      @body = fixture_path("www.clear-code.com/blog.html").read
       stubs = Faraday::Adapter::Test::Stubs.new do |stub|
         stub.get("/blog") {|env|
-          [200, {}, fixture_path("www.clear-code.com/blog.html").read]
+          [200, {}, @body]
         }
       end
       @crawler = ::DaimonSkycrawlers::Crawler.new('http://example.com')
@@ -39,7 +40,11 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
     end
 
     def test_fetch_blog
-      @crawler.fetch("./blog", depth: 1)
+      @crawler.fetch("./blog", depth: 1) do |url, headers, body|
+        assert_equal(url, "http://example.com/blog")
+        assert_equal(headers, {})
+        assert_equal(body, @body)
+      end
     end
   end
 end
