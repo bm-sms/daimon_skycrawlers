@@ -8,6 +8,10 @@ module DaimonSkycrawlers
       HTTPResponseConsumer.register(processor, &block)
     end
 
+    def register_parser(parser = nil, &block)
+      HTTPResponseConsumer.register(parser, &block)
+    end
+
     def register_crawler(crawler)
       URLConsumer.register(crawler)
     end

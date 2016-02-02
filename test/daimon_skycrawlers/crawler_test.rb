@@ -26,9 +26,10 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
 
   sub_test_case 'filter' do
     setup do
+      @body = fixture_path("www.clear-code.com/blog.html").read
       stubs = Faraday::Adapter::Test::Stubs.new do |stub|
         stub.get("/blog") {|env|
-          [200, {}, fixture_path("www.clear-code.com/blog.html").read]
+          [200, {}, @body]
         }
       end
       @crawler = ::DaimonSkycrawlers::Crawler.new('http://example.com')
@@ -36,19 +37,15 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
         faraday.adapter :test, stubs
       end
       @crawler.storage = DaimonSkycrawlers::Storage::Null.new
-      @crawler.parser.append_filter do |link|
-        link.start_with?("http://www.clear-code.com/blog/")
-      end
-      @crawler.parser.append_filter do |link|
-        %r!/2015/8/29.html\z! =~ link
-      end
-      mock(@crawler).enqueue_next_urls(["http://www.clear-code.com/blog/2015/8/29.html"],
-                                       depth: 0,
-                                       interval: 1)
+      mock(@crawler).schedule_to_process("http://example.com/blog")
     end
 
     def test_fetch_blog
-      @crawler.fetch("./blog", depth: 1)
+      @crawler.fetch("./blog", depth: 1) do |url, headers, body|
+        assert_equal(url, "http://example.com/blog")
+        assert_equal(headers, {})
+        assert_equal(body, @body)
+      end
     end
   end
 end
