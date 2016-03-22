@@ -41,9 +41,16 @@ module DaimonSkycrawlers
     # TODO `params` should be a part of `path`. such as `path == "/hoi?hi=yoyo"`.
     def fetch(path, params = {}, depth: 3)
       @connection ||= Faraday.new(@base_url)
-      response = get(path)
 
       url = @connection.url_prefix + path
+
+      existing_record = @storage.find(url)
+      if existing_record
+        headers = head(path).headers
+        return if skip?(existing_record, headers)
+      end
+
+      response = get(path)
 
       data = [url.to_s, response.headers, response.body]
 
@@ -62,7 +69,24 @@ module DaimonSkycrawlers
       @connection.post(path, params)
     end
 
+    def head(path, params = {})
+      @connection.head(path, params)
+    end
+
     private
+
+    def skip?(record, headers)
+      return false unless record
+      if record[:etag] &&
+         (record[:etag] == headers['etag'])
+        return true
+      end
+      if record[:last_modified_at] &&
+         (record[:last_modified_at] == headers['last-modified'])
+        return true
+      end
+      return false
+    end
 
     def schedule_to_process(url)
       DaimonSkycrawlers::Processor.enqueue_http_response(url)
