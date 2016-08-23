@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-if File.exist?(File.expand_path('../.git', __dir__))
-  $LOAD_PATH << File.expand_path('../lib', __dir__)
+if File.exist?(File.expand_path("../.git", __dir__))
+  $LOAD_PATH << File.expand_path("../lib", __dir__)
 end
 
-require 'daimon_skycrawlers/cli'
+require "daimon_skycrawlers/cli"
 
 DaimonSkycrawlers::CLI.start

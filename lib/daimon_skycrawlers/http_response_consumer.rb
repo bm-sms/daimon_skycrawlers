@@ -4,7 +4,7 @@ module DaimonSkycrawlers
   class HTTPResponseConsumer
     include SongkickQueue::Consumer
 
-    consume_from_queue 'daimon-skycrawler.http-response'
+    consume_from_queue "daimon-skycrawler.http-response"
 
     class << self
       def register(processor = nil, &block)

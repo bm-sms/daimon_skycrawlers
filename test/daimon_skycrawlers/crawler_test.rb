@@ -1,14 +1,14 @@
-require 'test_helper'
+require "test_helper"
 
 class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
-  sub_test_case 'fetch html' do
+  sub_test_case "fetch html" do
     setup do
       stubs = Faraday::Adapter::Test::Stubs.new do |stub|
         stub.get("/") {|env|
           [200, {}, "body"]
         }
       end
-      @crawler = ::DaimonSkycrawlers::Crawler.new('http://example.com')
+      @crawler = ::DaimonSkycrawlers::Crawler.new("http://example.com")
       @crawler.setup_connection do |faraday|
         faraday.adapter :test, stubs
       end
@@ -24,7 +24,7 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
     end
   end
 
-  sub_test_case 'filter' do
+  sub_test_case "filter" do
     setup do
       @body = fixture_path("www.clear-code.com/blog.html").read
       stubs = Faraday::Adapter::Test::Stubs.new do |stub|
@@ -32,7 +32,7 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
           [200, {}, @body]
         }
       end
-      @crawler = ::DaimonSkycrawlers::Crawler.new('http://example.com')
+      @crawler = ::DaimonSkycrawlers::Crawler.new("http://example.com")
       @crawler.setup_connection do |faraday|
         faraday.adapter :test, stubs
       end

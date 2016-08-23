@@ -1,7 +1,7 @@
-require 'fileutils'
-require 'stringio'
-require 'tempfile'
-require 'timeout'
+require "fileutils"
+require "stringio"
+require "tempfile"
+require "timeout"
 
 Given /^I have the "([^"]*)" application$/ do |path|
   @current_app_path = TestHelper.fixture_root.join(path)
@@ -40,6 +40,6 @@ end
 
 After do |scenario|
   @worker_pids.each do |pid|
-    Process.kill 'INT', pid
+    Process.kill "INT", pid
   end
 end

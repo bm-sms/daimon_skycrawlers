@@ -1,6 +1,6 @@
-require 'bundler/setup'
+require "bundler/setup"
 
-require 'daimon_skycrawlers/version'
+require "daimon_skycrawlers/version"
 
 module DaimonSkycrawlers
   class << self

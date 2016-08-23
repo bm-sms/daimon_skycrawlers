@@ -1,5 +1,5 @@
-require 'bundler/setup'
-require 'daimon_skycrawlers/processor'
+require "bundler/setup"
+require "daimon_skycrawlers/processor"
 
 DaimonSkycrawlers.register_processor do |data|
   p "It works with '#{data[:url]}'"

@@ -2,7 +2,7 @@
 
 require "daimon_skycrawlers/crawler"
 
-base_url = 'http://example.com'
+base_url = "http://example.com"
 
 crawler = DaimonSkycrawlers::Crawler.new(base_url)
 crawler.parser.append_filter do |url|

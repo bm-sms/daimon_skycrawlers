@@ -1,6 +1,6 @@
-require 'thor'
-require 'daimon_skycrawlers/generator/new'
-require 'daimon_skycrawlers/version'
+require "thor"
+require "daimon_skycrawlers/generator/new"
+require "daimon_skycrawlers/version"
 
 module DaimonSkycrawlers
   class CLI < Thor

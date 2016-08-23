@@ -1,22 +1,22 @@
-require 'uri'
+require "uri"
 
-require 'daimon_skycrawlers'
-require 'daimon_skycrawlers/version'
-require 'daimon_skycrawlers/configure_songkick_queue'
-require 'daimon_skycrawlers/url_consumer'
-require 'daimon_skycrawlers/storage'
+require "daimon_skycrawlers"
+require "daimon_skycrawlers/version"
+require "daimon_skycrawlers/configure_songkick_queue"
+require "daimon_skycrawlers/url_consumer"
+require "daimon_skycrawlers/storage"
 
-require 'faraday'
+require "faraday"
 
 module DaimonSkycrawlers
   class Crawler
     class << self
-      def run(process_name: 'daimon-skycrawler:url')
+      def run(process_name: "daimon-skycrawler:url")
         SongkickQueue::Worker.new(process_name, [URLConsumer]).run
       end
 
       def enqueue_url(url, depth: 3, interval: 1)
-        SongkickQueue.publish('daimon-skycrawler.url', url: url, depth: depth, interval: interval)
+        SongkickQueue.publish("daimon-skycrawler.url", url: url, depth: depth, interval: interval)
       end
     end
 

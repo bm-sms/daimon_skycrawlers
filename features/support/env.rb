@@ -1,15 +1,15 @@
-require 'test/unit'
-require 'pathname'
+require "test/unit"
+require "pathname"
 
 module TestHelper
   module_function
 
   def root
-    Pathname(__dir__).join('../../')
+    Pathname(__dir__).join("../../")
   end
 
   def fixture_root
-    root.join('test/fixtures')
+    root.join("test/fixtures")
   end
 end
 

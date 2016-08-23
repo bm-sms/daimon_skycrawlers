@@ -1,7 +1,7 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'daimon_skycrawlers/version'
+require "daimon_skycrawlers/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "daimon_skycrawlers"
