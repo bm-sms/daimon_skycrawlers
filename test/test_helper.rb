@@ -14,3 +14,6 @@ require "pathname"
 def fixture_path(path)
   Pathname(__FILE__).dirname + "fixtures" + path
 end
+
+ENV["SKYCRAWLERS_ENV"] = "test"
+ActiveRecord::Migration.verbose = false

@@ -1,6 +1,7 @@
 require "bundler/setup"
 require "bundler/gem_tasks"
 require "rake/testtask"
+require "daimon_skycrawlers/tasks"
 
 Rake::TestTask.new(:test) do |t|
   t.libs << "test"
