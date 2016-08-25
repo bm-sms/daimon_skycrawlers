@@ -8,7 +8,7 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
           [200, {}, "body"]
         }
       end
-      @crawler = ::DaimonSkycrawlers::Crawler.new("http://example.com")
+      @crawler = ::DaimonSkycrawlers::Crawler::Default.new("http://example.com")
       @crawler.setup_connection do |faraday|
         faraday.adapter :test, stubs
       end
@@ -32,7 +32,7 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
           [200, {}, @body]
         }
       end
-      @crawler = ::DaimonSkycrawlers::Crawler.new("http://example.com")
+      @crawler = ::DaimonSkycrawlers::Crawler::Default.new("http://example.com")
       @crawler.setup_connection do |faraday|
         faraday.adapter :test, stubs
       end
