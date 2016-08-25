@@ -1,6 +1,7 @@
-require "songkick_queue"
-# TODO Allow to configure from user land
-SongkickQueue.configure do |config|
+require "daimon_skycrawlers/queue"
+
+DaimonSkycrawlers::Queue.configure do |config|
+  #  queue configuration
   config.logger = Logger.new(STDOUT)
   config.host = "127.0.0.1"
   config.port = 5672

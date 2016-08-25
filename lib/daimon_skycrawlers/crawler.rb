@@ -1,5 +1,5 @@
 require "daimon_skycrawlers"
-require "daimon_skycrawlers/configure_songkick_queue"
+require "daimon_skycrawlers/queue"
 require "daimon_skycrawlers/url_consumer"
 
 module DaimonSkycrawlers
