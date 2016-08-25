@@ -7,7 +7,7 @@ module DaimonSkycrawlers
         @links = nil
       end
 
-      def append_fileter(filter = nil, &block)
+      def append_filter(filter = nil, &block)
         if block_given?
           @filters << block
         else
