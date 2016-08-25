@@ -6,7 +6,7 @@ module DaimonSkycrawlers
   class Processor
     class << self
       def run(process_name: "daimon-skycrawler:http-response")
-        SongkickQueue::Worker.new(process_name, [HTTPResponseConsumer]).run
+        SongkickQueue::Worker.new(process_name, [DaimonSkycrawlers::Consumer::HTTPResponse]).run
       end
 
       def enqueue_http_response(url)

@@ -6,7 +6,7 @@ module DaimonSkycrawlers
   class Crawler
     class << self
       def run(process_name: "daimon-skycrawler:url")
-        SongkickQueue::Worker.new(process_name, [URLConsumer]).run
+        SongkickQueue::Worker.new(process_name, [DaimonSkycrawlers::Consumer::URL]).run
       end
 
       def enqueue_url(url, depth: 3, interval: 1)
