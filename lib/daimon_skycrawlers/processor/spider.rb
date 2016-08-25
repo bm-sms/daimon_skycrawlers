@@ -1,3 +1,5 @@
+require "nokogiri"
+
 module DaimonSkycrawlers
   class Processor
     class Spider < Base
