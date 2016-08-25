@@ -1,7 +1,6 @@
 require "daimon_skycrawlers"
 require "daimon_skycrawlers/queue"
-require "daimon_skycrawlers/url_consumer"
-require "daimon_skycrawlers/http_response_consumer"
+require "daimon_skycrawlers/consumer/http_response"
 
 module DaimonSkycrawlers
   class Processor
