@@ -53,8 +53,8 @@ module DaimonSkycrawlers
 
       private
 
-      def schedule_to_process(url)
-        DaimonSkycrawlers::Processor.enqueue_http_response(url)
+      def schedule_to_process(url, message = {})
+        DaimonSkycrawlers::Processor.enqueue_http_response(url, message)
       end
     end
   end

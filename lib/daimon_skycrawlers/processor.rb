@@ -9,8 +9,9 @@ module DaimonSkycrawlers
         SongkickQueue::Worker.new(process_name, [DaimonSkycrawlers::Consumer::HTTPResponse]).run
       end
 
-      def enqueue_http_response(url)
-        SongkickQueue.publish("daimon-skycrawler.http-response", url: url)
+      def enqueue_http_response(url, message = {})
+        message[:url] = url
+        SongkickQueue.publish("daimon-skycrawler.http-response", message)
       end
     end
   end

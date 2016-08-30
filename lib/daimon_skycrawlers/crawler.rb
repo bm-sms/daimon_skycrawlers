@@ -9,8 +9,9 @@ module DaimonSkycrawlers
         SongkickQueue::Worker.new(process_name, [DaimonSkycrawlers::Consumer::URL]).run
       end
 
-      def enqueue_url(url, depth: 3, interval: 1)
-        SongkickQueue.publish("daimon-skycrawler.url", url: url, depth: depth, interval: interval)
+      def enqueue_url(url, message = {})
+        message[:url] = url
+        SongkickQueue.publish("daimon-skycrawler.url", message)
       end
     end
   end

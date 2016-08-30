@@ -17,11 +17,22 @@ module DaimonSkycrawlers
         end
       end
 
+      #
+      # @param [Hash] message Must have key :url, :depth, :interval
+      #
       def call(message)
-        page = storage.find(message[:url])
+        key_url = message[:url]
+        depth = message[:depth]
+        interval = message[:interval]
+        return if depth <= 1
+        page = storage.find(key_url)
         @doc = Nokogiri::HTML(page.body)
+        new_message = {
+          depth: depth - 1,
+          interval: interval
+        }
         links.each do |url|
-          DaimonSkycrawlers::Crawler.enqueue_url(url)
+          DaimonSkycrawlers::Crawler.enqueue_url(url, new_message)
         end
       end
 
