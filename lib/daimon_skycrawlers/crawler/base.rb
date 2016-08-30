@@ -4,7 +4,7 @@ require "faraday"
 require "daimon_skycrawlers/storage"
 
 module DaimonSkycrawlers
-  class Crawler
+  module Crawler
     class Base
       attr_writer :storage
 

@@ -1,7 +1,7 @@
 require "daimon_skycrawlers/crawler/base"
 
 module DaimonSkycrawlers
-  class Crawler
+  module Crawler
     class Default < Base
       def fetch(path, params = {}, depth: 3)
         @prepare.call(connection)

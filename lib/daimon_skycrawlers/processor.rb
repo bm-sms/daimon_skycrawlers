@@ -3,7 +3,7 @@ require "daimon_skycrawlers/queue"
 require "daimon_skycrawlers/consumer/http_response"
 
 module DaimonSkycrawlers
-  class Processor
+  module Processor
     class << self
       def run(process_name: "daimon-skycrawler:http-response")
         SongkickQueue::Worker.new(process_name, [DaimonSkycrawlers::Consumer::HTTPResponse]).run

@@ -2,7 +2,7 @@ require "daimon_skycrawlers/storage/rdb"
 require "daimon_skycrawlers/processor/base"
 
 module DaimonSkycrawlers
-  class Processor
+  module Processor
     class Default < Base
       def call(message)
         url = message[:url]

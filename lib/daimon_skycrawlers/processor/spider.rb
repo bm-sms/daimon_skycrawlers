@@ -1,7 +1,7 @@
 require "nokogiri"
 
 module DaimonSkycrawlers
-  class Processor
+  module Processor
     class Spider < Base
       def initialize
         @filters = []

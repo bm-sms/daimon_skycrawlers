@@ -3,7 +3,7 @@ require "daimon_skycrawlers/queue"
 require "daimon_skycrawlers/consumer/url"
 
 module DaimonSkycrawlers
-  class Crawler
+  module Crawler
     class << self
       def run(process_name: "daimon-skycrawler:url")
         SongkickQueue::Worker.new(process_name, [DaimonSkycrawlers::Consumer::URL]).run

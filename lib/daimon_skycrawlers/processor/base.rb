@@ -1,5 +1,5 @@
 module DaimonSkycrawlers
-  class Processor
+  module Processor
     class Base
       def call(message)
         raise "Implement this method in subclass"
