@@ -1,14 +1,17 @@
 require "uri"
 require "faraday"
 
+require "daimon_skycrawlers/logger"
 require "daimon_skycrawlers/storage"
 
 module DaimonSkycrawlers
   module Crawler
     class Base
+      include DaimonSkycrawlers::LoggerMixin
+
       attr_writer :storage
 
-      def initialize(base_url, options = {})
+      def initialize(base_url = nil, options = {})
         @base_url = base_url
         @options = options
         @prepare = ->(connection) {}
