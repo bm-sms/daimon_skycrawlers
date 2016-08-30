@@ -37,7 +37,7 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
         faraday.adapter :test, stubs
       end
       @crawler.storage = DaimonSkycrawlers::Storage::Null.new
-      mock(@crawler).schedule_to_process("http://example.com/blog")
+      mock(@crawler).schedule_to_process("http://example.com/blog", { depth: 1 })
     end
 
     def test_fetch_blog
