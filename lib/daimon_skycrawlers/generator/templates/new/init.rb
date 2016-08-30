@@ -1,8 +1,15 @@
+require "daimon_skycrawlers"
+require "daimon_skycrawlers/logger"
 require "daimon_skycrawlers/queue"
+
+DaimonSkycrawlers.configure do |config|
+  config.logger = DaimonSkycrawlers::Logger.default
+  config.crawler_interval = 1
+end
 
 DaimonSkycrawlers::Queue.configure do |config|
   #  queue configuration
-  config.logger = Logger.new(STDOUT)
+  config.logger = DaimonSkycrawlers.configuration.logger
   config.host = "127.0.0.1"
   config.port = 5672
   # config.username = 'guest'
