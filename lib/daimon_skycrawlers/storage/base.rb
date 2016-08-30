@@ -1,10 +1,12 @@
 require "daimon_skycrawlers/logger"
+require "daimon_skycrawlers/config"
 
 module DaimonSkycrawlers
   module Storage
-    include DaimonSkycrawlers::LoggerMixin
-
     class Base
+      include DaimonSkycrawlers::LoggerMixin
+      include DaimonSkycrawlers::ConfigMixin
+
       def save(url, headers, body)
         raise "Implement this in subclass"
       end

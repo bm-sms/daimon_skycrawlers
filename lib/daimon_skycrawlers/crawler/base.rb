@@ -2,12 +2,14 @@ require "uri"
 require "faraday"
 
 require "daimon_skycrawlers/logger"
+require "daimon_skycrawlers/config"
 require "daimon_skycrawlers/storage"
 
 module DaimonSkycrawlers
   module Crawler
     class Base
       include DaimonSkycrawlers::LoggerMixin
+      include DaimonSkycrawlers::ConfigMixin
 
       attr_writer :storage
 

@@ -1,9 +1,11 @@
 require "daimon_skycrawlers/logger"
+require "daimon_skycrawlers/config"
 
 module DaimonSkycrawlers
   module Filter
     class Base
       include DaimonSkycrawlers::LoggerMixin
+      include DaimonSkycrawlers::ConfigMixin
 
       def storage
         @storage ||= DaimonSkycrawlers::Storage::RDB.new
