@@ -7,8 +7,6 @@ module DaimonSkycrawlers
     class HTTPResponse < Base
       include SongkickQueue::Consumer
 
-      consume_from_queue "daimon-skycrawler.http-response"
-
       class << self
         def register(processor = nil, &block)
           if block_given?
@@ -25,7 +23,13 @@ module DaimonSkycrawlers
         def default_processor
           DaimonSkycrawlers::Processor::Default.new
         end
+
+        def config
+          DaimonSkycrawlers.configuration
+        end
       end
+
+      consume_from_queue "#{config.queue_name_prefix}.http-response"
 
       def process(message)
         if self.class.processors.empty?

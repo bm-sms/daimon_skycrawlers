@@ -7,14 +7,17 @@ module DaimonSkycrawlers
   module Processor
     class << self
       def run(process_name: "daimon-skycrawler:http-response")
-        shutdown_interval = DaimonSkycrawlers.configuration.shutdown_interval
-        DaimonSkycrawlers::Timer.setup_shutdown_timer("daimon-skycrawler.http-response", interval: shutdown_interval)
+        DaimonSkycrawlers::Timer.setup_shutdown_timer("#{config.queue_name_prefix}.http-response", interval: config.shutdown_interval)
         SongkickQueue::Worker.new(process_name, [DaimonSkycrawlers::Consumer::HTTPResponse]).run
       end
 
       def enqueue_http_response(url, message = {})
         message[:url] = url
-        SongkickQueue.publish("daimon-skycrawler.http-response", message)
+        SongkickQueue.publish("#{config.queue_name_prefix}.http-response", message)
+      end
+
+      def config
+        DaimonSkycrawlers.configuration
       end
     end
   end

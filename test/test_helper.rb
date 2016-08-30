@@ -17,3 +17,7 @@ end
 
 ENV["SKYCRAWLERS_ENV"] = "test"
 ActiveRecord::Migration.verbose = false
+
+DaimonSkycrawlers.configure do |config|
+  config.queue_name_prefix = "daimon-skycrawlers.test"
+end

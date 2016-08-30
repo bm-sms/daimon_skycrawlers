@@ -7,14 +7,17 @@ module DaimonSkycrawlers
   module Crawler
     class << self
       def run(process_name: "daimon-skycrawler:url")
-        shutdown_interval = DaimonSkycrawlers.configuration.shutdown_interval
-        DaimonSkycrawlers::Timer.setup_shutdown_timer("daimon-skycrawler.url", interval: shutdown_interval)
+        DaimonSkycrawlers::Timer.setup_shutdown_timer("#{config.queue_name_prefix}.url", interval: config.shutdown_interval)
         SongkickQueue::Worker.new(process_name, [DaimonSkycrawlers::Consumer::URL]).run
       end
 
       def enqueue_url(url, message = {})
         message[:url] = url
-        SongkickQueue.publish("daimon-skycrawler.url", message)
+        SongkickQueue.publish("#{config.queue_name_prefix}.url", message)
+      end
+
+      def config
+        DaimonSkycrawlers.configuration
       end
     end
   end

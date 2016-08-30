@@ -6,8 +6,6 @@ module DaimonSkycrawlers
     class URL < Base
       include SongkickQueue::Consumer
 
-      consume_from_queue "daimon-skycrawler.url"
-
       class << self
         def register(crawler)
           crawlers << crawler
@@ -16,7 +14,13 @@ module DaimonSkycrawlers
         def crawlers
           @crawlers ||= []
         end
+
+        def config
+          DaimonSkycrawlers.configuration
+        end
       end
+
+      consume_from_queue "#{config.queue_name_prefix}.url"
 
       def process(message)
         url = message[:url]

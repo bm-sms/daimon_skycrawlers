@@ -6,6 +6,7 @@ require "daimon_skycrawlers/logger"
 module DaimonSkycrawlers
   Configuration = Struct.new(
     :logger,
+    :queue_name_prefix,
     :crawler_interval,
     :shutdown_interval
   )
@@ -21,6 +22,7 @@ module DaimonSkycrawlers
     def configuration
       @configuration ||= DaimonSkycrawlers::Configuration.new.tap do |config|
         config.logger = DaimonSkycrawlers::Logger.default
+        config.queue_name_prefix = "daimon-skycrawlers"
         config.crawler_interval = 1
         config.shutdown_interval = 10
       end
