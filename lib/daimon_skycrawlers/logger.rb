@@ -10,7 +10,7 @@ module DaimonSkycrawlers
     end
 
     def initialize(logdev, shift_age = 0, shift_size = 1048576)
-      @log = Logger.new(logdev, shift_age, shift_size)
+      @log = ::Logger.new(logdev, shift_age, shift_size)
       super(@log)
     end
   end
