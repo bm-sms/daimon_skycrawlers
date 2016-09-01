@@ -25,12 +25,12 @@ module DaimonSkycrawlers
           DaimonSkycrawlers::Processor::Default.new
         end
 
-        def config
-          DaimonSkycrawlers.configuration
+        def queue_name
+          "#{DaimonSkycrawlers.configuration.queue_name_prefix}.http-response"
         end
       end
 
-      consume_from_queue "#{config.queue_name_prefix}.http-response"
+      consume_from_queue queue_name
 
       def process(message)
         if self.class.processors.empty?
