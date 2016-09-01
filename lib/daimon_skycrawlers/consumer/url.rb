@@ -29,7 +29,7 @@ module DaimonSkycrawlers
 
         # XXX When several crawlers are registered, how should they behave?
         self.class.crawlers.each do |crawler|
-          sleep(config.crawler_interval)
+          sleep(self.class.config.crawler_interval)
           crawler.fetch(url, depth: depth)
         end
       end
