@@ -3,11 +3,11 @@ require "stringio"
 require "tempfile"
 require "timeout"
 
-Given /^I have the "([^"]*)" application$/ do |path|
+Given(/^I have the "([^"]*)" application$/) do |path|
   @current_app_path = TestHelper.fixture_root.join(path)
 end
 
-When /^I run crawler & processor$/ do
+When(/^I run crawler & processor$/) do
   @worker_pids = []
   dir = Dir.tmpdir
   @processor_out_path = "#{dir}/processor.log"
@@ -19,7 +19,7 @@ When /^I run crawler & processor$/ do
   }
 end
 
-Then /^processor receives the following message:$/ do |message|
+Then(/^processor receives the following message:$/) do |message|
   data = nil
 
   begin
