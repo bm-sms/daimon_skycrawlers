@@ -4,6 +4,7 @@ require "faraday"
 require "daimon_skycrawlers/logger"
 require "daimon_skycrawlers/config"
 require "daimon_skycrawlers/storage"
+require "daimon_skycrawlers/processor"
 
 module DaimonSkycrawlers
   module Crawler

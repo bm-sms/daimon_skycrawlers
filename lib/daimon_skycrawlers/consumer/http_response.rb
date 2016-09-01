@@ -1,4 +1,5 @@
 require "songkick_queue"
+require "daimon_skycrawlers"
 require "daimon_skycrawlers/consumer/base"
 require "daimon_skycrawlers/processor/default"
 
