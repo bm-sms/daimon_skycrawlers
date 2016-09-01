@@ -32,7 +32,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "test-unit"
   spec.add_development_dependency "test-unit-rr"
   spec.add_development_dependency "test-unit-notify"
-  spec.add_development_dependency "cucumber"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "tapp"
   spec.add_development_dependency "sqlite3"
