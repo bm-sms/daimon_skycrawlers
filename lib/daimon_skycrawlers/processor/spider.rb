@@ -36,13 +36,13 @@ module DaimonSkycrawlers
         end
       end
 
+      private
+
       def links
         return @links if @links
         @links = retrieve_links
         @links
       end
-
-      private
 
       def retrieve_links
         urls = @doc.search("a").map do |element|
