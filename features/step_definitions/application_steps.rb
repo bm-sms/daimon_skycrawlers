@@ -13,9 +13,11 @@ When(/^I run crawler & processor$/) do
   @processor_out_path = "#{dir}/processor.log"
   @crawler_out_path = "#{dir}/crawler_out.log"
 
+  env = { "SKYCRAWLERS_ENV" => ENV["SKYCRAWLERS_ENV"] }
+
   Bundler.with_clean_env {
-    @worker_pids << spawn("bundle exec ruby #{@current_app_path.join('crawler.rb')}", out: @crawler_out_path, err: @crawler_out_path)
-    @worker_pids << spawn("bundle exec ruby #{@current_app_path.join('processor.rb')}", out: @processor_out_path, err: @processor_out_path)
+    @worker_pids << spawn(env, "bundle exec ruby #{@current_app_path.join('crawler.rb')}", out: @crawler_out_path, err: @crawler_out_path)
+    @worker_pids << spawn(env, "bundle exec ruby #{@current_app_path.join('processor.rb')}", out: @processor_out_path, err: @processor_out_path)
   }
 end
 
