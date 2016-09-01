@@ -6,7 +6,7 @@ require "daimon_skycrawlers/consumer/http_response"
 module DaimonSkycrawlers
   module Processor
     class << self
-      def run(process_name: "daimon-skycrawler:http-response")
+      def run(process_name: "daimon-skycrawlers:http-response")
         DaimonSkycrawlers::Timer.setup_shutdown_timer("#{config.queue_name_prefix}.http-response", interval: config.shutdown_interval)
         SongkickQueue::Worker.new(process_name, [DaimonSkycrawlers::Consumer::HTTPResponse]).run
       end
