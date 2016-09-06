@@ -3,11 +3,14 @@ require "nokogiri"
 module DaimonSkycrawlers
   module Processor
     class Spider < Base
+      attr_accessor :enqueue
+
       def initialize
         super
         @filters = []
         @doc = nil
         @links = nil
+        @enqueue = true
       end
 
       def append_filter(filter = nil, &block)
@@ -33,7 +36,8 @@ module DaimonSkycrawlers
           interval: interval
         }
         links.each do |url|
-          DaimonSkycrawlers::Crawler.enqueue_url(url, new_message)
+          log.debug("Enqueue: URL:#{url}, message: #{new_message}")
+          DaimonSkycrawlers::Crawler.enqueue_url(url, new_message) if @enqueue
         end
       end
 
