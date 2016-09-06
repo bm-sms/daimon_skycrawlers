@@ -52,6 +52,7 @@ module DaimonSkycrawlers
         urls = @doc.search("a").map do |element|
           element["href"]
         end
+        urls.uniq!
         apply_filters(urls) || []
       end
 
