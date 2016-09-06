@@ -1,4 +1,5 @@
 require "timers"
+require "daimon_skycrawlers"
 
 module DaimonSkycrawlers
   module Timer
@@ -14,9 +15,9 @@ module DaimonSkycrawlers
       end
       ActiveSupport::Notifications.subscribe("consume_message.songkick_queue") do |*args|
         event = ActiveSupport::Notifications::Event.new(*args)
-        if event.payload[:queue_name].start_with?(queue_name_prefix)
-          timer.reset
-        end
+        queue_name = event.payload[:queue_name]
+        DaimonSkycrawlers.configuration.logger.debug("Reset timer: consume message #{queue_name}")
+        timer.reset
       end
     end
   end
