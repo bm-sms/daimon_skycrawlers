@@ -1,12 +1,18 @@
 require "daimon_skycrawlers/crawler/base"
+require "daimon_skycrawlers/filter/update_checker"
 
 module DaimonSkycrawlers
   module Crawler
     class Default < Base
       def fetch(path, depth: 3, **kw)
+        url = connection.url_prefix + path
+        update_checker = DaimonSkycrawlers::Filter::UpdateChecker.new
+        unless update_checker.call(url.to_s, connection: connection)
+          log.info("Skip #{url}")
+          return
+        end
         @prepare.call(connection)
         response = get(path)
-        url = connection.url_prefix + path
         data = [url.to_s, response.headers, response.body]
 
         yield(*data) if block_given?
