@@ -19,6 +19,8 @@ module DaimonSkycrawlers
         @base_url = base_url
         @options = options
         @prepare = ->(connection) {}
+        @skipped = false
+        @n_processed_urls = 0
       end
 
       def setup_connection(options = {})
@@ -39,6 +41,10 @@ module DaimonSkycrawlers
         @storage ||= Storage::RDB.new
       end
 
+      def skipped?
+        @skipped
+      end
+
       def connection
         @connection ||= Faraday.new(@base_url, @options)
       end
@@ -53,6 +59,10 @@ module DaimonSkycrawlers
 
       def post(path, params = {})
         @connection.post(path, params)
+      end
+
+      def n_processed_urls
+        @n_processed_urls
       end
 
       private
