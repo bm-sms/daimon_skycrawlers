@@ -8,12 +8,14 @@ module DaimonSkycrawlers
         url = message[:url]
         page = storage.find(url)
         headers = JSON.parse(page.headers)
-        puts "URL: #{page.url}"
-        puts "Body: #{page.body.bytesize} bytes"
-        puts "Headers:"
-        headers.each do |key, value|
-          puts "  #{key}: #{value}"
-        end
+        headers_string = headers.map {|key, value| "#{key}: #{value}" }.join("\n")
+        message = <<~LOG
+          URL: #{page.url}
+          Body: #{page.body.bytesize} bytes
+          Headers:
+            #{headers_string}
+        LOG
+        log.info(message)
       end
     end
   end
