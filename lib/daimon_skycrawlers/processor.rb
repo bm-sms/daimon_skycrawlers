@@ -7,7 +7,7 @@ module DaimonSkycrawlers
   module Processor
     class << self
       def run(process_name: default_process_name)
-        DaimonSkycrawlers::Timer.setup_shutdown_timer(queue_name, interval: config.shutdown_interval)
+        DaimonSkycrawlers::Timer.setup_shutdown_timer(config.queue_name_prefix, interval: config.shutdown_interval)
         SongkickQueue::Worker.new(process_name, [DaimonSkycrawlers::Consumer::HTTPResponse]).run
       end
 
