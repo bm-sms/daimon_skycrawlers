@@ -59,11 +59,11 @@ module DaimonSkycrawlers
       def apply_filters(urls)
         return if urls.nil?
         return if urls.empty?
-        @filters.each do |filter|
-          urls = urls.select do |url|
-            filter.call(url)
-          end
+        log.debug("Candidate URLs: #{urls.size}")
+        urls = urls.select do |url|
+          @filters.inject(true) {|memo, filter| memo & filter.call(url) }
         end
+        log.debug("Filtered URLs: #{urls.size}")
         urls
       end
     end
