@@ -8,7 +8,7 @@ module DaimonSkycrawlers
       argument :name
 
       def self.source_root
-        File.join(File.dirname(__FILE__), "templates", "new")
+        File.join(__dir__, "templates", "new")
       end
 
       def create_files
