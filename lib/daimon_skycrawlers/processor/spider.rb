@@ -23,8 +23,8 @@ module DaimonSkycrawlers
       #
       def call(message)
         key_url = message[:url]
-        depth = message[:depth]
-        interval = message[:interval]
+        depth = message[:depth] || 2
+        interval = message[:interval] || 1
         return if depth <= 1
         page = storage.find(key_url)
         @doc = Nokogiri::HTML(page.body)
