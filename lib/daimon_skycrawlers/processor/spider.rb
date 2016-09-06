@@ -36,8 +36,7 @@ module DaimonSkycrawlers
           depth: depth - 1,
         }
         links.each do |url|
-          log.debug("Enqueue: URL:#{url}, message: #{new_message}")
-          DaimonSkycrawlers::Crawler.enqueue_url(url, new_message) if @enqueue
+          enqueue_url(url, new_message)
         end
       end
 
@@ -65,6 +64,12 @@ module DaimonSkycrawlers
         end
         log.debug("Filtered URLs: #{urls.size}")
         urls
+      end
+
+      def enqueue_url(url, new_message)
+        return unless @enqueue
+        log.debug("Enqueue: URL:#{url}, message: #{new_message}")
+        DaimonSkycrawlers::Crawler.enqueue_url(url, new_message)
       end
     end
   end
