@@ -6,7 +6,7 @@ module DaimonSkycrawlers
     class UpdateChecker < Base
       def call(url)
         page = storage.find(url)
-        return false unless page
+        return true unless page
         headers = Faraday.head(url)
         return false if headers["etag"] && page.etag && headers["etag"] == page.etag
         return false if headers["last-modified"].nil? && page.last_modified_at.nil?
