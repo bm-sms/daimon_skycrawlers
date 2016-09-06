@@ -3,11 +3,11 @@ require "daimon_skycrawlers/filter/update_checker"
 
 class DaimonSkycrawlersFilterTest < Test::Unit::TestCase
   setup do
-    @filter = DaimonSkycrawlers::Filter::UpdateChecker.new
+    @filter = DaimonSkycrawlers::Filter::UpdateChecker.new(base_url: "http://example.com/blog/")
     @storage = DaimonSkycrawlers::Storage::RDB.new(fixture_path("database.yml"))
     load(fixture_path("schema.rb"))
     mock(@filter).storage { @storage }
-    @url = "http://example.com"
+    @url = "http://example.com/blog/2016/1.html"
   end
 
   test "url does not exist in storage" do
@@ -52,6 +52,13 @@ class DaimonSkycrawlersFilterTest < Test::Unit::TestCase
       mock(Faraday).head(@url) { { "etag" => "yyyyy", "last-modified" => Time.at(now + 1) } }
       mock(@storage).find(@url) { page }
       assert_true(@filter.call(@url))
+    end
+
+    test "relative path" do
+      page = DaimonSkycrawlers::Storage::RDB::Page.new(url: @url)
+      mock(Faraday).head(@url) { {} }
+      mock(@storage).find(@url) { page }
+      assert_false(@filter.call("./2016/1.html"))
     end
   end
 end

@@ -4,7 +4,16 @@ require "daimon_skycrawlers/filter/base"
 module DaimonSkycrawlers
   module Filter
     class UpdateChecker < Base
+      def initialize(storage: nil, base_url: nil)
+        super(storage: storage)
+        @base_url = nil
+        @base_url = URI(base_url) if base_url
+      end
+
       def call(url, connection: nil)
+        unless URI(url).absolute?
+          url = (@base_url + url).to_s
+        end
         page = storage.find(url)
         return true unless page
         if connection

@@ -7,7 +7,7 @@ module DaimonSkycrawlers
       include DaimonSkycrawlers::LoggerMixin
       include DaimonSkycrawlers::ConfigMixin
 
-      def initialize(storage = nil)
+      def initialize(storage: nil)
         super()
         @storage = storage
       end

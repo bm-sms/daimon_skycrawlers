@@ -8,7 +8,7 @@ module DaimonSkycrawlers
         @n_processed_urls += 1
         @skipped = false
         url = connection.url_prefix + path
-        update_checker = DaimonSkycrawlers::Filter::UpdateChecker.new(storage)
+        update_checker = DaimonSkycrawlers::Filter::UpdateChecker.new(storage: storage)
         unless update_checker.call(url.to_s, connection: connection)
           log.info("Skip #{url}")
           @skipped = true
