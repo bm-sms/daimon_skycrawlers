@@ -25,7 +25,7 @@ module DaimonSkycrawlers
 
       def process(message)
         url = message[:url]
-        depth = message[:depth] || 0
+        depth = Integer(message[:depth] || 0)
 
         crawler_interval = DaimonSkycrawlers.configuration.crawler_interval
 
