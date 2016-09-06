@@ -1,34 +1,22 @@
 #!/usr/bin/env ruby
 
+require "thor"
+
 require "daimon_skycrawlers/crawler"
 require "daimon_skycrawlers/processor"
 
-def usage
-  $stderr.puts <<~USAGE
-    #{$0}: Wrong usage
-    Usage: #{$0} type URL
+class Enqueue < Thor
+  desc "url URL [key1:value1 key2:value2...]", "Enqueue URL for URL consumer"
+  def url(url, *rest)
+    message = rest.map {|arg| arg.split(":") }.to_h
+    DaimonSkycrawlers::Crawler.enqueue_url(url, message)
+  end
 
-    Type:
-      url: Fetch URL
-      response: Process fetched data from URL
-
-    Example:
-      $ #{$0} url http://example.com/
-      $ #{$0} response http://example.com/
-  USAGE
-  exit false
+  desc "response URL [key1:value1 key2:value2...]", "Enqueue URL for HTTP response consumer"
+  def response(url, *rest)
+    message = rest.map {|arg| arg.split(":") }.to_h
+    DaimonSkycrawlers::Processor.enqueue_http_response(url, message)
+  end
 end
 
-usage unless ARGV.size == 2
-
-type = ARGV[0]
-url = ARGV[1]
-
-case type
-when "url"
-  DaimonSkycrawlers::Crawler.enqueue_url(url)
-when "response"
-  DaimonSkycrawlers::Processor.enqueue_http_response(url)
-else
-  usage
-end
+Enqueue.start(ARGV)
