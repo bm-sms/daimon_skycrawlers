@@ -12,7 +12,7 @@ class DaimonSkycrawlersFilterTest < Test::Unit::TestCase
 
   test "url does not exist in storage" do
     mock(@storage).find(@url) { nil }
-    assert_false(@filter.call(@url))
+    assert_true(@filter.call(@url))
   end
 
   sub_test_case "url exist in storage" do
