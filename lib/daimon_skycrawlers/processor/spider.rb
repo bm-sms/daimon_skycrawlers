@@ -28,6 +28,7 @@ module DaimonSkycrawlers
       def call(message)
         key_url = message[:url]
         depth = Integer(message[:depth] || 2)
+        return if message[:heartbeat]
         return if depth <= 1
         page = storage.find(key_url)
         @doc = Nokogiri::HTML(page.body)

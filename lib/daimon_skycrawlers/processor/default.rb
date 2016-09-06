@@ -5,6 +5,7 @@ module DaimonSkycrawlers
   module Processor
     class Default < Base
       def call(message)
+        return if message[:heartbeat]
         url = message[:url]
         page = storage.find(url)
         headers = JSON.parse(page.headers)

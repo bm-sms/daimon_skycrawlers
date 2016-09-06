@@ -12,6 +12,7 @@ module DaimonSkycrawlers
         unless update_checker.call(url.to_s, connection: connection)
           log.info("Skip #{url}")
           @skipped = true
+          schedule_to_process(url.to_s, heartbeat: true)
           return
         end
         @prepare.call(connection)
