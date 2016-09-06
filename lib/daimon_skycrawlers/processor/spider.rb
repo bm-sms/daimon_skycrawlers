@@ -1,4 +1,5 @@
 require "nokogiri"
+require "daimon_skycrawlers/crawler"
 
 module DaimonSkycrawlers
   module Processor
