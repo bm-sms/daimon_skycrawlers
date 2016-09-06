@@ -4,6 +4,7 @@ module DaimonSkycrawlers
   module Processor
     class Spider < Base
       def initialize
+        super
         @filters = []
         @doc = nil
         @links = nil
