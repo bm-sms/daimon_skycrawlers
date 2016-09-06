@@ -15,6 +15,7 @@ module DaimonSkycrawlers
       attr_writer :storage
 
       def initialize(base_url = nil, options = {})
+        super()
         @base_url = base_url
         @options = options
         @prepare = ->(connection) {}
