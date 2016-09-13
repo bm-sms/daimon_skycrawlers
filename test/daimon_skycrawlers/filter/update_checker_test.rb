@@ -1,7 +1,7 @@
 require "test_helper"
 require "daimon_skycrawlers/filter/update_checker"
 
-class DaimonSkycrawlersFilterTest < Test::Unit::TestCase
+class DaimonSkycrawlersUpdateCheckerTest < Test::Unit::TestCase
   setup do
     @filter = DaimonSkycrawlers::Filter::UpdateChecker.new(base_url: "http://example.com/blog/")
     @storage = DaimonSkycrawlers::Storage::RDB.new(fixture_path("database.yml"))
