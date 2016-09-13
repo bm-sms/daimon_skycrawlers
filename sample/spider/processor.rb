@@ -3,6 +3,7 @@
 require "daimon_skycrawlers/processor"
 require "daimon_skycrawlers/processor/spider"
 require "daimon_skycrawlers/filter"
+require "daimon_skycrawlers/filter/duplicate_checker"
 require "daimon_skycrawlers/filter/update_checker"
 
 require_relative "./init"
@@ -22,6 +23,8 @@ spider.append_filter do |url|
     true
   end
 end
+duplicate_checker = DaimonSkycrawlers::Filter::DuplicateChecker.new(base_url: "http://www.clear-code.com/blog/")
+spider.append_filter(duplicate_checker)
 update_checker = DaimonSkycrawlers::Filter::UpdateChecker.new(base_url: "http://www.clear-code.com/blog/")
 spider.append_filter(update_checker)
 
