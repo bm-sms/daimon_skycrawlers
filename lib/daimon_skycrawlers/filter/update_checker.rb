@@ -3,6 +3,9 @@ require "daimon_skycrawlers/filter/base"
 
 module DaimonSkycrawlers
   module Filter
+    #
+    # This filter provides update checker for given URL.
+    #
     class UpdateChecker < Base
       def initialize(storage: nil, base_url: nil)
         super(storage: storage)
@@ -13,6 +16,7 @@ module DaimonSkycrawlers
       #
       # @param [String] url
       # @param connection [Faraday]
+      # @return [true|false] Return true when need update, otherwise return false
       #
       def call(url, connection: nil)
         unless URI(url).absolute?

@@ -19,6 +19,7 @@ module DaimonSkycrawlers
     #   @return [void]
     #
     # @overload register_processor
+    #   @return [void]
     #   @yield [message] Register given block as a processor.
     #   @yieldparam message [Hash] A message from queue
     #   @yieldreturn [void]
@@ -31,6 +32,7 @@ module DaimonSkycrawlers
     # Register a crawler
     #
     # @param [Crawler] crawler instance which implements `fetch` method
+    # @return [void]
     #
     def register_crawler(crawler)
       DaimonSkycrawlers::Consumer::URL.register(crawler)

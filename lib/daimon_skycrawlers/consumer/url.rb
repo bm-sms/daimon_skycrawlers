@@ -8,10 +8,21 @@ module DaimonSkycrawlers
       include SongkickQueue::Consumer
 
       class << self
+        #
+        # Register a given crawler
+        #
+        # @param [Crawler] crawler instance which implements `fetch` method
+        # @return [void]
+        #
         def register(crawler)
           crawlers << crawler
         end
 
+        #
+        # Returns registered crawlers
+        #
+        # @return [Array<Crawler>]
+        #
         def crawlers
           @crawlers ||= []
         end
