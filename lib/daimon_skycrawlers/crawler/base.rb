@@ -8,12 +8,22 @@ require "daimon_skycrawlers/processor"
 
 module DaimonSkycrawlers
   module Crawler
+    #
+    # The base class of crawler
+    #
     class Base
       include DaimonSkycrawlers::LoggerMixin
       include DaimonSkycrawlers::ConfigMixin
 
+      # @!attribute [w] storage
+      #   Set storage to crawler instance.
+      #   @return [void]
       attr_writer :storage
 
+      #
+      # @param [String] Base URL for crawler
+      # @param [Hash] options for Faraday
+      #
       def initialize(base_url = nil, options = {})
         super()
         @base_url = base_url
@@ -23,6 +33,13 @@ module DaimonSkycrawlers
         @n_processed_urls = 0
       end
 
+      #
+      # Set up connection
+      #
+      # @param [Hash] options for Faraday
+      # @yield [faraday]
+      # @yieldparam faraday [Faraday]
+      #
       def setup_connection(options = {})
         @connection = Faraday.new(@base_url, @options.merge(options)) do |faraday|
           yield faraday
@@ -37,6 +54,9 @@ module DaimonSkycrawlers
         @prepare = block
       end
 
+      #
+      # Retrieve storage instance
+      #
       def storage
         @storage ||= Storage::RDB.new
       end

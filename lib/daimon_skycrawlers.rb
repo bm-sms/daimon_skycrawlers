@@ -11,14 +11,36 @@ module DaimonSkycrawlers
     :shutdown_interval
   )
   class << self
+    #
+    # Register a processor
+    #
+    # @overload register_processor(processor)
+    #   @param [Processor] processor instance which implements `call` method
+    #   @return [void]
+    #
+    # @overload register_processor
+    #   @yield [message] Register given block as a processor.
+    #   @yieldparam message [Hash] A message from queue
+    #   @yieldreturn [void]
+    #
     def register_processor(processor = nil, &block)
       DaimonSkycrawlers::Consumer::HTTPResponse.register(processor, &block)
     end
 
+    #
+    # Register a crawler
+    #
+    # @param [Crawler] crawler instance which implements `fetch` method
+    #
     def register_crawler(crawler)
       DaimonSkycrawlers::Consumer::URL.register(crawler)
     end
 
+    #
+    # Retrieve configuration object
+    #
+    # @return [DaimonSkycrawlers::Configuration]
+    #
     def configuration
       @configuration ||= DaimonSkycrawlers::Configuration.new.tap do |config|
         config.logger = DaimonSkycrawlers::Logger.default
@@ -28,6 +50,13 @@ module DaimonSkycrawlers
       end
     end
 
+    #
+    # Configure DaimonSkycrawlers
+    #
+    # @return [void]
+    # @yield [configuration] configure DaimonSkycrawlers
+    # @yieldparam configuration [DaimonSkycrawlers::Configuration] configuration object
+    # @yieldreturn [void]
     def configure
       yield configuration
     end

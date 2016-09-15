@@ -3,6 +3,11 @@ require "daimon_skycrawlers/filter/update_checker"
 
 module DaimonSkycrawlers
   module Crawler
+    #
+    # The default crawler
+    #
+    # This crawler can GET given URL and store response to storage
+    #
     class Default < Base
       def fetch(path, depth: 3, **kw)
         @n_processed_urls += 1

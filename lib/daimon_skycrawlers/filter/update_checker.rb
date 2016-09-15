@@ -10,6 +10,10 @@ module DaimonSkycrawlers
         @base_url = URI(base_url) if base_url
       end
 
+      #
+      # @param [String] url
+      # @param connection [Faraday]
+      #
       def call(url, connection: nil)
         unless URI(url).absolute?
           url = (@base_url + url).to_s
