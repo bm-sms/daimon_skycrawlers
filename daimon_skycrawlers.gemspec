@@ -35,4 +35,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry"
   spec.add_development_dependency "tapp"
   spec.add_development_dependency "sqlite3"
+  spec.add_development_dependency "yard"
 end
