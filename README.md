@@ -31,42 +31,42 @@ Or install it yourself as:
 
 ## Usage
 
-1. Create project
+1\. Create project
 
 ```
 $ bundle exec daimon-skycrawlers new mycrawlers
 $ cd mycrawlers
 ```
 
-2. Install dependencies
+2\. Install dependencies
 
 ```
 $ bundle install
 ```
 
-3. Create database
+3\. Create database
 
 ```
 $ bundle exec rake db:create
 $ bundle exec rake db:migrate
 ```
 
-4. Open new terminal and run crawler/processor
+4\. Open new terminal and run crawler/processor
 
 ```
 $ bundle exec ruby crawler.rb # on new terminal
 $ bundle exec ruby processor.rb # on new terminal
 ```
 
-5. Enqueue task
+5\. Enqueue task
 
 ```
 $ bundle exec ruby enqueue.rb url http://example.com/
 ```
 
-6. You'll see `It works with 'http://example.com'` on your terminal which runs your processor!
+6\. You'll see `It works with 'http://example.com'` on your terminal which runs your processor!
 
-7. You can re-enqueue task for processor
+7\. You can re-enqueue task for processor
 
 ```
 $ bundle exec ruby enqueue.rb response http://example.com/
