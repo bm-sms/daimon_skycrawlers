@@ -38,6 +38,13 @@ $ bundle exec daimon-skycrawlers new mycrawlers
 $ cd mycrawlers
 ```
 
+or
+
+```
+$ daimon-skycrawlers new mycrawlers
+$ cd mycrawlers
+```
+
 2. Install dependencies
 
 ```
