@@ -33,51 +33,48 @@ Or install it yourself as:
 
 1. Create project
 
-```
-$ bundle exec daimon-skycrawlers new mycrawlers
-$ cd mycrawlers
-```
-
-or
-
-```
-$ daimon-skycrawlers new mycrawlers
-$ cd mycrawlers
-```
+     ```
+     $ bundle exec daimon-skycrawlers new mycrawlers
+     $ cd mycrawlers
+     ```
+     or
+     ```
+     $ daimon-skycrawlers new mycrawlers
+     $ cd mycrawlers
+     ```
 
 2. Install dependencies
 
-```
-$ bundle install
-```
+     ```
+     $ bundle install
+     ```
 
 3. Create database
 
-```
-$ bundle exec rake db:create
-$ bundle exec rake db:migrate
-```
+     ```
+     $ bundle exec rake db:create
+     $ bundle exec rake db:migrate
+     ```
 
 4. Open new terminal and run crawler/processor
 
-```
-$ bundle exec ruby crawler.rb # on new terminal
-$ bundle exec ruby processor.rb # on new terminal
-```
+     ```
+     $ bundle exec ruby crawler.rb # on new terminal
+     $ bundle exec ruby processor.rb # on new terminal
+     ```
 
 5. Enqueue task
 
-```
-$ bundle exec ruby enqueue.rb url http://example.com/
-```
+     ```
+     $ bundle exec ruby enqueue.rb url http://example.com/
+     ```
 
 6. You'll see `It works with 'http://example.com'` on your terminal which runs your processor!
-
 7. You can re-enqueue task for processor
 
-```
-$ bundle exec ruby enqueue.rb response http://example.com/
-```
+     ```
+     $ bundle exec ruby enqueue.rb response http://example.com/
+     ```
 
 Display `It works with 'http://example.com'` again on your terminal which runs your processor.
 
