@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "faraday_middleware"
   spec.add_dependency "nokogiri"
   spec.add_dependency "activerecord"
+  spec.add_dependency "railties"
   spec.add_dependency "pg"
   spec.add_dependency "timers"
 
