@@ -1,3 +1,4 @@
+require "bundler/setup"
 require "daimon_skycrawlers"
 require "daimon_skycrawlers/logger"
 require "daimon_skycrawlers/queue"
