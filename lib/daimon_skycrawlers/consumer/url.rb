@@ -4,6 +4,9 @@ require "daimon_skycrawlers/consumer/base"
 
 module DaimonSkycrawlers
   module Consumer
+    #
+    # URL consumer class
+    #
     class URL < Base
       include SongkickQueue::Consumer
 
@@ -27,6 +30,9 @@ module DaimonSkycrawlers
           @crawlers ||= []
         end
 
+        #
+        # @private
+        #
         def queue_name
           "#{DaimonSkycrawlers.configuration.queue_name_prefix}.url"
         end
@@ -34,6 +40,9 @@ module DaimonSkycrawlers
 
       consume_from_queue queue_name
 
+      #
+      # @private
+      #
       def process(message)
         url = message[:url]
         depth = Integer(message[:depth] || 0)
