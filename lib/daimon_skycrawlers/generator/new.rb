@@ -38,9 +38,9 @@ module DaimonSkycrawlers
         [
           "Gemfile",
           "Rakefile",
+          "config/init.rb",
           "crawler.rb",
           "enqueue.rb",
-          "init.rb",
           "processor.rb",
         ].each do |path|
           copy_file(path, "#{name}/#{path}")
