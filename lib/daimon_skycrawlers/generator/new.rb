@@ -38,6 +38,8 @@ module DaimonSkycrawlers
         [
           "Gemfile",
           "Rakefile",
+          "app/crawlers/sample_crawler.rb",
+          "app/processors/sample_processor.rb",
           "bin/crawler",
           "bin/enqueue",
           "bin/processor",
