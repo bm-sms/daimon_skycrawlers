@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require_relative "./init"
+require "daimon_skycrawlers/crawler"
+
+Dir.glob("app/crawlers/**/*.rb") do |path|
+  require(File.expand_path(path, File.dirname(__dir__)))
+end
+
+DaimonSkycrawlers::Crawler.run

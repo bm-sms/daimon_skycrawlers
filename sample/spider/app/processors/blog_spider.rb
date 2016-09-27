@@ -1,12 +1,7 @@
-#!/usr/bin/env ruby
-
-require "daimon_skycrawlers/processor"
 require "daimon_skycrawlers/processor/spider"
 require "daimon_skycrawlers/filter"
 require "daimon_skycrawlers/filter/duplicate_checker"
 require "daimon_skycrawlers/filter/update_checker"
-
-require_relative "./init"
 
 default_processor = DaimonSkycrawlers::Processor::Default.new
 spider = DaimonSkycrawlers::Processor::Spider.new
@@ -30,5 +25,3 @@ spider.append_filter(update_checker)
 
 DaimonSkycrawlers.register_processor(default_processor)
 DaimonSkycrawlers.register_processor(spider)
-
-DaimonSkycrawlers::Processor.run
