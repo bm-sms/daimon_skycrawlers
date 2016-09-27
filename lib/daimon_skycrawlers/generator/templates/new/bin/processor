@@ -5,7 +5,7 @@ require "daimon_skycrawlers/processor"
 require_relative "../config/init"
 
 Dir.glob("app/processors/**/*.rb") do |path|
-  require(path)
+  require(File.expand_path(path, File.dirname(__dir__)))
 end
 
 DaimonSkycrawlers::Processor.run

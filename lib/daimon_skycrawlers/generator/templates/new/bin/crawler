@@ -5,7 +5,7 @@ require "daimon_skycrawlers/crawler"
 require_relative "../config/init"
 
 Dir.glob("app/crawlers/**/*.rb") do |path|
-  require(path)
+  require(File.expand_path(path, File.dirname(__dir__)))
 end
 
 DaimonSkycrawlers::Crawler.run
