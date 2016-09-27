@@ -45,7 +45,7 @@ module DaimonSkycrawlers
           "bin/processor",
           "config/init.rb",
         ].each do |path|
-          copy_file(path, "#{name}/#{path}")
+          copy_file(path, "#{name}/#{path}", mode: :preserve)
         end
       end
     end
