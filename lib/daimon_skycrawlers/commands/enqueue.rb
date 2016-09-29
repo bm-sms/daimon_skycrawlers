@@ -1,6 +1,9 @@
 require "daimon_skycrawlers"
 require "daimon_skycrawlers/crawler"
 require "daimon_skycrawlers/processor"
+require "daimon_skycrawlers/version"
+require "sitemap-parser"
+require "webrobots"
 
 module DaimonSkycrawlers
   module Commands
@@ -19,6 +22,25 @@ module DaimonSkycrawlers
         message = rest.map {|arg| arg.split(":") }.to_h
         log.debug("Enqueue URL for processor: #{url} : #{message}")
         DaimonSkycrawlers::Processor.enqueue_http_response(url, message)
+      end
+
+      desc "sitemap [OPTIONS] URL", "Enqueue URLs from simtemap.xml"
+      method_option("robots-txt", aliases: ["-r"], type: :boolean,
+                    desc: "URL for robots.txt. Detect robots.txt automatically if URL is not robots.txt")
+      def sitemap(url)
+        if options["robots-txt"]
+          webrobots = WebRobots.new("DaimonSkycrawlers/#{DaimonSkycrawlers::VERSION}")
+          sitemaps = webrobots.sitemaps(url)
+        else
+          sitemaps = [url]
+        end
+        urls = sitemaps.flat_map do |sitemap|
+          sitemap_parser = SitemapParser.new(sitemap)
+          sitemap_parser.urls.to_a
+        end
+        urls.each do |_url|
+          DaimonSkycrawlers::Crawler.enqueue_url(_url)
+        end
       end
 
       private
