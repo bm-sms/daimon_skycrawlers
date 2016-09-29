@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative "./init"
+require_relative "../config/init"
 require "daimon_skycrawlers/crawler"
 
 Dir.glob("app/crawlers/**/*.rb") do |path|
