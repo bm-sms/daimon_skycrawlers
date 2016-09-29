@@ -29,14 +29,14 @@ $ bundle exec rake db:migrate
 3. Open new terminal and run crawler/processor
 
 ```
-$ bundle exec ruby crawler.rb # on new terminal
-$ bundle exec ruby processor.rb # on new terminal
+$ bin/crawler # on new terminal
+$ bin/processor # on new terminal
 ```
 
 4. Enqueue task
 
 ```
-$ bundle exec ruby enqueue.rb http://example.com/
+$ bin/enqueue url http://example.com/
 ```
 
 5. You'll see `It works with 'http://example.com'` on your terminal which runs your processor!
@@ -44,7 +44,7 @@ $ bundle exec ruby enqueue.rb http://example.com/
 6. You can re-enqueue task for processor
 
 ```
-$ bundle exec ruby enqueue.rb response http://example.com/
+$ bin/enqueue response http://example.com/
 ```
 
 Display `It works with 'http://example.com'` again on your terminal which runs your processor.

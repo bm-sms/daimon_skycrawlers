@@ -59,25 +59,25 @@ Or install it yourself as:
 4. Open new terminal and run crawler/processor
 
      ```
-     $ bundle exec ruby crawler.rb # on new terminal
-     $ bundle exec ruby processor.rb # on new terminal
+     $ bin/crawler   # on new terminal
+     $ bin/processor # on new terminal
      ```
 
-    NOTE: Execute step 5 as soon as possible. Because crawler.rb and
-    processor.rb will stop after 10 seconds by default if their queues
-    are empty.
+    NOTE: Execute step 5 as soon as possible. Because bin/crawler and
+    bin/processor will stop after 10 seconds by default if their
+    queues are empty.
 
 5. Enqueue task
 
      ```
-     $ bundle exec ruby enqueue.rb url http://example.com/
+     $ bin/enqueue url http://example.com/
      ```
 
 6. You'll see `It works with 'http://example.com'` on your terminal which runs your processor!
 7. You can re-enqueue task for processor
 
      ```
-     $ bundle exec ruby enqueue.rb response http://example.com/
+     $ bin/enqueue response http://example.com/
      ```
 
 Display `It works with 'http://example.com'` again on your terminal which runs your processor.
