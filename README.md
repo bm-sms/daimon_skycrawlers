@@ -63,9 +63,9 @@ Or install it yourself as:
      $ bin/processor # on new terminal
      ```
 
-    NOTE: Execute step 5 as soon as possible. Because crawler.rb and
-    processor.rb will stop after 10 seconds by default if their queues
-    are empty.
+    NOTE: Execute step 5 as soon as possible. Because bin/crawler and
+    bin/processor will stop after 10 seconds by default if their
+    queues are empty.
 
 5. Enqueue task
 
