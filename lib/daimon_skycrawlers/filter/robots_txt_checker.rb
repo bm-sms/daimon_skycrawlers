@@ -10,7 +10,7 @@ module DaimonSkycrawlers
     #
     class RobotsTxtChecker < Base
       def initialize(base_url: nil, user_agent: "DaimonSkycrawlers/#{DaimonSkycrawlers::VERSION}")
-        super
+        super()
         @webrobots = WebRobots.new(user_agent)
       end
 
