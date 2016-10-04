@@ -18,6 +18,11 @@ module DaimonSkycrawlers
           skip(url)
           return
         end
+        robots_txt_checker = DaimonSkycrawlers::Filter::RobotsTxtChecker.new(base_url: @base_url)
+        unless robots_txt_checker.call(url)
+          skip(url)
+          return
+        end
         @prepare.call(connection)
         response = get(path)
         data = [url.to_s, response.headers, response.body]
