@@ -37,7 +37,7 @@ module DaimonSkycrawlers
         end
         urls = sitemaps.flat_map do |sitemap|
           sitemap_parser = SitemapParser.new(sitemap)
-          sitemap_parser.urls.to_a
+          sitemap_parser.to_a
         end
         urls.each do |_url|
           DaimonSkycrawlers::Crawler.enqueue_url(_url)
