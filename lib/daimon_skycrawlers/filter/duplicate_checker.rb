@@ -6,6 +6,8 @@ module DaimonSkycrawlers
     #
     # This filter provides duplication checker for given URL.
     #
+    # Skip processing duplicated URLs.
+    #
     class DuplicateChecker < Base
       def initialize(base_url: nil)
         @base_url = nil

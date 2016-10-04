@@ -6,6 +6,9 @@ module DaimonSkycrawlers
     #
     # This filter provides update checker for given URL.
     #
+    # Skip processing URLs that is latest (not updated since previous
+    # access).
+    #
     class UpdateChecker < Base
       def initialize(storage: nil, base_url: nil)
         super(storage: storage)
