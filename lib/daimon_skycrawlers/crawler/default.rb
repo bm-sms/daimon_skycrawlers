@@ -14,13 +14,13 @@ module DaimonSkycrawlers
         @n_processed_urls += 1
         @skipped = false
         url = connection.url_prefix + path
-        update_checker = DaimonSkycrawlers::Filter::UpdateChecker.new(storage: storage)
-        unless update_checker.call(url.to_s, connection: connection)
+        robots_txt_checker = DaimonSkycrawlers::Filter::RobotsTxtChecker.new(base_url: @base_url)
+        unless robots_txt_checker.call(url)
           skip(url)
           return
         end
-        robots_txt_checker = DaimonSkycrawlers::Filter::RobotsTxtChecker.new(base_url: @base_url)
-        unless robots_txt_checker.call(url)
+        update_checker = DaimonSkycrawlers::Filter::UpdateChecker.new(storage: storage)
+        unless update_checker.call(url.to_s, connection: connection)
           skip(url)
           return
         end
