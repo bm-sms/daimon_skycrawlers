@@ -28,6 +28,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "railties"
   spec.add_dependency "pg"
   spec.add_dependency "timers"
+  spec.add_dependency "sitemap-parser"
+  spec.add_dependency "webrobots"
 
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "test-unit"
