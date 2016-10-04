@@ -33,35 +33,35 @@ Or install it yourself as:
 
 1. Create project
 
-     ```
-     $ bundle exec daimon-skycrawlers new mycrawlers
-     $ cd mycrawlers
-     ```
-     or
-     ```
-     $ daimon-skycrawlers new mycrawlers
-     $ cd mycrawlers
-     ```
+    ```
+    $ bundle exec daimon-skycrawlers new mycrawlers
+    $ cd mycrawlers
+    ```
+    or
+    ```
+    $ daimon-skycrawlers new mycrawlers
+    $ cd mycrawlers
+    ```
 
 2. Install dependencies
 
-     ```
-     $ bundle install
-     ```
+    ```
+    $ bundle install
+    ```
 
 3. Create database
 
-     ```
-     $ bundle exec rake db:create
-     $ bundle exec rake db:migrate
-     ```
+    ```
+    $ bundle exec rake db:create
+    $ bundle exec rake db:migrate
+    ```
 
 4. Open new terminal and run crawler/processor
 
-     ```
-     $ daimon-skycrawlers exec crawler   # on new terminal
-     $ daimon-skycrawlers exec processor # on new terminal
-     ```
+    ```
+    $ daimon-skycrawlers exec crawler   # on new terminal
+    $ daimon-skycrawlers exec processor # on new terminal
+    ```
 
     NOTE: Execute step 5 as soon as possible. Because bin/crawler and
     bin/processor will stop after 10 seconds by default if their
@@ -77,16 +77,16 @@ Or install it yourself as:
 
 5. Enqueue task
 
-     ```
-     $ daimon-skycrawlers enqueue url http://example.com/
-     ```
+    ```
+    $ daimon-skycrawlers enqueue url http://example.com/
+    ```
 
 6. You'll see `It works with 'http://example.com'` on your terminal which runs your processor!
 7. You can re-enqueue task for processor
 
-     ```
-     $ daimon-skycrawlers enqueue response http://example.com/
-     ```
+    ```
+    $ daimon-skycrawlers enqueue response http://example.com/
+    ```
 
 Display `It works with 'http://example.com'` again on your terminal which runs your processor.
 
