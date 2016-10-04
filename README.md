@@ -67,6 +67,14 @@ Or install it yourself as:
     bin/processor will stop after 10 seconds by default if their
     queues are empty.
 
+    NOTE: You can change `shutdown_interval` using following code in config/init.rb:
+
+    ```ruby
+    DaimonSkycrawlers.configure do |config|
+      config.shutdown_interval = 30
+    end
+    ```
+
 5. Enqueue task
 
      ```
