@@ -28,6 +28,7 @@ module DaimonSkycrawlers
       method_option("robots-txt", aliases: ["-r"], type: :boolean,
                     desc: "URL for robots.txt. Detect robots.txt automatically if URL is not robots.txt")
       def sitemap(url)
+        load_init
         if options["robots-txt"]
           webrobots = WebRobots.new("DaimonSkycrawlers/#{DaimonSkycrawlers::VERSION}")
           sitemaps = webrobots.sitemaps(url)
