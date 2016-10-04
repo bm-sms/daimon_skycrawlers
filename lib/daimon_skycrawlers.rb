@@ -62,5 +62,17 @@ module DaimonSkycrawlers
     def configure
       yield configuration
     end
+
+    #
+    # Load "config/init.rb"
+    #
+    # @return [void]
+    #
+    def load_init
+      require(File.expand_path("config/init.rb", Dir.pwd))
+    rescue LoadError => ex
+      puts ex.message
+      exit(false)
+    end
   end
 end

@@ -59,8 +59,8 @@ Or install it yourself as:
 4. Open new terminal and run crawler/processor
 
      ```
-     $ bin/crawler   # on new terminal
-     $ bin/processor # on new terminal
+     $ daimon-skycrawlers exec crawler   # on new terminal
+     $ daimon-skycrawlers exec processor # on new terminal
      ```
 
     NOTE: Execute step 5 as soon as possible. Because bin/crawler and
@@ -70,14 +70,14 @@ Or install it yourself as:
 5. Enqueue task
 
      ```
-     $ bin/enqueue url http://example.com/
+     $ daimon-skycrawlers enqueue url http://example.com/
      ```
 
 6. You'll see `It works with 'http://example.com'` on your terminal which runs your processor!
 7. You can re-enqueue task for processor
 
      ```
-     $ bin/enqueue response http://example.com/
+     $ daimon-skycrawlers enqueue response http://example.com/
      ```
 
 Display `It works with 'http://example.com'` again on your terminal which runs your processor.
