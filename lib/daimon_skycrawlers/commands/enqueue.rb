@@ -31,7 +31,7 @@ module DaimonSkycrawlers
         load_init
         if options["robots-txt"]
           webrobots = WebRobots.new("DaimonSkycrawlers/#{DaimonSkycrawlers::VERSION}")
-          sitemaps = webrobots.sitemaps(url)
+          sitemaps = webrobots.sitemaps(url).uniq
         else
           sitemaps = [url]
         end
