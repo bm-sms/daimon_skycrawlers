@@ -9,6 +9,7 @@ module DaimonSkycrawlers
       def url(url, *rest)
         load_init
         message = rest.map {|arg| arg.split(":") }.to_h
+        log.debug("Enqueue URL for crawler: #{url} : #{message}")
         DaimonSkycrawlers::Crawler.enqueue_url(url, message)
       end
 
@@ -16,6 +17,7 @@ module DaimonSkycrawlers
       def response(url, *rest)
         load_init
         message = rest.map {|arg| arg.split(":") }.to_h
+        log.debug("Enqueue URL for processor: #{url} : #{message}")
         DaimonSkycrawlers::Processor.enqueue_http_response(url, message)
       end
 
