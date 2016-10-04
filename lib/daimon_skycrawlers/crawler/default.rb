@@ -15,11 +15,11 @@ module DaimonSkycrawlers
         @skipped = false
         url = connection.url_prefix + path
         if @options[:obey_robots_txt]
-        robots_txt_checker = DaimonSkycrawlers::Filter::RobotsTxtChecker.new(base_url: @base_url)
-        unless robots_txt_checker.call(url)
-          skip(url)
-          return
-        end
+          robots_txt_checker = DaimonSkycrawlers::Filter::RobotsTxtChecker.new(base_url: @base_url)
+          unless robots_txt_checker.call(url)
+            skip(url)
+            return
+          end
         end
         update_checker = DaimonSkycrawlers::Filter::UpdateChecker.new(storage: storage)
         unless update_checker.call(url.to_s, connection: connection)
