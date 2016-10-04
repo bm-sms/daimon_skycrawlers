@@ -15,9 +15,7 @@ module DaimonSkycrawlers
         url = connection.url_prefix + path
         update_checker = DaimonSkycrawlers::Filter::UpdateChecker.new(storage: storage)
         unless update_checker.call(url.to_s, connection: connection)
-          log.info("Skip #{url}")
-          @skipped = true
-          schedule_to_process(url.to_s, heartbeat: true)
+          skip(url)
           return
         end
         @prepare.call(connection)
@@ -32,6 +30,14 @@ module DaimonSkycrawlers
         }
         message = message.merge(kw)
         schedule_to_process(url.to_s, message)
+      end
+
+      private
+
+      def skip(url)
+        log.info("Skip #{url}")
+        @skipped = true
+        schedule_to_process(url.to_s, heartbeat: true)
       end
     end
   end
