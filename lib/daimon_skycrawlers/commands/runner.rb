@@ -36,10 +36,7 @@ module DaimonSkycrawlers
       private
 
       def load_init
-        require(File.expand_path("config/init.rb", Dir.pwd))
-      rescue LoadError => ex
-        puts ex.message
-        exit(false)
+        DaimonSkycrawlers.load_init
       end
 
       def log
