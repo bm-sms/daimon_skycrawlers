@@ -77,7 +77,7 @@ module DaimonSkycrawlers
         @connection ||= Faraday.new(@base_url, @faraday_options)
       end
 
-      def process(message)
+      def process(message, &block)
         url = message.delete(:url)
 
         @skipped = false
