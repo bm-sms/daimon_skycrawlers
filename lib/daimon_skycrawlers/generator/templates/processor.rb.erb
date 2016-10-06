@@ -1,0 +1,13 @@
+require "daimon_skycrawlers"
+require "daimon_skycrawlers/processor"
+require "daimon_skycrawlers/processor/base"
+
+class <%= config[:class_name] %> < DaimonSkycrawlers::Processor::Base
+  def call(message)
+    # Implement your processor here
+  end
+end
+
+base_url = ""
+processor = <%= config[:class_name] %>.new(base_url)
+DaimonSkycrawlers.register_processor(processor)
