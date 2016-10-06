@@ -94,6 +94,12 @@ module DaimonSkycrawlers
 
       private
 
+      def skip(url)
+        log.info("Skip #{url}")
+        @skipped = true
+        schedule_to_process(url.to_s, heartbeat: true)
+      end
+
       def schedule_to_process(url, message = {})
         DaimonSkycrawlers::Processor.enqueue_http_response(url, message)
       end

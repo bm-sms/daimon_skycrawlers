@@ -39,14 +39,6 @@ module DaimonSkycrawlers
         message = message.merge(kw)
         schedule_to_process(url.to_s, message)
       end
-
-      private
-
-      def skip(url)
-        log.info("Skip #{url}")
-        @skipped = true
-        schedule_to_process(url.to_s, heartbeat: true)
-      end
     end
   end
 end
