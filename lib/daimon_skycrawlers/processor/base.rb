@@ -7,6 +7,10 @@ module DaimonSkycrawlers
       include DaimonSkycrawlers::LoggerMixin
       include DaimonSkycrawlers::ConfigMixin
 
+      def process(message)
+        call(message)
+      end
+
       def call(message)
         raise "Implement this method in subclass"
       end
