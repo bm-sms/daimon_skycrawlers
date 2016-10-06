@@ -17,7 +17,7 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
     end
 
     def test_on_fetch
-      @crawler.fetch("/") do |url, headers, body|
+      @crawler.fetch("http://example.com/", depth: 3) do |url, headers, body|
         assert_equal("http://example.com/", url)
         assert_equal({}, headers)
         assert_equal("body", body)
@@ -42,7 +42,7 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
     end
 
     def test_fetch_blog
-      @crawler.fetch("./blog", depth: 1) do |url, headers, body|
+      @crawler.fetch("http://example.com/blog", depth: 1) do |url, headers, body|
         assert_equal(url, "http://example.com/blog")
         assert_equal(headers, {})
         assert_equal(body, @body)
