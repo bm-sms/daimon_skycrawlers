@@ -74,6 +74,12 @@ module DaimonSkycrawlers
         @connection ||= Faraday.new(@base_url, @options)
       end
 
+      def process(message)
+        url = message[:url]
+        depth = Integer(message[:depth] || 0)
+        fetch(url, depth: depth)
+      end
+
       def fetch(path, params = {}, **kw)
         raise NotImplementedError, "Must implement this method in subclass"
       end
