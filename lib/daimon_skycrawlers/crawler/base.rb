@@ -87,8 +87,10 @@ module DaimonSkycrawlers
 
         apply_filters(url)
 
-        @prepare.call(connection)
-        fetch(url, message)
+        unless skipped?
+          @prepare.call(connection)
+          fetch(url, message, &block)
+        end
       end
 
       def fetch(path, message = {})
