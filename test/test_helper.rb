@@ -20,4 +20,5 @@ ActiveRecord::Migration.verbose = false
 
 DaimonSkycrawlers.configure do |config|
   config.queue_name_prefix = "daimon-skycrawlers.test"
+  config.logger = ::Logger.new(nil)
 end

@@ -57,7 +57,6 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
   sub_test_case "filter" do
     def test_robotx_txt
       crawler = ::DaimonSkycrawlers::Crawler::Default.new("http://example.com", options: { obey_robots_txt: true })
-      crawler.log = ::Logger.new(nil)
       robots_txt_checker = mock(Object.new).call(anything) { false }
       mock(DaimonSkycrawlers::Filter::RobotsTxtChecker).new(anything) { robots_txt_checker }
       crawler.storage = DaimonSkycrawlers::Storage::Null.new
@@ -71,7 +70,6 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
 
     def test_update_checker
       crawler = ::DaimonSkycrawlers::Crawler::Default.new("http://example.com", options: { obey_robots_txt: true })
-      crawler.log = ::Logger.new(nil)
       update_checker = mock(Object.new).call(anything, anything) { false }
       mock(DaimonSkycrawlers::Filter::UpdateChecker).new(anything) { update_checker }
       crawler.storage = DaimonSkycrawlers::Storage::Null.new
