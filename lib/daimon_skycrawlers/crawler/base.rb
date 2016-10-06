@@ -75,12 +75,20 @@ module DaimonSkycrawlers
       end
 
       def process(message)
-        url = message[:url]
-        depth = Integer(message[:depth] || 0)
-        fetch(url, depth: depth)
+        url = message.delete(:url)
+
+        @skipped = false
+        @n_processed_urls += 1
+        # url can be a path
+        url = connection.url_prefix + url
+
+        apply_filters(url)
+
+        @prepare.call(connection)
+        fetch(url, message)
       end
 
-      def fetch(path, params = {}, **kw)
+      def fetch(path, message = {})
         raise NotImplementedError, "Must implement this method in subclass"
       end
 
@@ -93,6 +101,21 @@ module DaimonSkycrawlers
       end
 
       private
+
+      def apply_filters(url)
+        if @options[:obey_robots_txt]
+          robots_txt_checker = DaimonSkycrawlers::Filter::RobotsTxtChecker.new(base_url: @base_url)
+          unless robots_txt_checker.call(url)
+            skip(url)
+            return
+          end
+        end
+        update_checker = DaimonSkycrawlers::Filter::UpdateChecker.new(storage: storage)
+        unless update_checker.call(url.to_s, connection: connection)
+          skip(url)
+          return
+        end
+      end
 
       def skip(url)
         log.info("Skip #{url}")
