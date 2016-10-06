@@ -29,9 +29,10 @@ module DaimonSkycrawlers
       # @param [String] Base URL for crawler
       # @param [Hash] options for Faraday
       #
-      def initialize(base_url = nil, options = {})
+      def initialize(base_url = nil, faraday_options: {}, options: {})
         super()
         @base_url = base_url
+        @faraday_options = faraday_options
         @options = options
         @prepare = ->(connection) {}
         @skipped = false
@@ -46,7 +47,9 @@ module DaimonSkycrawlers
       # @yieldparam faraday [Faraday]
       #
       def setup_connection(options = {})
-        @connection = Faraday.new(@base_url, @options.merge(options)) do |faraday|
+        merged_options = @faraday_options.merge(options)
+        faraday_options = merged_options.empty? ? nil : merged_options
+        @connection = Faraday.new(@base_url, faraday_options) do |faraday|
           yield faraday
         end
       end
@@ -71,7 +74,7 @@ module DaimonSkycrawlers
       end
 
       def connection
-        @connection ||= Faraday.new(@base_url, @options)
+        @connection ||= Faraday.new(@base_url, @faraday_options)
       end
 
       def process(message)
