@@ -20,6 +20,11 @@ module DaimonSkycrawlers
       #   @return [void]
       attr_writer :storage
 
+      # @!attribute [r] n_processed_urls
+      #   The number of processed URLs.
+      #   @return [Integer]
+      attr_reader :n_processed_urls
+
       #
       # @param [String] Base URL for crawler
       # @param [Hash] options for Faraday
@@ -79,10 +84,6 @@ module DaimonSkycrawlers
 
       def post(path, params = {})
         @connection.post(path, params)
-      end
-
-      def n_processed_urls
-        @n_processed_urls
       end
 
       private
