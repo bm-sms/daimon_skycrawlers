@@ -110,13 +110,13 @@ module DaimonSkycrawlers
       def apply_filters(url)
         if @options[:obey_robots_txt]
           robots_txt_checker = DaimonSkycrawlers::Filter::RobotsTxtChecker.new(base_url: @base_url)
-          unless robots_txt_checker.call(url)
+          unless robots_txt_checker.allowed?(url)
             skip(url)
             return
           end
         end
         update_checker = DaimonSkycrawlers::Filter::UpdateChecker.new(storage: storage)
-        unless update_checker.call(url.to_s, connection: connection)
+        unless update_checker.updated?(url.to_s, connection: connection)
           skip(url)
           return
         end
