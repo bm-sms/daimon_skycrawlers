@@ -32,10 +32,14 @@ module DaimonSkycrawlers
         else
           headers = Faraday.head(url)
         end
-        return false if headers["etag"] && page.etag && headers["etag"] == page.etag
-        return false if headers["last-modified"].nil? && page.last_modified_at.nil?
-        return false if headers["last-modified"] <= page.last_modified_at
-        true
+        case
+        when headers.key?("etag") && page.etag
+          headers["etag"] != page.etag
+        when headers.key?("last-modified") && page.last_modified_at
+          headers["last-modified"] > page.last_modified_at
+        else
+          true
+        end
       end
     end
   end
