@@ -33,6 +33,8 @@ module DaimonSkycrawlers
         @storage ||= DaimonSkycrawlers::Storage::RDB.new
       end
 
+      private
+
       def apply_before_filters(url)
         @before_process_filters.all? do |filter|
           filter.call(url)
