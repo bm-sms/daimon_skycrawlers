@@ -18,7 +18,7 @@ module DaimonSkycrawlers
         if block_given?
           @link_filters << block
         else
-          @link_filters << filter
+          @link_filters << filter if filter.respond_to?(:call)
         end
       end
 
