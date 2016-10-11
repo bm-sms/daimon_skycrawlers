@@ -41,6 +41,8 @@ module DaimonSkycrawlers
           true
         end
       end
+
+      alias updated? call
     end
   end
 end
