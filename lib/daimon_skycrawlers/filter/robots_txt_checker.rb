@@ -24,6 +24,8 @@ module DaimonSkycrawlers
         end
         @webrobots.allowed?(url)
       end
+
+      alias allowed? call
     end
   end
 end

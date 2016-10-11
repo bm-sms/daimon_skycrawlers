@@ -28,6 +28,15 @@ module DaimonSkycrawlers
         @urls << url
         true
       end
+
+      #
+      # @param [String] url to check duplication. If given URL is
+      #        relative URL, use `@base_url + url` as absolute URL.
+      # @return [true|false] Return true when duplicated, otherwise return false.
+      #
+      def duplicated?(url)
+        !call(url)
+      end
     end
   end
 end
