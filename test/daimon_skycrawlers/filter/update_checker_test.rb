@@ -16,14 +16,14 @@ class DaimonSkycrawlersUpdateCheckerTest < Test::Unit::TestCase
   end
 
   sub_test_case "url exist in storage" do
-    test "no etag and no last-modified" do
+    test "need update when no etag and no last-modified" do
       page = DaimonSkycrawlers::Storage::RDB::Page.new(url: @url)
       mock(Faraday).head(@url) { {} }
       mock(@storage).find(@url) { page }
-      assert_false(@filter.call(@url))
+      assert_true(@filter.call(@url))
     end
 
-    test "last-modified is newer than page.last_modified_at" do
+    test "need update when last-modified is newer than page.last_modified_at" do
       now = Time.now
       page = DaimonSkycrawlers::Storage::RDB::Page.new(url: @url, last_modified_at: Time.at(now - 1))
       mock(Faraday).head(@url) { { "last-modified" => now } }
@@ -31,7 +31,7 @@ class DaimonSkycrawlersUpdateCheckerTest < Test::Unit::TestCase
       assert_true(@filter.call(@url))
     end
 
-    test "last-modified is older than page.last_modified_at" do
+    test "not need update when last-modified is older than page.last_modified_at" do
       now = Time.now
       page = DaimonSkycrawlers::Storage::RDB::Page.new(url: @url, last_modified_at: Time.at(now - 1))
       mock(Faraday).head(@url) { { "last-modified" => Time.at(now - 2) } }
@@ -46,7 +46,7 @@ class DaimonSkycrawlersUpdateCheckerTest < Test::Unit::TestCase
       assert_false(@filter.call(@url))
     end
 
-    test "etag does not match" do
+    test "need update when etag does not match" do
       now = Time.now
       page = DaimonSkycrawlers::Storage::RDB::Page.new(url: @url, etag: "xxxxx", last_modified_at: now)
       mock(Faraday).head(@url) { { "etag" => "yyyyy", "last-modified" => Time.at(now + 1) } }
@@ -54,11 +54,11 @@ class DaimonSkycrawlersUpdateCheckerTest < Test::Unit::TestCase
       assert_true(@filter.call(@url))
     end
 
-    test "relative path" do
+    test "need update with relative path w/o headers" do
       page = DaimonSkycrawlers::Storage::RDB::Page.new(url: @url)
       mock(Faraday).head(@url) { {} }
       mock(@storage).find(@url) { page }
-      assert_false(@filter.call("./2016/1.html"))
+      assert_true(@filter.call("./2016/1.html"))
     end
   end
 end
