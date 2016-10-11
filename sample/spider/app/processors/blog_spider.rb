@@ -6,11 +6,11 @@ require "daimon_skycrawlers/filter/update_checker"
 default_processor = DaimonSkycrawlers::Processor::Default.new
 spider = DaimonSkycrawlers::Processor::Spider.new
 #spider.enqueue = false
-spider.append_filter do |url|
+spider.append_link_filter do |url|
   uri = URI(url)
   uri.host.nil? || uri.host == "www.clear-code.com"
 end
-spider.append_filter do |url|
+spider.append_link_filter do |url|
   case url
   when %r!\A(\.\./|/|#)!
     false
@@ -19,9 +19,9 @@ spider.append_filter do |url|
   end
 end
 duplicate_checker = DaimonSkycrawlers::Filter::DuplicateChecker.new(base_url: "http://www.clear-code.com/blog/")
-spider.append_filter(duplicate_checker)
+spider.append_link_filter(duplicate_checker)
 update_checker = DaimonSkycrawlers::Filter::UpdateChecker.new(base_url: "http://www.clear-code.com/blog/")
-spider.append_filter(update_checker)
+spider.append_link_filter(update_checker)
 
 DaimonSkycrawlers.register_processor(default_processor)
 DaimonSkycrawlers.register_processor(spider)

@@ -8,17 +8,17 @@ module DaimonSkycrawlers
 
       def initialize
         super
-        @filters = []
+        @link_filters = []
         @doc = nil
         @links = nil
         @enqueue = true
       end
 
-      def append_filter(filter = nil, &block)
+      def append_link_filter(filter = nil, &block)
         if block_given?
-          @filters << block
+          @link_filters << block
         else
-          @filters << filter
+          @link_filters << filter if filter.respond_to?(:call)
         end
       end
 
@@ -53,15 +53,15 @@ module DaimonSkycrawlers
           element["href"]
         end
         urls.uniq!
-        apply_filters(urls) || []
+        apply_link_filters(urls) || []
       end
 
-      def apply_filters(urls)
+      def apply_link_filters(urls)
         return if urls.nil?
         return if urls.empty?
         log.debug("Candidate URLs: #{urls.size}")
         urls = urls.select do |url|
-          @filters.all? {|filter| filter.call(url) }
+          @link_filters.all? {|filter| filter.call(url) }
         end
         log.debug("Filtered URLs: #{urls.size}")
         urls
