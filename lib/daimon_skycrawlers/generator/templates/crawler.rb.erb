@@ -1,0 +1,13 @@
+require "daimon_skycrawlers"
+require "daimon_skycrawlers/crawler"
+require "daimon_skycrawlers/crawler/base"
+
+class <%= config[:class_name] %> < DaimonSkycrawlers::Crawler::Base
+  def fetch(path, **kw)
+    # Implement your crawler here
+  end
+end
+
+base_url = ""
+crawler = <%= config[:class_name] %>.new(base_url)
+DaimonSkycrawlers.register_crawler(crawler)
