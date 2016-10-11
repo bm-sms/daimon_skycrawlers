@@ -29,9 +29,10 @@ module DaimonSkycrawlers
       # @param [String] Base URL for crawler
       # @param [Hash] options for Faraday
       #
-      def initialize(base_url = nil, options = {})
+      def initialize(base_url = nil, faraday_options: {}, options: {})
         super()
         @base_url = base_url
+        @faraday_options = faraday_options
         @options = options
         @prepare = ->(connection) {}
         @skipped = false
@@ -46,7 +47,9 @@ module DaimonSkycrawlers
       # @yieldparam faraday [Faraday]
       #
       def setup_connection(options = {})
-        @connection = Faraday.new(@base_url, @options.merge(options)) do |faraday|
+        merged_options = @faraday_options.merge(options)
+        faraday_options = merged_options.empty? ? nil : merged_options
+        @connection = Faraday.new(@base_url, faraday_options) do |faraday|
           yield faraday
         end
       end
@@ -71,10 +74,26 @@ module DaimonSkycrawlers
       end
 
       def connection
-        @connection ||= Faraday.new(@base_url, @options)
+        @connection ||= Faraday.new(@base_url, @faraday_options)
       end
 
-      def fetch(path, params = {}, **kw)
+      def process(message, &block)
+        url = message.delete(:url)
+
+        @skipped = false
+        @n_processed_urls += 1
+        # url can be a path
+        url = connection.url_prefix + url
+
+        apply_filters(url)
+
+        unless skipped?
+          @prepare.call(connection)
+          fetch(url, message, &block)
+        end
+      end
+
+      def fetch(path, message = {})
         raise NotImplementedError, "Must implement this method in subclass"
       end
 
@@ -87,6 +106,27 @@ module DaimonSkycrawlers
       end
 
       private
+
+      def apply_filters(url)
+        if @options[:obey_robots_txt]
+          robots_txt_checker = DaimonSkycrawlers::Filter::RobotsTxtChecker.new(base_url: @base_url)
+          unless robots_txt_checker.allowed?(url)
+            skip(url)
+            return
+          end
+        end
+        update_checker = DaimonSkycrawlers::Filter::UpdateChecker.new(storage: storage)
+        unless update_checker.updated?(url.to_s, connection: connection)
+          skip(url)
+          return
+        end
+      end
+
+      def skip(url)
+        log.info("Skip #{url}")
+        @skipped = true
+        schedule_to_process(url.to_s, heartbeat: true)
+      end
 
       def schedule_to_process(url, message = {})
         DaimonSkycrawlers::Processor.enqueue_http_response(url, message)

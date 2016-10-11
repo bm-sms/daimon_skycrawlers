@@ -61,7 +61,7 @@ module DaimonSkycrawlers
         return if urls.empty?
         log.debug("Candidate URLs: #{urls.size}")
         urls = urls.select do |url|
-          @filters.inject(true) {|memo, filter| memo & filter.call(url) }
+          @filters.all? {|filter| filter.call(url) }
         end
         log.debug("Filtered URLs: #{urls.size}")
         urls
