@@ -22,16 +22,19 @@ module DaimonSkycrawlers
         ].each do |path|
           template("#{path}.erb", "#{name}/#{path}")
         end
+        migration_options = {
+          destination_root: File.join(destination_root, name),
+          timestamps: true
+        }
         invoke(MigrationGenerator, [
                  "CreatePage",
                  "url:string",
                  "headers:text",
                  "body:binary",
                  "last_modified_at:datetime",
-                 "etag:string",
-                 "timestamps"
+                 "etag:string"
                ],
-          { destination_root: File.join(destination_root, name) })
+               migration_options)
       end
 
       def copy_files
@@ -56,7 +59,7 @@ module DaimonSkycrawlers
         set_local_assigns!
         validate_file_name!
         dest = options[:destination_root]
-        migration_template @migration_template, "#{dest}/db/migrate/#{file_name}.rb"
+        migration_template(@migration_template, "#{dest}/db/migrate/#{file_name}.rb")
       end
     end
   end
