@@ -22,6 +22,10 @@ module DaimonSkycrawlers
         ].each do |path|
           template("#{path}.erb", "#{name}/#{path}")
         end
+        migration_options = {
+          destination_root: File.join(destination_root, name),
+          timestamps: true
+        }
         invoke(MigrationGenerator, [
                  "CreatePage",
                  "url:string",
@@ -30,7 +34,7 @@ module DaimonSkycrawlers
                  "last_modified_at:datetime",
                  "etag:string"
                ],
-               { destination_root: File.join(destination_root, name), timestamps: true })
+               migration_options)
       end
 
       def copy_files
