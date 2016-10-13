@@ -56,7 +56,7 @@ module DaimonSkycrawlers
         set_local_assigns!
         validate_file_name!
         dest = options[:destination_root]
-        migration_template @migration_template, "#{dest}/db/migrate/#{file_name}.rb"
+        migration_template(@migration_template, "#{dest}/db/migrate/#{file_name}.rb")
       end
     end
   end
