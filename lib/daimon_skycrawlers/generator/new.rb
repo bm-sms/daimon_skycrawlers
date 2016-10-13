@@ -28,10 +28,9 @@ module DaimonSkycrawlers
                  "headers:text",
                  "body:binary",
                  "last_modified_at:datetime",
-                 "etag:string",
-                 "timestamps"
+                 "etag:string"
                ],
-          { destination_root: File.join(destination_root, name) })
+               { destination_root: File.join(destination_root, name), timestamps: true })
       end
 
       def copy_files
