@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{This is a crawler framework.}
   spec.description   = %q{This is a crawler framework.}
-  spec.homepage      = "https://github.com/bm-sms/daimon-skycrawlers"
+  spec.homepage      = "https://github.com/bm-sms/daimon_skycrawlers"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
