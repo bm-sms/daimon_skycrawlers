@@ -1,6 +1,7 @@
 require "daimon_skycrawlers"
 require "daimon_skycrawlers/crawler"
 require "daimon_skycrawlers/processor"
+require "daimon_skycrawlers/sitemap_parser"
 require "daimon_skycrawlers/version"
 require "sitemap-parser"
 require "webrobots"
@@ -36,10 +37,8 @@ module DaimonSkycrawlers
         else
           sitemaps = [url]
         end
-        urls = sitemaps.flat_map do |sitemap|
-          sitemap_parser = SitemapParser.new(sitemap)
-          sitemap_parser.to_a
-        end
+        sitemap_parser = DaimonSkycrawlers::SitemapParser.new(sitemaps)
+        urls = sitemap_parser.parse
         if options["dump"]
           puts urls.join("\n")
           return
