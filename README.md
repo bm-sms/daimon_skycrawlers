@@ -34,12 +34,12 @@ Or install it yourself as:
 1. Create project
 
     ```
-    $ bundle exec daimon-skycrawlers new mycrawlers
+    $ bundle exec daimon_skycrawlers new mycrawlers
     $ cd mycrawlers
     ```
     or
     ```
-    $ daimon-skycrawlers new mycrawlers
+    $ daimon_skycrawlers new mycrawlers
     $ cd mycrawlers
     ```
 
@@ -59,8 +59,8 @@ Or install it yourself as:
 4. Open new terminal and run crawler/processor
 
     ```
-    $ daimon-skycrawlers exec crawler   # on new terminal
-    $ daimon-skycrawlers exec processor # on new terminal
+    $ daimon_skycrawlers exec crawler   # on new terminal
+    $ daimon_skycrawlers exec processor # on new terminal
     ```
 
     NOTE: Execute step 5 as soon as possible. Because bin/crawler and
@@ -78,14 +78,14 @@ Or install it yourself as:
 5. Enqueue task
 
     ```
-    $ daimon-skycrawlers enqueue url http://example.com/
+    $ daimon_skycrawlers enqueue url http://example.com/
     ```
 
 6. You'll see `It works with 'http://example.com'` on your terminal which runs your processor!
 7. You can re-enqueue task for processor
 
     ```
-    $ daimon-skycrawlers enqueue response http://example.com/
+    $ daimon_skycrawlers enqueue response http://example.com/
     ```
 
 Display `It works with 'http://example.com'` again on your terminal which runs your processor.
