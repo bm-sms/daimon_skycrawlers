@@ -27,6 +27,7 @@ module DaimonSkycrawlers
       desc "sitemap [OPTIONS] URL", "Enqueue URLs from simtemap.xml"
       method_option("robots-txt", aliases: ["-r"], type: :boolean,
                     desc: "URL for robots.txt. Detect robots.txt automatically if URL is not robots.txt")
+      method_option("dump", type: :boolean, desc: "Dump URLs without enqueue")
       def sitemap(url)
         load_init
         if options["robots-txt"]
@@ -38,6 +39,10 @@ module DaimonSkycrawlers
         urls = sitemaps.flat_map do |sitemap|
           sitemap_parser = SitemapParser.new(sitemap)
           sitemap_parser.to_a
+        end
+        if options["dump"]
+          puts urls.join("\n")
+          return
         end
         urls.each do |_url|
           DaimonSkycrawlers::Crawler.enqueue_url(_url)
