@@ -10,7 +10,7 @@ module DaimonSkycrawlers
       def initialize(config_path = "config/database.yml")
         super()
         Base.configurations = YAML.load_file(config_path)
-        Base.establish_connection(DaimonSkycrawlers.env)
+        Base.establish_connection(DaimonSkycrawlers.env.to_sym)
       end
 
       #
