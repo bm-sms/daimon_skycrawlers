@@ -30,24 +30,23 @@ seed_loader = Class.new do
   end
 end
 
-ActiveRecord::Tasks::DatabaseTasks.tap do |config|
-  config.root                   = Rake.application.original_dir
-  config.env                    = ENV["SKYCRAWLERS_ENV"] || "development"
-  config.db_dir                 = "db"
-  config.migrations_paths       = ["db/migrate"]
-  config.fixtures_path          = "test/fixtures"
-  config.seed_loader            = seed_loader.new
-  config.database_configuration = ActiveRecord::Base.configurations
-end
-
 # db:load_config can be overriden manually
 Rake::Task["db:seed"].enhance(["db:load_config"])
 Rake::Task["db:load_config"].clear
 
 Rake::Task.define_task("db:environment")
 Rake::Task.define_task("db:load_config") do
-  ActiveRecord::Base.configurations = YAML.load_file("config/database.yml")
+  ActiveRecord::Tasks::DatabaseTasks.tap do |config|
+    config.root                   = Rake.application.original_dir
+    config.env                    = ENV["SKYCRAWLERS_ENV"] || "development"
+    config.db_dir                 = "db"
+    config.migrations_paths       = ["db/migrate"]
+    config.fixtures_path          = "test/fixtures"
+    config.seed_loader            = seed_loader.new
+    config.database_configuration = YAML.load_file("config/database.yml")
+  end
   environment = ENV["SKYCRAWLERS_ENV"] || "development"
+  ActiveRecord::Base.configurations = ActiveRecord::Tasks::DatabaseTasks.database_configuration
   ActiveRecord::Base.establish_connection(environment.to_sym)
 end
 Rake::Task["db:test:deprecated"].clear if Rake::Task.task_defined?("db:test:deprecated")
