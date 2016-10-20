@@ -74,5 +74,12 @@ module DaimonSkycrawlers
       puts ex.message
       exit(false)
     end
+
+    #
+    # Return current environment
+    #
+    def env
+      ENV["SKYCRAWLERS_ENV"] || "development"
+    end
   end
 end
