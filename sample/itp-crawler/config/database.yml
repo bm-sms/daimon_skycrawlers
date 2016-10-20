@@ -1,0 +1,26 @@
+# PostgreSQL. Versions 8.2 and up are supported.
+#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: itp-crawler_development
+  #username: itp-crawler
+  #password:
+  #host: localhost
+  #port: 5432
+  #schema_search_path: myapp,sharedapp,public
+  #min_messages: notice
+
+test:
+  <<: *default
+  database: itp-crawler_test
+
+production:
+  <<: *default
+  database: itp-crawler_production
+  username: itp-crawler
+  password: <%= ENV['ITP-CRAWLER_PASSWORD'] %>

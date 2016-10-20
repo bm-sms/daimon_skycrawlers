@@ -1,0 +1,2 @@
+require "daimon_skycrawlers/tasks"
+require_relative "./lib/tasks"
