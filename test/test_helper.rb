@@ -17,6 +17,8 @@ end
 
 ENV["SKYCRAWLERS_ENV"] = "test"
 ActiveRecord::Migration.verbose = false
+ActiveRecord::Base.configurations = YAML.load_file("config/database.yml")
+ActiveRecord::Base.establish_connection(DaimonSkycrawlers.env.to_sym)
 
 DaimonSkycrawlers.configure do |config|
   config.queue_name_prefix = "daimon-skycrawlers.test"
