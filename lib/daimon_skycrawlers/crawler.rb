@@ -24,6 +24,7 @@ module DaimonSkycrawlers
       # @return [void]
       def enqueue_url(url, message = {})
         message[:url] = url
+        config.logger.debug("#{queue_name}: #{url}")
         SongkickQueue.publish(queue_name, message)
       end
 

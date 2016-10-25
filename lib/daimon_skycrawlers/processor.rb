@@ -13,6 +13,7 @@ module DaimonSkycrawlers
 
       def enqueue_http_response(url, message = {})
         message[:url] = url
+        config.logger.debug("#{queue_name}: #{url}")
         SongkickQueue.publish(queue_name, message)
       end
 
