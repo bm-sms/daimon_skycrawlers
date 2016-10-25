@@ -27,6 +27,7 @@ class ItpProcessor < DaimonSkycrawlers::Processor::Base
 
   def prepare_shops
     @doc.search(".normalResultsBox").each do |shop|
+      begin
       name = shop.at("section h4 .blueText").content.strip
       description = shop.at("section p").content.strip
       itp_path = shop.at("section h4 a").attr("href")
@@ -46,6 +47,11 @@ class ItpProcessor < DaimonSkycrawlers::Processor::Base
                    address,
                    phone)
       yield s
+      rescue => e
+        log.warn("#{e.class}: #{e.message}")
+        log.debug(e.backtrace.join("\n"))
+        break
+      end
     end
   end
 
