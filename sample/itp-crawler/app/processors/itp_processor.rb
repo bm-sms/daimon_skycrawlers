@@ -30,6 +30,10 @@ class ItpProcessor < DaimonSkycrawlers::Processor::Base
       begin
         name = shop.at("section h4 .blueText").content.strip
         description = shop.at("section p").content.strip
+        # Avoid false detection for shop address
+        if description.start_with?("住所")
+          description = nil
+        end
         itp_path = shop.at("section h4 a").attr("href")
         phone = shop.at("section p b").content.strip
         address_element = shop.search("section p").detect do |element|
