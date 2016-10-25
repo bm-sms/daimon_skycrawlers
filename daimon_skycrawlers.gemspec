@@ -6,8 +6,8 @@ require "daimon_skycrawlers/version"
 Gem::Specification.new do |spec|
   spec.name          = "daimon_skycrawlers"
   spec.version       = DaimonSkycrawlers::VERSION
-  spec.authors       = ["Ryunosuke SATO"]
-  spec.email         = ["tricknotes.rs@gmail.com"]
+  spec.authors       = ["daimon developers"]
+  spec.email         = []
 
   spec.summary       = %q{This is a crawler framework.}
   spec.description   = %q{This is a crawler framework.}
