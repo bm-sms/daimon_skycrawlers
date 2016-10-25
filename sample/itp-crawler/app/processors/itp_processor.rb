@@ -26,7 +26,7 @@ class ItpProcessor < DaimonSkycrawlers::Processor::Base
   private
 
   def prepare_shops
-    @doc.search(".normalResultsBox").map do |shop|
+    @doc.search(".normalResultsBox").each do |shop|
       name = shop.at("section h4 .blueText").content.strip
       description = shop.at("section p").content.strip
       itp_path = shop.at("section h4 a").attr("href")
