@@ -55,7 +55,7 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
   end
 
   sub_test_case "filter" do
-    def test_robotx_txt
+    def test_robots_txt
       crawler = ::DaimonSkycrawlers::Crawler::Default.new("http://example.com", options: { obey_robots_txt: true })
       robots_txt_checker = mock(Object.new).allowed?(anything) { false }
       mock(DaimonSkycrawlers::Filter::RobotsTxtChecker).new(anything) { robots_txt_checker }
