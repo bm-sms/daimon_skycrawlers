@@ -28,7 +28,8 @@ class ItpProcessor < DaimonSkycrawlers::Processor::Base
   def prepare_shops
     @doc.search(".normalResultsBox").each do |shop|
       begin
-        name = shop.at("section h4 .blueText").content.strip
+        name_element = shop.at("section h4 .blueText") || shop.at("section h4 .brackText")
+        name = name_element.content.strip
         description = shop.at("section p").content.strip
         # Avoid false detection for shop address
         if description.start_with?("住所")
