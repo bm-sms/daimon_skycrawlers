@@ -4,7 +4,7 @@ require "daimon_skycrawlers/queue"
 
 DaimonSkycrawlers.configure do |config|
   config.logger = DaimonSkycrawlers::Logger.default
-  config.logger.level = :debug
+  config.logger.level = ::Logger::DEBUG
   config.crawler_interval = 1
   config.shutdown_interval = 30
 end
