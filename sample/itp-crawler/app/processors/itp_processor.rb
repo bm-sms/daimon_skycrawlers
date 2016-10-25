@@ -55,7 +55,11 @@ class ItpProcessor < DaimonSkycrawlers::Processor::Base
   # http://nttbj.itp.ne.jp/0663026300/index.html
   def retrieve_individual_page_url(path)
     shop_id = path.slice(/\/\?url=(.+)&/, 1)
-    uri = URI("http://nttbj.itp.ne.jp/") + URI.unescape(shop_id) + "index.html"
+    uri = if shop_id
+            URI("http://nttbj.itp.ne.jp/") + URI.unescape(shop_id) + "index.html"
+          else
+            URI("http://itp.ne.jp/") + path
+          end
     uri.to_s
   end
 
