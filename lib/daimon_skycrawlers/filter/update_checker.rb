@@ -28,10 +28,11 @@ module DaimonSkycrawlers
         page = storage.find(url)
         return true unless page
         if connection
-          headers = connection.head(url)
+          response = connection.head(url)
         else
-          headers = Faraday.head(url)
+          response = Faraday.head(url)
         end
+        headers = response.headers
         case
         when headers.key?("etag") && page.etag
           headers["etag"] != page.etag
