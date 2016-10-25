@@ -1,6 +1,6 @@
 # itp-crawler
 
-TODO: Write description.
+Simple crawler for [iタウンページ](http://itp.ne.jp)
 
 ## Requirements
 
@@ -15,36 +15,36 @@ TODO: Write description.
 
 1. Install dependencies
 
-```
-$ bundle install
-```
+    ```
+    $ bundle install
+    ```
 
 2. Create database
 
-```
-$ bundle exec rake db:create
-$ bundle exec rake db:migrate
-```
+    ```
+    $ bundle exec rake db:create
+    $ bundle exec rake db:migrate
+    $ bundle exec rake itp:db:create
+    $ bundle exec rake itp:db:migrate
+    ```
 
 3. Open new terminal and run crawler/processor
 
-```
-$ bin/crawler   # on new terminal
-$ bin/processor # on new terminal
-```
+    ```
+    $ bundle exec daimon_skycrawlers exec crawler   # on new terminal
+    $ bundle exec daimon_skycrawlers exec processor # on new terminal
+    ```
 
 4. Enqueue task
 
-```
-$ bin/enqueue url http://example.com/
-```
+    ```
+    $ bundle exec daimon_skycrawlers enqueue url "http://itp.ne.jp/osaka/genre_dir/niku/?num=50"
+    ```
 
 5. You'll see `It works with 'http://example.com'` on your terminal which runs your processor!
 
 6. You can re-enqueue task for processor
 
-```
-$ bin/enqueue response http://example.com/
-```
-
-Display `It works with 'http://example.com'` again on your terminal which runs your processor.
+    ```
+    $ bundle exec daimon_skycrawlers enqueue response "http://itp.ne.jp/osaka/genre_dir/niku/?num=50"
+    ```
