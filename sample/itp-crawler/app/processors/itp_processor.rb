@@ -69,7 +69,7 @@ class ItpProcessor < DaimonSkycrawlers::Processor::Base
     search_result = @doc.at("h1.searchResultHeader").content.strip.slice(/(\d+)件/, 1).to_i
     # itp.ne.jp can displays 5000 search results.
     2.upto([(search_result / 50), MAX_PAGE_NUM].min) do |n|
-      url = URI.join(base_url, "/pg/#{n}?num=50")
+      url = URI.join(base_url, "pg/#{n}/?num=50")
       DaimonSkycrawlers::Crawler.enqueue_url(url.to_s)
     end
   end
