@@ -67,7 +67,8 @@ module DaimonSkycrawlers
     end
 
     def compressed?(response)
-      case response.headers["Content-Encoding"]&.downcase
+      content_encoding = response.headers["Content-Encoding"]
+      case content_encoding && content_encoding.downcase
       when "deflate", "gzip", "x-gzip"
         true
       else
