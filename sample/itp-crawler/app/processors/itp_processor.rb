@@ -64,6 +64,11 @@ class ItpProcessor < DaimonSkycrawlers::Processor::Base
   #
   # /shop/KN2700060500184274/?url=%2F0663026300%2F&s_bid=KN2700060500184274&s_sid=FSP-LSR-002&s_fr=V01&s_ck=C01
   # http://nttbj.itp.ne.jp/0663026300/index.html
+  #
+  # or
+  #
+  # /shop/KN2700060500039708/
+  # http://itp.ne.jp/shop/KN2700060500039708/
   def retrieve_individual_page_url(path)
     shop_id = path.slice(/\/\?url=(.+)&/, 1)
     uri = if shop_id
