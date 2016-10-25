@@ -5,6 +5,8 @@ require "daimon_skycrawlers/logger"
 require "daimon_skycrawlers/config"
 require "daimon_skycrawlers/storage"
 require "daimon_skycrawlers/processor"
+require "daimon_skycrawlers/filter/update_checker"
+require "daimon_skycrawlers/filter/robots_txt_checker"
 
 module DaimonSkycrawlers
   module Crawler
