@@ -28,25 +28,25 @@ class ItpProcessor < DaimonSkycrawlers::Processor::Base
   def prepare_shops
     @doc.search(".normalResultsBox").each do |shop|
       begin
-      name = shop.at("section h4 .blueText").content.strip
-      description = shop.at("section p").content.strip
-      itp_path = shop.at("section h4 a").attr("href")
-      phone = shop.at("section p b").content.strip
-      address_element = shop.search("section p").detect do |element|
-        /住所/ =~ element.content
-      end
-      address_element.search("span").unlink
-      address_element.search("a").unlink
-      address_text = address_element.content.strip
-      zip_code = address_text.slice(/〒(\d{3}-\d{4})(.+)/, 1)
-      address = address_text.slice(/〒(\d{3}-\d{4})(.+)/, 2).sub(/\A[[:space:]]+/, "")
-      s = Shop.new(name,
-                   description,
-                   retrieve_individual_page_url(itp_path),
-                   zip_code,
-                   address,
-                   phone)
-      yield s
+        name = shop.at("section h4 .blueText").content.strip
+        description = shop.at("section p").content.strip
+        itp_path = shop.at("section h4 a").attr("href")
+        phone = shop.at("section p b").content.strip
+        address_element = shop.search("section p").detect do |element|
+          /住所/ =~ element.content
+        end
+        address_element.search("span").unlink
+        address_element.search("a").unlink
+        address_text = address_element.content.strip
+        zip_code = address_text.slice(/〒(\d{3}-\d{4})(.+)/, 1)
+        address = address_text.slice(/〒(\d{3}-\d{4})(.+)/, 2).sub(/\A[[:space:]]+/, "")
+        s = Shop.new(name,
+                     description,
+                     retrieve_individual_page_url(itp_path),
+                     zip_code,
+                     address,
+                     phone)
+        yield s
       rescue => e
         log.warn("#{e.class}: #{e.message}")
         log.debug(e.backtrace.join("\n"))
