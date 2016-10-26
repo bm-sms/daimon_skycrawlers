@@ -34,7 +34,7 @@ module DaimonSkycrawlers
       # @param [String] url identity of the page
       #
       def find(url)
-        Page.where(url: url).order(last_modified_at: :desc).limit(1).first
+        Page.where(url: url).order(updated_at: :desc).limit(1).first
       end
 
       class Base < ActiveRecord::Base
