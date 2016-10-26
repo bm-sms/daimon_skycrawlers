@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20161018044144) do
     t.string   "etag"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.index ["url", "updated_at"], name: "index_pages_on_url_and_updated_at", using: :btree
+    t.index ["url"], name: "index_pages_on_url", using: :btree
   end
 
 end
