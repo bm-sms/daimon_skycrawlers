@@ -27,7 +27,7 @@ module DaimonSkycrawlers
           timestamps: true
         }
         invoke(MigrationGenerator, [
-                 "CreatePage",
+                 "CreatePages",
                  "url:string",
                  "headers:text",
                  "body:binary",
