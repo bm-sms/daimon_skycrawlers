@@ -9,7 +9,7 @@ class CreatePages < ActiveRecord::Migration[5.0]
 
       t.timestamps
 
-      t.index [:url, :updated_at], using: :btree
+      t.index [:url, :updated_at]
     end
   end
 end
