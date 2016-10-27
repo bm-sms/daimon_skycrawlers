@@ -9,7 +9,7 @@ module DaimonSkycrawlers
     class RDB < Base
       def initialize(config_path = "config/database.yml")
         super()
-        Base.configurations = YAML.load(ERB.new(File.read(config_path)).result)
+        Base.configurations = YAML.load(ERB.new(::File.read(config_path)).result)
         Base.establish_connection(DaimonSkycrawlers.env.to_sym)
       end
 
