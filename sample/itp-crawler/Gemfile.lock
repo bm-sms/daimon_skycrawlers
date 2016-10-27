@@ -1,9 +1,8 @@
 PATH
   remote: ../../
   specs:
-    daimon_skycrawlers (0.6.0)
+    daimon_skycrawlers (0.7.2)
       activerecord
-      bundler (~> 1.11)
       faraday
       faraday_middleware
       nokogiri
@@ -45,7 +44,7 @@ GEM
     amq-protocol (2.0.1)
     arel (7.1.4)
     builder (3.2.2)
-    bunny (2.6.0)
+    bunny (2.6.1)
       amq-protocol (>= 2.0.1)
     concurrent-ruby (1.0.2)
     erubis (2.7.0)
@@ -89,8 +88,8 @@ GEM
     thread_safe (0.3.5)
     timers (4.1.1)
       hitimes
-    typhoeus (0.8.0)
-      ethon (>= 0.8.0)
+    typhoeus (1.1.0)
+      ethon (>= 0.9.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     webrobots (0.1.2)
