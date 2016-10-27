@@ -37,6 +37,22 @@ module DaimonSkycrawlers
                migration_options)
       end
 
+      def insert_index
+        Dir.glob(File.join(destination_root, name, "db/migrate/*_create_pages.rb")) do |entry|
+          source = File.read(entry)
+          replaced_source = source.gsub(/(^ +)t.timestamps$/) do |_match; indent|
+            indent = $1
+            <<-CODE.chomp
+#{indent}t.timestamps
+
+#{indent}t.index [:url]
+#{indent}t.index [:url, :updated_at]
+            CODE
+          end
+          File.write(entry, replaced_source)
+        end
+      end
+
       def copy_files
         [
           "Gemfile",
