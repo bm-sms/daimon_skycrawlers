@@ -37,7 +37,7 @@ module DaimonSkycrawlers
         when headers.key?("etag") && page.etag
           headers["etag"] != page.etag
         when headers.key?("last-modified") && page.last_modified_at
-          headers["last-modified"] > page.last_modified_at
+          headers["last-modified"] != page.last_modified_at
         else
           true
         end

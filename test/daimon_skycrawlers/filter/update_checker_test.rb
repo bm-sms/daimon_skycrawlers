@@ -31,12 +31,12 @@ class DaimonSkycrawlersUpdateCheckerTest < Test::Unit::TestCase
       assert_true(@filter.call(@url, connection: connection))
     end
 
-    test "not need update when last-modified is older than page.last_modified_at" do
+    test "need update when last-modified is older than page.last_modified_at" do
       now = Time.now
       page = DaimonSkycrawlers::Storage::RDB::Page.new(url: @url, last_modified_at: Time.at(now - 1))
       connection = create_stub_connection(@url, "last-modified" => Time.at(now - 2))
       mock(@storage).find(@url) { page }
-      assert_false(@filter.call(@url, connection: connection))
+      assert_true(@filter.call(@url, connection: connection))
     end
 
     test "etag matches" do
