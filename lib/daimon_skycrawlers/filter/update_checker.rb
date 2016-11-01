@@ -37,6 +37,9 @@ module DaimonSkycrawlers
         when headers.key?("etag") && page.etag
           headers["etag"] != page.etag
         when headers.key?("last-modified") && page.last_modified_at
+          if headers["last-modified"] < page.last_modified_at
+            log.warn("#{url} returns old contents. #{headers["last-modified"]} < #{page.last_modified_at}")
+          end
           headers["last-modified"] > page.last_modified_at
         else
           true
