@@ -43,7 +43,7 @@ Rake::Task.define_task("db:load_config") do
     config.migrations_paths       = ["db/migrate"]
     config.fixtures_path          = "test/fixtures"
     config.seed_loader            = seed_loader.new
-    config.database_configuration = YAML.load_file("config/database.yml")
+    config.database_configuration = YAML.load(ERB.new(::File.read("config/database.yml")).result)
   end
   environment = ENV["SKYCRAWLERS_ENV"] || "development"
   ActiveRecord::Base.configurations = ActiveRecord::Tasks::DatabaseTasks.database_configuration
