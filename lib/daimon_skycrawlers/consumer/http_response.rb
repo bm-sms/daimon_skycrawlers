@@ -2,6 +2,7 @@ require "songkick_queue"
 require "daimon_skycrawlers"
 require "daimon_skycrawlers/consumer/base"
 require "daimon_skycrawlers/processor/default"
+require "daimon_skycrawlers/processor/proc"
 
 module DaimonSkycrawlers
   module Consumer
@@ -27,7 +28,7 @@ module DaimonSkycrawlers
         #
         def register(processor = nil, &block)
           if block_given?
-            processors << block
+            processors << DaimonSkycrawlers::Processor::Proc.new(block)
           else
             processors << processor
           end

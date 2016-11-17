@@ -25,4 +25,20 @@ class DaimonSkycrawlersProcessorTest < Test::Unit::TestCase
       @processor.process(message)
     end
   end
+
+  sub_test_case "block processor" do
+    setup do
+      @called = false
+      @processor = DaimonSkycrawlers::Processor::Proc.new(->(_message) { @called = true })
+    end
+
+    test "invoke handler" do
+      message = {
+        url: "http://example.com"
+      }
+      assert_false(@called)
+      @processor.process(message)
+      assert_true(@called)
+    end
+  end
 end
