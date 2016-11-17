@@ -2,7 +2,7 @@
 
 # DaimonSkycrawlers
 
-DaimonSkyCrawlers is a crawler framework.
+DaimonSkycrawlers is a crawler framework.
 
 ## Requirements
 
