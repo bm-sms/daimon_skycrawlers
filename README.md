@@ -90,6 +90,55 @@ Or install it yourself as:
 
 Display `It works with 'http://example.com'` again on your terminal which runs your processor.
 
+### docker-compose
+
+1. Create project
+
+    ```
+    $ bundle exec daimon_skycrawlers new mycrawlers
+    $ cd mycrawlers
+    ```
+    or
+    ```
+    $ daimon_skycrawlers new mycrawlers
+    $ cd mycrawlers
+    ```
+
+2. Build docker images
+
+    ```
+    $ docker-compose build
+    ```
+
+3. Run docker containers
+
+    ```
+    $ docker-compose up -d
+    ```
+
+4. Run a command on docker containers
+
+    ```
+    $ docker-compose exec <service name> <command>
+    ```
+
+    For example,
+
+    ```
+    $ docker-compose exec mycrawlers-db bash
+    $ docker-compose exec mycrawlers-crawler sh
+    $ docker-compose exec mycrawlers-crawler bundle exec daimon_skycrawlers enqueue url http://example.com/
+    $ docker-compose exec mycrawlers-crawler bundle exec daimon_skycrawlers enqueue response http://example.com/
+    ```
+
+5. Shutdown docker containers
+
+    ```
+    $ docker-compose down
+    $ docker-compose down --rmi all # Remove all related images
+    ```
+
+
 ## Development
 
 After checking out the repo, run `bundle install` to install dependencies. Then, run `bundle exec rake test` to run the tests. You can also run `bundle console` for an interactive prompt that will allow you to experiment.
