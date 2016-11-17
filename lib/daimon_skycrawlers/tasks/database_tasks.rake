@@ -24,6 +24,8 @@
 # https://github.com/janko-m/sinatra-activerecord
 #
 
+require "erb"
+
 seed_loader = Class.new do
   def load_seed
     # load "#{ActiveRecord::Tasks::DatabaseTasks.db_dir}/seeds.rb"
