@@ -1,0 +1,35 @@
+version: "2"
+services:
+  <%= name %>-rabbitmq:
+    image: rabbitmq
+
+  <%= name %>-db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    env_file: .env.db
+
+  <%= name %>-common: &common
+    build:
+      context: .
+      args:
+        - SKYCRAWLERS_ENV=development
+    links:
+      - <%= name %>-rabbitmq
+      - <%= name %>-db
+    volumes:
+      - ./:/home/crawler
+      - ./docker-cache/.bundle:/home/crawler/.bundle
+      - ./docker-cache/bundle:/home/crawler/vendor/bundle
+    working_dir: /home/crawler
+    env_file: .env
+
+  <%= name %>-crawler:
+    <<: *common
+    command: crawler
+
+  <%= name %>-processor:
+    <<: *common
+    depends_on:
+      - <%= name %>-crawler
+    command: processor

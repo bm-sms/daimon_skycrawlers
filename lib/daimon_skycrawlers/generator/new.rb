@@ -1,3 +1,4 @@
+require "securerandom"
 require "thor"
 require "rails/generators"
 require "rails/generators/actions"
@@ -16,11 +17,21 @@ module DaimonSkycrawlers
       end
 
       def create_files
+        config = {
+          password: SecureRandom.urlsafe_base64
+        }
         [
           "README.md",
           "config/database.yml",
+          "docker-compose.yml",
+          "env",
+          "env.db",
         ].each do |path|
-          template("#{path}.erb", "#{name}/#{path}")
+          if path.start_with?("env")
+            template("#{path}.erb", "#{name}/.#{path}", config)
+          else
+            template("#{path}.erb", "#{name}/#{path}", config)
+          end
         end
         migration_options = {
           destination_root: File.join(destination_root, name),
@@ -55,14 +66,34 @@ module DaimonSkycrawlers
 
       def copy_files
         [
+          "Dockerfile",
+          "Dockerfile.db",
           "Gemfile",
           "Rakefile",
           "app/crawlers/sample_crawler.rb",
           "app/processors/sample_processor.rb",
           "config/init.rb",
+          "services/common/docker-entrypoint.sh",
+          "services/db/init-user-db.sh"
         ].each do |path|
           copy_file(path, "#{name}/#{path}", mode: :preserve)
         end
+      end
+
+      def create_directories
+        [
+          "vendor/bundle",
+          "docker-cache/bundle",
+          "docker-cache/.bundle"
+        ].each do |entry|
+          empty_directory("#{name}/#{entry}")
+        end
+      end
+
+      def display_post_message
+        puts <<MESSAGE
+Check .env and .env.db before run `docker-compose build` or `docker-compose up`.
+MESSAGE
       end
     end
 
