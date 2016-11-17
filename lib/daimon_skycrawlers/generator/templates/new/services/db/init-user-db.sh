@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+createuser -e -U $POSTGRES_USER -d $DATABASE_USER
+createdb -e -U $POSTGRES_USER -E UTF-8 -O $DATABASE_USER $DATABASE_USER
+psql -U postgres -c "ALTER ROLE $DATABASE_USER WITH PASSWORD '$DATABASE_PASSWORD';"
