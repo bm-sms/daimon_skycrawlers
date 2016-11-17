@@ -80,6 +80,16 @@ module DaimonSkycrawlers
         end
       end
 
+      def create_directories
+        [
+          "vendor/bundle",
+          "docker-cache/bundle",
+          "docker-cache/.bundle"
+        ].each do |entry|
+          empty_directory("#{name}/#{entry}")
+        end
+      end
+
       def display_post_message
         puts <<MESSAGE
 Check .env and .env.db before run `docker-compose build` or `docker-compose up`.
