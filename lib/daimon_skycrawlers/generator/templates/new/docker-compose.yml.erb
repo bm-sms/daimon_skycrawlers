@@ -1,9 +1,11 @@
 version: "2"
 services:
   <%= name %>_rabbitmq:
+    hostname: rabbitmq
     image: rabbitmq
 
   <%= name %>_db:
+    hostname: db
     build:
       context: .
       dockerfile: Dockerfile.db
@@ -26,8 +28,12 @@ services:
 
   <%= name %>_crawler:
     <<: *common
+    hostname: crawler
     command: crawler
 
   <%= name %>_processor:
     <<: *common
+    hostname: processor
+    depends_on:
+      - <%= name %>_crawler
     command: processor
