@@ -51,3 +51,34 @@ Display `It works with 'http://example.com'` again on your terminal which runs y
 
 ## Usage with docker-compose
 
+1. Build docker images
+
+```
+$ docker-compose build
+```
+
+2. Run docker containers
+
+```
+$ docker-compose up -d
+```
+
+3. Run a command on docker containers
+
+```
+$ docker-compose exec <service name> <command>
+```
+
+For example,
+
+```
+$ docker-compose exec <%= name %>-db bash
+$ docker-compose exec <%= name %>-crawler sh
+```
+
+4. Shutdown docker containers
+
+```
+$ docker-compose down
+$ docker-compose down --rmi all # Remove all related images
+```
