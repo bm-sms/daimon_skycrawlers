@@ -71,6 +71,7 @@ module DaimonSkycrawlers
           "Gemfile",
           "Rakefile",
           "app/crawlers/sample_crawler.rb",
+          "app/filters/sample_filter.rb",
           "app/processors/sample_processor.rb",
           "config/init.rb",
           "services/common/docker-entrypoint.sh",
