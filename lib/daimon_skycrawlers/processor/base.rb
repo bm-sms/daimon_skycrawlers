@@ -21,7 +21,7 @@ module DaimonSkycrawlers
       end
 
       def process(message)
-        return unless apply_before_filters(message[:url])
+        return unless apply_before_filters(message)
         call(message)
       end
 
@@ -35,9 +35,9 @@ module DaimonSkycrawlers
 
       private
 
-      def apply_before_filters(url)
+      def apply_before_filters(message)
         @before_process_filters.all? do |filter|
-          filter.call(url)
+          filter.call(message)
         end
       end
     end

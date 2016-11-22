@@ -16,11 +16,12 @@ module DaimonSkycrawlers
       end
 
       #
-      # @param [String] url to check duplication. If given URL is
+      # @param [Hash] message to check duplication. If given URL is
       #        relative URL, use `@base_url + url` as absolute URL.
       # @return [true|false] Return false when duplicated, otherwise return true.
       #
-      def call(url)
+      def call(message)
+        url = message[:url]
         unless URI(url).absolute?
           url = (@base_url + url).to_s
         end
@@ -30,12 +31,12 @@ module DaimonSkycrawlers
       end
 
       #
-      # @param [String] url to check duplication. If given URL is
+      # @param [Hash] message to check duplication. If given URL is
       #        relative URL, use `@base_url + url` as absolute URL.
       # @return [true|false] Return true when duplicated, otherwise return false.
       #
-      def duplicated?(url)
-        !call(url)
+      def duplicated?(message)
+        !call(message)
       end
     end
   end

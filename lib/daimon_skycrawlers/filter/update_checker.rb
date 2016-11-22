@@ -17,11 +17,12 @@ module DaimonSkycrawlers
       end
 
       #
-      # @param [String] url
+      # @param [Hash] message
       # @param connection [Faraday]
       # @return [true|false] Return true when need update, otherwise return false
       #
-      def call(url, connection: nil)
+      def call(message, connection: nil)
+        url = message[:url]
         unless URI(url).absolute?
           url = (@base_url + url).to_s
         end
