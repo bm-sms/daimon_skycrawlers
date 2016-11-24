@@ -24,7 +24,7 @@ module DaimonSkycrawlers
         @storage ||= DaimonSkycrawlers::Storage::RDB.new
       end
 
-      def call(url)
+      def call(message)
         raise NotImplementedError, "Must implement this method in subclass"
       end
     end

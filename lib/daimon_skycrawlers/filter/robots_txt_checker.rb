@@ -16,10 +16,11 @@ module DaimonSkycrawlers
       end
 
       #
-      # @param [String] url
+      # @param [Hash] message
       # @return [true|false] Return true when web site allows to fetch the URL, otherwise return false
       #
-      def call(url)
+      def call(message)
+        url = message[:url]
         unless URI(url).absolute?
           url = (@base_url + url).to_s
         end

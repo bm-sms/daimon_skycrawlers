@@ -8,17 +8,17 @@ class DaimonSkycrawlersDuplicateCheckerTest < Test::Unit::TestCase
   end
 
   test "simple" do
-    assert_true(@filter.call(@url))
-    assert_false(@filter.call(@url))
+    assert_true(@filter.call(url: @url))
+    assert_false(@filter.call(url: @url))
   end
 
   test "relative" do
-    assert_true(@filter.call("./a.html"))
-    assert_false(@filter.call("./a.html"))
+    assert_true(@filter.call(url: "./a.html"))
+    assert_false(@filter.call(url: "./a.html"))
   end
 
   test "w/o host" do
-    assert_true(@filter.call("/index.html"))
-    assert_false(@filter.call("/index.html"))
+    assert_true(@filter.call(url: "/index.html"))
+    assert_false(@filter.call(url: "/index.html"))
   end
 end
