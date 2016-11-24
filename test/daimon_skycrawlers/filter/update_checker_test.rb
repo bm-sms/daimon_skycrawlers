@@ -43,7 +43,7 @@ class DaimonSkycrawlersUpdateCheckerTest < Test::Unit::TestCase
       page = DaimonSkycrawlers::Storage::RDB::Page.new(url: @url, etag: "xxxxx")
       connection = create_stub_connection(@url, "etag" => "xxxxx")
       mock(@storage).find(@url) { page }
-      assert_false(@filter.call({ url: @url}, connection: connection))
+      assert_false(@filter.call({ url: @url }, connection: connection))
     end
 
     test "need update when etag does not match" do
