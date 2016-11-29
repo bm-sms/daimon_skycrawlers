@@ -3,7 +3,32 @@ require "daimon_skycrawlers/crawler"
 
 module DaimonSkycrawlers
   module Processor
+    #
+    # Web spider class.
+    # By default extract all links and follow.
+    #
+    # @example Google search result (2016-11-29)
+    #   spider = DaimonSkycrawlers::Processor::Spider.new
+    #   spider.configure do |s|
+    #     s.link_rules = ".g .r a"
+    #     s.extract_link do |element|
+    #       element["data-href"]
+    #     end
+    #     s.next_page_link_rules = "a#pnnext"
+    #   end
+    #
     class Spider < Base
+      # @!attribute [rw] enqueue
+      #   If true enqueue found links
+      #
+      # @!attribute [rw] link_rules
+      #   same as Nokogiri::XML::DocumentFragment#search
+      #   In generally, we can set XPath or CSS selector.
+      #
+      # @!attribute [rw] next_page_link_rules
+      #   same as Nokogiri::XML::DocumentFragment#search
+      #   In generally, we can set XPath or CSS selector.
+      #
       attr_accessor :enqueue, :link_rules, :next_page_link_rules
 
       def initialize
@@ -18,10 +43,23 @@ module DaimonSkycrawlers
         @extract_next_page_link = ->(element) { element["href"] }
       end
 
+      #
+      # Configure spider instance
+      #
+      # @return [DaimonSkycrawlers::Processor::Spider] self
+      #
       def configure
         yield self
+        self
       end
 
+      #
+      # Append filter to reduce links found by link_rules
+      #
+      # @param filter [Object] Filter object that has call method
+      # @yield [message] Similar to Array#select
+      # @yieldparam message [Hash]
+      #
       def append_link_filter(filter = nil, &block)
         if block_given?
           @link_filters << block
@@ -30,10 +68,26 @@ module DaimonSkycrawlers
         end
       end
 
+      #
+      # Register block to process element found by DaimonSkycrawlers::Processor::Spider#link_rules
+      #
+      # @yield [element]
+      # @yieldparam element [Object]
+      # @example Default
+      #   ->(element) { element["href"] }
+      #
       def extract_link(&block)
         @extract_link = block
       end
 
+      #
+      # Register block to process element found by DaimonSkycrawlers::Processor::Spider#next_page_link_rules
+      #
+      # @yield [element]
+      # @yieldparam element [Object]
+      # @example Default
+      #   ->(element) { element["href"] }
+      #
       def extract_next_page_link(&block)
         @extract_next_page_link = block
       end
