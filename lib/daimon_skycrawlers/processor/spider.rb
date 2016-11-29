@@ -14,7 +14,9 @@ module DaimonSkycrawlers
     #     s.extract_link do |element|
     #       element["data-href"]
     #     end
+    #     s.link_message = { next: "detail" }
     #     s.next_page_link_rules = "a#pnnext"
+    #     s.next_page_link_message = { next: "spider" }
     #   end
     #
     class Spider < Base
@@ -30,6 +32,14 @@ module DaimonSkycrawlers
       #   In generally, we can set XPath or CSS selector.
       #
       attr_accessor :enqueue, :link_rules, :next_page_link_rules
+
+      # @!attribute [w] link_message
+      #   Specify hash literal to propagate arbitrary data next crawler/processor.
+      #   This is for filtering message before crawler/processor processes the message.
+      #
+      # @!attribute [w] next_page_link_message
+      #   Specify hash literal to propagate arbitrary data next crawler/processor.
+      #   This is for filtering message before crawler/processor processes the message.
       attr_writer :link_message, :next_page_link_message
 
       def initialize
