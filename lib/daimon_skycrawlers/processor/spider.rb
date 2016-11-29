@@ -6,12 +6,17 @@ module DaimonSkycrawlers
     class Spider < Base
       attr_accessor :enqueue
 
-      def initialize
-        super
+      #
+      # @param rules [Object] same as Nokogiri::XML::DocumentFragment#search
+      #        In generally, we can set XPath or CSS selector.
+      #
+      def initialize(*rules)
+        super()
         @link_filters = []
         @doc = nil
         @links = nil
         @enqueue = true
+        @rules = rules.empty? ? ["a"] : rules
       end
 
       def append_link_filter(filter = nil, &block)
@@ -49,7 +54,7 @@ module DaimonSkycrawlers
       end
 
       def retrieve_links
-        urls = @doc.search("a").map do |element|
+        urls = @doc.search(*@rules).map do |element|
           element["href"]
         end
         urls.uniq!
