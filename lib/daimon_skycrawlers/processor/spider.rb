@@ -30,6 +30,7 @@ module DaimonSkycrawlers
       #   In generally, we can set XPath or CSS selector.
       #
       attr_accessor :enqueue, :link_rules, :next_page_link_rules
+      attr_writer :link_message, :next_page_link_message
 
       def initialize
         super
@@ -39,8 +40,10 @@ module DaimonSkycrawlers
         @enqueue = true
         @link_rules = ["a"]
         @extract_link = ->(element) { element["href"] }
+        @link_message = {}
         @next_page_link_rules = nil
         @extract_next_page_link = ->(element) { element["href"] }
+        @next_page_link_message = {}
       end
 
       #
@@ -105,12 +108,14 @@ module DaimonSkycrawlers
         new_message = {
           depth: depth - 1,
         }
+        link_message = new_message.merge(@link_message)
         links.each do |url|
-          enqueue_url(url, new_message)
+          enqueue_url(url, link_message)
         end
         next_page_url = find_next_page_link
         if next_page_link
-          enqueue_url(next_page_url, new_message)
+          next_page_link_message = new_message.merge(@next_page_link_message)
+          enqueue_url(next_page_url, next_page_link_message)
         end
       end
 
