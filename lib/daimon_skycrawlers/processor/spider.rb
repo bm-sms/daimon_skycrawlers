@@ -4,19 +4,22 @@ require "daimon_skycrawlers/crawler"
 module DaimonSkycrawlers
   module Processor
     class Spider < Base
-      attr_accessor :enqueue
+      attr_accessor :enqueue, :link_rules, :next_page_link_rules
 
-      #
-      # @param rules [Object] same as Nokogiri::XML::DocumentFragment#search
-      #        In generally, we can set XPath or CSS selector.
-      #
-      def initialize(*rules)
-        super()
+      def initialize
+        super
         @link_filters = []
         @doc = nil
         @links = nil
         @enqueue = true
-        @rules = rules.empty? ? ["a"] : rules
+        @link_rules = ["a"]
+        @extract_link = ->(element) { element["href"] }
+        @next_page_link_rules = nil
+        @extract_next_page_link = ->(element) { element["href"] }
+      end
+
+      def configure
+        yield self
       end
 
       def append_link_filter(filter = nil, &block)
@@ -25,6 +28,14 @@ module DaimonSkycrawlers
         else
           @link_filters << filter if filter.respond_to?(:call)
         end
+      end
+
+      def extract_link(&block)
+        @extract_link = block
+      end
+
+      def extract_next_page_link(&block)
+        @extract_next_page_link = block
       end
 
       #
@@ -43,6 +54,10 @@ module DaimonSkycrawlers
         links.each do |url|
           enqueue_url(url, new_message)
         end
+        next_page_url = find_next_page_link
+        if next_page_link
+          enqueue_url(next_page_url, new_message)
+        end
       end
 
       private
@@ -54,11 +69,18 @@ module DaimonSkycrawlers
       end
 
       def retrieve_links
-        urls = @doc.search(*@rules).map do |element|
-          element["href"]
+        urls = @doc.search(*link_rules).map do |element|
+          @extract_next_page_link.call(element)
         end
         urls.uniq!
         apply_link_filters(urls) || []
+      end
+
+      def next_page_link
+        return unless next_page_link_rules
+        element = @doc.at(*next_page_link_rules)
+        return unless element
+        @extract_next_page_link.call(element)
       end
 
       def apply_link_filters(urls)
