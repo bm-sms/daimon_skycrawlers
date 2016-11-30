@@ -1,27 +1,17 @@
 require "daimon_skycrawlers/logger"
 require "daimon_skycrawlers/config"
+require "daimon_skycrawlers/callbacks"
 
 module DaimonSkycrawlers
   module Processor
     class Base
       include DaimonSkycrawlers::LoggerMixin
       include DaimonSkycrawlers::ConfigMixin
-
-      def initialize
-        super
-        @before_process_filters = []
-      end
-
-      def before_process(filter = nil, &block)
-        if block_given?
-          @before_process_filters << block
-        else
-          @before_process_filters << filter if filter.respond_to?(:call)
-        end
-      end
+      include DaimonSkycrawlers::Callbacks
 
       def process(message)
-        return unless apply_before_filters(message)
+        proceeding = run_before_callbacks(message)
+        return unless proceeding
         call(message)
       end
 
@@ -31,14 +21,6 @@ module DaimonSkycrawlers
 
       def storage
         @storage ||= DaimonSkycrawlers::Storage::RDB.new
-      end
-
-      private
-
-      def apply_before_filters(message)
-        @before_process_filters.all? do |filter|
-          filter.call(message)
-        end
       end
     end
   end
