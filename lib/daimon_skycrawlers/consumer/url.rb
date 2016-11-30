@@ -48,7 +48,7 @@ module DaimonSkycrawlers
 
         # XXX When several crawlers are registered, how should they behave?
         self.class.crawlers.each do |crawler|
-          crawler.process(message)
+          crawler.process(message.dup)
           if crawler.skipped?
             sleep(crawler_interval) if crawler.n_processed_urls % 50 == 0
           else
