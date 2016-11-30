@@ -78,6 +78,16 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
       mock(@crawler).schedule_to_process(@url, { heartbeat: true })
       @crawler.process(@message)
     end
+
+    test "custom filter" do
+      called = false
+      @crawler.before_process do
+        called = true
+        false
+      end
+      mock(@crawler).schedule_to_process(@url, { heartbeat: true })
+      @crawler.process(@message)
+      assert_true(called)
     end
   end
 end
