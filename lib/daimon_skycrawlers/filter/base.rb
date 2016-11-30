@@ -31,6 +31,7 @@ module DaimonSkycrawlers
       private
 
       def normalize_url(url)
+        return url unless @base_url
         (URI(@base_url) + url).to_s
       end
     end
