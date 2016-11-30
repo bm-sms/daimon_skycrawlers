@@ -98,10 +98,8 @@ module DaimonSkycrawlers
         url = message.delete(:url)
         url = (URI(connection.url_prefix) + url).to_s
 
-        unless skipped?
-          @prepare.call(connection)
-          fetch(url, message, &block)
-        end
+        @prepare.call(connection)
+        fetch(url, message, &block)
       end
 
       def fetch(path, message = {})
