@@ -55,30 +55,29 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
   end
 
   sub_test_case "filter" do
-    def test_robots_txt
-      crawler = ::DaimonSkycrawlers::Crawler::Default.new("http://example.com", options: { obey_robots_txt: true })
-      robots_txt_checker = mock(Object.new).allowed?(anything) { false }
-      mock(DaimonSkycrawlers::Filter::RobotsTxtChecker).new(anything) { robots_txt_checker }
-      crawler.storage = DaimonSkycrawlers::Storage::Null.new
-      mock(crawler).schedule_to_process("http://example.com/blog", { heartbeat: true })
-      message = {
-        url: "http://example.com/blog",
+    setup do
+      @crawler = ::DaimonSkycrawlers::Crawler::Default.new("http://example.com", options: { obey_robots_txt: true })
+      @crawler.storage = DaimonSkycrawlers::Storage::Null.new
+      @url = "http://example.com/blog"
+      @message = {
+        url: @url,
         depth: 1
       }
-      crawler.process(message)
     end
 
-    def test_update_checker
-      crawler = ::DaimonSkycrawlers::Crawler::Default.new("http://example.com", options: { obey_robots_txt: true })
+    test "robots_txt" do
+      robots_txt_checker = mock(Object.new).allowed?(anything) { false }
+      mock(DaimonSkycrawlers::Filter::RobotsTxtChecker).new(anything) { robots_txt_checker }
+      mock(@crawler).schedule_to_process(@url, { heartbeat: true })
+      @crawler.process(@message)
+    end
+
+    test "update_checker" do
       update_checker = mock(Object.new).updated?(anything, anything) { false }
       mock(DaimonSkycrawlers::Filter::UpdateChecker).new(anything) { update_checker }
-      crawler.storage = DaimonSkycrawlers::Storage::Null.new
-      mock(crawler).schedule_to_process("http://example.com/blog", { heartbeat: true })
-      message = {
-        url: "http://example.com/blog",
-        depth: 1
-      }
-      crawler.process(message)
+      mock(@crawler).schedule_to_process(@url, { heartbeat: true })
+      @crawler.process(@message)
+    end
     end
   end
 end
