@@ -3,6 +3,7 @@ require "faraday"
 
 require "daimon_skycrawlers/logger"
 require "daimon_skycrawlers/config"
+require "daimon_skycrawlers/callbacks"
 require "daimon_skycrawlers/storage"
 require "daimon_skycrawlers/processor"
 require "daimon_skycrawlers/filter/update_checker"
@@ -16,6 +17,7 @@ module DaimonSkycrawlers
     class Base
       include DaimonSkycrawlers::LoggerMixin
       include DaimonSkycrawlers::ConfigMixin
+      include DaimonSkycrawlers::Callbacks
 
       # @!attribute [w] storage
       #   Set storage to crawler instance.
@@ -80,11 +82,14 @@ module DaimonSkycrawlers
       end
 
       def process(message, &block)
-        url = message.delete(:url)
-
         @skipped = false
         @n_processed_urls += 1
+
+        proceeding = run_before_callbacks(message)
+        return unless proceeding
+
         # url can be a path
+        url = message.delete(:url)
         url = (URI(connection.url_prefix) + url).to_s
 
         apply_default_filters(url)
