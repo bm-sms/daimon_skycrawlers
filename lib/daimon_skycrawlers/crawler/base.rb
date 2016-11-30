@@ -85,14 +85,18 @@ module DaimonSkycrawlers
         @skipped = false
         @n_processed_urls += 1
 
+        setup_default_filters
+
         proceeding = run_before_callbacks(message)
-        return unless proceeding
+        unless proceeding
+          @skipped = true
+          skip(message[:url])
+          return
+        end
 
         # url can be a path
         url = message.delete(:url)
         url = (URI(connection.url_prefix) + url).to_s
-
-        apply_default_filters(url)
 
         unless skipped?
           @prepare.call(connection)
@@ -114,18 +118,22 @@ module DaimonSkycrawlers
 
       private
 
-      def apply_default_filters(url)
+      def setup_default_filters
         if @options[:obey_robots_txt]
-          robots_txt_checker = DaimonSkycrawlers::Filter::RobotsTxtChecker.new(base_url: @base_url)
-          unless robots_txt_checker.allowed?({ url: url })
-            skip(url)
-            return
+          before_process do |m|
+            robots_txt_checker = DaimonSkycrawlers::Filter::RobotsTxtChecker.new(base_url: @base_url)
+            allowed = robots_txt_checker.allowed?(m)
+            log.debug("Not allowed: #{m[:url]}") unless allowed
+            allowed
           end
         end
-        update_checker = DaimonSkycrawlers::Filter::UpdateChecker.new(storage: storage)
-        unless update_checker.updated?({ url: url.to_s }, connection: connection)
-          skip(url)
-          return
+        before_process do |m|
+          update_checker = DaimonSkycrawlers::Filter::UpdateChecker.new(storage: storage)
+          updated = update_checker.updated?(m, connection: connection)
+          unless updated
+            log.debug("Not updated: #{m[:url]}")
+          end
+          updated
         end
       end
 
