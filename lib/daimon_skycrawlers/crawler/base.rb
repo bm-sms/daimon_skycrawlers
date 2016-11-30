@@ -85,7 +85,7 @@ module DaimonSkycrawlers
         @skipped = false
         @n_processed_urls += 1
         # url can be a path
-        url = connection.url_prefix + url
+        url = (URI(connection.url_prefix) + url).to_s
 
         apply_default_filters(url)
 
