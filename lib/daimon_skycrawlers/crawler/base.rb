@@ -87,7 +87,7 @@ module DaimonSkycrawlers
         # url can be a path
         url = connection.url_prefix + url
 
-        apply_filters(url)
+        apply_default_filters(url)
 
         unless skipped?
           @prepare.call(connection)
@@ -109,7 +109,7 @@ module DaimonSkycrawlers
 
       private
 
-      def apply_filters(url)
+      def apply_default_filters(url)
         if @options[:obey_robots_txt]
           robots_txt_checker = DaimonSkycrawlers::Filter::RobotsTxtChecker.new(base_url: @base_url)
           unless robots_txt_checker.allowed?({ url: url })
