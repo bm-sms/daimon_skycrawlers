@@ -27,6 +27,12 @@ module DaimonSkycrawlers
       def call(message)
         raise NotImplementedError, "Must implement this method in subclass"
       end
+
+      private
+
+      def normalize_url(url)
+        (URI(@base_url) + url).to_s
+      end
     end
   end
 end

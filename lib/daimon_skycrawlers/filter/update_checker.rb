@@ -22,10 +22,7 @@ module DaimonSkycrawlers
       # @return [true|false] Return true when need update, otherwise return false
       #
       def call(message, connection: nil)
-        url = message[:url]
-        unless URI(url).absolute?
-          url = (@base_url + url).to_s
-        end
+        url = normalize_url(message[:url])
         page = storage.find(url)
         return true unless page
         if connection

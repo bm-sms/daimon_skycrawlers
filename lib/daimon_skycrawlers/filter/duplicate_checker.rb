@@ -21,10 +21,7 @@ module DaimonSkycrawlers
       # @return [true|false] Return false when duplicated, otherwise return true.
       #
       def call(message)
-        url = message[:url]
-        unless URI(url).absolute?
-          url = (@base_url + url).to_s
-        end
+        url = normalize_url(message[:url])
         return false if @urls.include?(url)
         @urls << url
         true
