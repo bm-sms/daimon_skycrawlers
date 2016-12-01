@@ -1,5 +1,13 @@
 require "simplecov"
-SimpleCov.start
+SimpleCov.start do
+  add_filter "/test/"
+  add_group "Consumer", ["consumer.rb", "/consumer/"]
+  add_group "Crawler", ["crawler.rb", "/crawler/"]
+  add_group "Filter", ["filter.rb", "/filter/"]
+  add_group "Processor", ["processor.rb", "/processor/"]
+  add_group "Storage", ["storage.rb", "/storage/"]
+end
+
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require "daimon_skycrawlers"
 require "daimon_skycrawlers/crawler"
