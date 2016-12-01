@@ -108,4 +108,18 @@ class DaimonSkycrawlersCallbacksTest < Test::Unit::TestCase
     dummy.process({})
     assert_false(dummy.processed)
   end
+
+  test "clear before process callbacks" do
+    dummy = Dummy.new
+    filter_logs = []
+    dummy.before_process do |_message|
+      filter_logs << 1
+    end
+    dummy.before_process do |_message|
+      filter_logs << 2
+    end
+    dummy.clear_before_process_callbacks
+    dummy.process({})
+    assert_true(filter_logs.empty?)
+  end
 end

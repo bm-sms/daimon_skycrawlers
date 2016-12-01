@@ -18,5 +18,9 @@ module DaimonSkycrawlers
         callback.call(message)
       end
     end
+
+    def clear_before_process_callbacks
+      @before_process_callbacks = []
+    end
   end
 end
