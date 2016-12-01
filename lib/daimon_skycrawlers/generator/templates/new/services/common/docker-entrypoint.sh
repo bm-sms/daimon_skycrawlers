@@ -18,7 +18,7 @@ case $MAIN in
         bundle exec daimon_skycrawlers exec $MAIN
         ;;
     setup)
-        bundle install --path=vendor/bundle
+        bundle install --retry=3 --path=vendor/bundle
         bundle exec rake db:schema:load
         ;;
     none)
