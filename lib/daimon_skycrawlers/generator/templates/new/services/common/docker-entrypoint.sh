@@ -21,6 +21,9 @@ case $MAIN in
         bundle install --retry=3 --path=vendor/bundle
         bundle exec rake db:schema:load
         ;;
+    migrate)
+        bundle exec rake db:migrate
+        ;;
     none)
         echo NOP
         ;;
