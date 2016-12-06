@@ -1,0 +1,43 @@
+version: "2"
+services:
+  amazon-ranking-rabbitmq:
+    image: rabbitmq
+    volumes:
+      - amazon-ranking-rabbitmq-storage:/var/lib/rabbitmq
+
+  amazon-ranking-db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    volumes:
+      - amazon-ranking-db-storage:/var/lib/postgresql/data
+    env_file: .env.db
+
+  amazon-ranking-common: &common
+    build:
+      context: .
+      args:
+        - SKYCRAWLERS_ENV=development
+    links:
+      - amazon-ranking-rabbitmq
+      - amazon-ranking-db
+    volumes:
+      - ./:/home/crawler
+      - ./docker-cache/.bundle:/home/crawler/.bundle
+      - ./docker-cache/bundle:/home/crawler/vendor/bundle
+    working_dir: /home/crawler
+    env_file: .env
+
+  amazon-ranking-crawler:
+    <<: *common
+    command: crawler
+
+  amazon-ranking-processor:
+    <<: *common
+    depends_on:
+      - amazon-ranking-crawler
+    command: processor
+
+volumes:
+  amazon-ranking-db-storage:
+  amazon-ranking-rabbitmq-storage:
