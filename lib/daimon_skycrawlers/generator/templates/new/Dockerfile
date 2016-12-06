@@ -8,7 +8,12 @@ ARG SKYCRAWLERS_ENV=production
 ARG SKYCRAWLERS_MAIN=crawler
 ENV SKYCRAWLERS_ENV=$SKYCRAWLERS_ENV \
     SKYCRAWLERS_MAIN=$SKYCRAWLERS_MAIN \
-    BUNDLE_JOBS=4
+    BUNDLE_JOBS=4 \
+    DOCKERIZE_VERSION=v0.3.0
+
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 USER crawler
 WORKDIR /home/crawler
