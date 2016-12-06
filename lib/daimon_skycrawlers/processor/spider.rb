@@ -57,16 +57,6 @@ module DaimonSkycrawlers
       end
 
       #
-      # Configure spider instance
-      #
-      # @return [DaimonSkycrawlers::Processor::Spider] self
-      #
-      def configure
-        yield self
-        self
-      end
-
-      #
       # Append filter to reduce links found by link_rules
       #
       # @param filter [Object] Filter object that has call method

@@ -4,6 +4,7 @@ require "faraday"
 require "daimon_skycrawlers/logger"
 require "daimon_skycrawlers/config"
 require "daimon_skycrawlers/callbacks"
+require "daimon_skycrawlers/configurable"
 require "daimon_skycrawlers/storage"
 require "daimon_skycrawlers/processor"
 require "daimon_skycrawlers/filter/update_checker"
@@ -18,6 +19,7 @@ module DaimonSkycrawlers
       include DaimonSkycrawlers::LoggerMixin
       include DaimonSkycrawlers::ConfigMixin
       include DaimonSkycrawlers::Callbacks
+      include DaimonSkycrawlers::Configurable
 
       # @!attribute [w] storage
       #   Set storage to crawler instance.
