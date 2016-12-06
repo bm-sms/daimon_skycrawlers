@@ -2,11 +2,15 @@ version: "2"
 services:
   <%= name %>-rabbitmq:
     image: rabbitmq
+    volumes:
+      - <%= name %>-rabbitmq-storage:/var/lib/rabbitmq
 
   <%= name %>-db:
     build:
       context: .
       dockerfile: Dockerfile.db
+    volumes:
+      - <%= name %>-db-storage:/var/lib/postgresql/data
     env_file: .env.db
 
   <%= name %>-common: &common
@@ -33,3 +37,7 @@ services:
     depends_on:
       - <%= name %>-crawler
     command: processor
+
+volumes:
+  <%= name %>-db-storage:
+  <%= name %>-rabbitmq-storage:
