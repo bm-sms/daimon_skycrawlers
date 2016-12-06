@@ -8,6 +8,5 @@ class <%= config[:class_name] %> < DaimonSkycrawlers::Processor::Base
   end
 end
 
-base_url = ""
-processor = <%= config[:class_name] %>.new(base_url)
+processor = <%= config[:class_name] %>.new
 DaimonSkycrawlers.register_processor(processor)
