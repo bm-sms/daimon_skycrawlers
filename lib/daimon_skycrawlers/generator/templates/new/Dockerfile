@@ -1,6 +1,6 @@
 FROM ruby:2.3.1-alpine
 
-RUN apk --no-cache --update add build-base ruby-dev libxml2-dev postgresql-dev libcurl git
+RUN apk --no-cache --update add build-base ruby-dev libxml2-dev postgresql-dev libcurl openssl git
 
 RUN adduser -D -h /home/crawler -g "DaimonSkycrawlers user" -s /bin/sh crawler crawler
 
