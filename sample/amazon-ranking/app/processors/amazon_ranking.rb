@@ -30,8 +30,9 @@ spider.configure do |s|
 end
 DaimonSkycrawlers.register_processor(spider)
 
-processor = AmazonRanking.new
-processor.before_process do |message|
-  message[:next_processor] == "AmazonRanking"
+processor = AmazonRanking.new.configure do |s|
+  s.before_process do |message|
+    message[:next_processor] == "AmazonRanking"
+  end
 end
 DaimonSkycrawlers.register_processor(processor)
