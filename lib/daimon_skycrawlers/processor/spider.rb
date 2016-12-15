@@ -147,7 +147,7 @@ module DaimonSkycrawlers
         return if urls.empty?
         log.debug("Candidate URLs: #{urls.size}")
         urls = urls.select do |url|
-          @link_filters.all? {|filter| filter.call(url) }
+          @link_filters.all? {|filter| filter.call(url: url) }
         end
         log.debug("Filtered URLs: #{urls.size}")
         urls
