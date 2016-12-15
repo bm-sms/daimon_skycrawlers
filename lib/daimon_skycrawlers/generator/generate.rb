@@ -7,6 +7,7 @@ module DaimonSkycrawlers
     class Generate < Thor
       register(Crawler, "crawler", "crawler NAME", "Generate new crawler")
       register(Processor, "processor", "processor NAME", "Generate new processor")
+      register(Filter, "filter", "filter NAME", "Generate new filter")
     end
   end
 end
