@@ -82,6 +82,9 @@ module DaimonSkycrawlers
 
       def create_directories
         [
+          "app/crawlers",
+          "app/filters",
+          "app/processors",
           "vendor/bundle",
           "docker-cache/bundle",
           "docker-cache/.bundle"
