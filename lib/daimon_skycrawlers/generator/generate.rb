@@ -1,6 +1,7 @@
 require "thor"
 require "daimon_skycrawlers/generator/crawler"
 require "daimon_skycrawlers/generator/processor"
+require "daimon_skycrawlers/generator/filter"
 
 module DaimonSkycrawlers
   module Generator
