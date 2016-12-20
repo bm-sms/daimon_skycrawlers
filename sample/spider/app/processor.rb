@@ -3,6 +3,8 @@ require "daimon_skycrawlers/filter"
 require "daimon_skycrawlers/filter/duplicate_checker"
 require "daimon_skycrawlers/filter/update_checker"
 
+DaimonSkycrawlers.load_processors
+
 default_processor = DaimonSkycrawlers::Processor::Default.new
 spider = DaimonSkycrawlers::Processor::Spider.new
 #spider.enqueue = false
