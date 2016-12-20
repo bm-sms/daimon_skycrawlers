@@ -14,6 +14,11 @@ module DaimonSkycrawlers
           require(File.expand_path(path, Dir.pwd))
           log.info("Loaded crawler: #{path}")
         end
+
+        Dir.glob("app/filters/**/*.rb") do |path|
+          require(File.expand_path(path, Dir.pwd))
+        end
+
         DaimonSkycrawlers::Crawler.run
       rescue => ex
         puts ex.message
@@ -27,6 +32,11 @@ module DaimonSkycrawlers
           require(File.expand_path(path, Dir.pwd))
           log.info("Loaded processor: #{path}")
         end
+
+        Dir.glob("app/filters/**/*.rb") do |path|
+          require(File.expand_path(path, Dir.pwd))
+        end
+
         DaimonSkycrawlers::Processor.run
       rescue => ex
         puts ex.message
