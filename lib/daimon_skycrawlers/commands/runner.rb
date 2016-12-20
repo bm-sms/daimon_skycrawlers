@@ -10,10 +10,7 @@ module DaimonSkycrawlers
       desc "crawler", "Execute crawler"
       def crawler
         load_init
-        Dir.glob("app/crawlers/**/*.rb") do |path|
-          require(File.expand_path(path, Dir.pwd))
-          log.info("Loaded crawler: #{path}")
-        end
+        load_crawlers
         require(File.expand_path("app/crawler.rb", Dri.pwd))
         DaimonSkycrawlers::Crawler.run
       rescue => ex
@@ -24,10 +21,7 @@ module DaimonSkycrawlers
       desc "processor", "Execute processor"
       def processor
         load_init
-        Dir.glob("app/processors/**/*.rb") do |path|
-          require(File.expand_path(path, Dir.pwd))
-          log.info("Loaded processor: #{path}")
-        end
+        load_processors
         require(File.expand_path("app/processor.rb", Dir.pwd))
         DaimonSkycrawlers::Processor.run
       rescue => ex
@@ -39,6 +33,14 @@ module DaimonSkycrawlers
 
       def load_init
         DaimonSkycrawlers.load_init
+      end
+
+      def load_crawlers
+        DaimonSkycrawlers.load_crawlers
+      end
+
+      def load_processors
+        DaimonSkycrawlers.load_processors
       end
 
       def log

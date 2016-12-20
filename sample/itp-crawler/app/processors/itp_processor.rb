@@ -90,6 +90,3 @@ class ItpProcessor < DaimonSkycrawlers::Processor::Base
     end
   end
 end
-
-processor = ItpProcessor.new
-DaimonSkycrawlers.register_processor(processor)
