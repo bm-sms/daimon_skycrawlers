@@ -7,6 +7,3 @@ class <%= config[:class_name] %> < DaimonSkycrawlers::Processor::Base
     # Implement your processor here
   end
 end
-
-processor = <%= config[:class_name] %>.new
-DaimonSkycrawlers.register_processor(processor)

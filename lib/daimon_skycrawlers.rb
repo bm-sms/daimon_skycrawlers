@@ -75,6 +75,20 @@ module DaimonSkycrawlers
       exit(false)
     end
 
+    def load_crawlers
+      Dir.glob("app/crawlers/**/*.rb") do |path|
+        require(File.expand_path(path, Dir.pwd)) &&
+          DaimonSkycrawlers.configuration.logger.info("Loaded crawler: #{path}")
+      end
+    end
+
+    def load_processors
+      Dir.glob("app/processors/**/*.rb") do |path|
+        require(File.expand_path(path, Dir.pwd)) &&
+          DaimonSkycrawlers.configuration.logger.info("Loaded processor: #{path}")
+      end
+    end
+
     #
     # Return current environment
     #

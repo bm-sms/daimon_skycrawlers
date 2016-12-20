@@ -2,7 +2,7 @@ require "thor"
 
 module DaimonSkycrawlers
   module Generator
-    class Crawler < Thor::Group
+    class Filter < Thor::Group
       include Thor::Actions
 
       argument :name
@@ -15,18 +15,17 @@ module DaimonSkycrawlers
         config = {
           class_name: name.classify,
         }
-        template("crawler.rb.erb", "app/crawlers/#{name.underscore}.rb", config)
+        template("filter.rb.erb", "app/filters/#{name.underscore}.rb", config)
       end
 
       def display_post_message
         puts <<MESSAGE
 
-You can register your crawler in `app/crawler.rb` to run your crawler.
-Following code snippet is useful:
+You can use this filter with both crawlers and processors.
 
-    base_url = "https://www.example.com/"
-    crawler = #{name.classify}.new(base_url)
-    DaimonSkycrawlers.register_crawler(crawler)
+    filter = #{name.classify}.new
+    crawler = DaimonSkycrawlers::Crawler::Default.new
+    crawler.before_process(filter)
 
 MESSAGE
       end

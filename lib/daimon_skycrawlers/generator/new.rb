@@ -70,9 +70,8 @@ module DaimonSkycrawlers
           "Dockerfile.db",
           "Gemfile",
           "Rakefile",
-          "app/crawlers/sample_crawler.rb",
-          "app/filters/sample_filter.rb",
-          "app/processors/sample_processor.rb",
+          "app/crawler.rb",
+          "app/processor.rb",
           "config/init.rb",
           "services/common/docker-entrypoint.sh",
           "services/db/init-user-db.sh"
@@ -83,6 +82,9 @@ module DaimonSkycrawlers
 
       def create_directories
         [
+          "app/crawlers",
+          "app/filters",
+          "app/processors",
           "vendor/bundle",
           "docker-cache/bundle",
           "docker-cache/.bundle"

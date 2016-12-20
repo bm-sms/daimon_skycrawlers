@@ -17,6 +17,18 @@ module DaimonSkycrawlers
         }
         template("processor.rb.erb", "app/processors/#{name.underscore}.rb", config)
       end
+
+      def display_post_message
+        puts <<MESSAGE
+
+You can register your processor in `app/processor.rb` to run your processor.
+Following code snippet is useful:
+
+    processor = #{naem.classify}.new
+    DaimonSkycrawlers.register_processor(processor)
+
+MESSAGE
+      end
     end
   end
 end

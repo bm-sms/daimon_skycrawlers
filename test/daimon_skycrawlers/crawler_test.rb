@@ -73,6 +73,8 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
     end
 
     test "update_checker" do
+      robots_txt_checker = mock(Object.new).allowed?(anything) { true }
+      mock(DaimonSkycrawlers::Filter::RobotsTxtChecker).new(anything) { robots_txt_checker }
       update_checker = mock(Object.new).updated?(anything, anything) { false }
       mock(DaimonSkycrawlers::Filter::UpdateChecker).new(anything) { update_checker }
       mock(@crawler).schedule_to_process(@url, { heartbeat: true })

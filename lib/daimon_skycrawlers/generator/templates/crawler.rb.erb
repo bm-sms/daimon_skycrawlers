@@ -7,7 +7,3 @@ class <%= config[:class_name] %> < DaimonSkycrawlers::Crawler::Base
     # Implement your crawler here
   end
 end
-
-base_url = ""
-crawler = <%= config[:class_name] %>.new(base_url)
-DaimonSkycrawlers.register_crawler(crawler)

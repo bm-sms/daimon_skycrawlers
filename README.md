@@ -65,8 +65,8 @@ Or install it yourself as:
     $ daimon_skycrawlers exec processor # on new terminal
     ```
 
-    NOTE: Execute step 5 as soon as possible. Because bin/crawler and
-    bin/processor will stop after 10 seconds by default if their
+    NOTE: Execute step 5 as soon as possible. Because crawler and
+    processor will stop after 10 seconds by default if their
     queues are empty.
 
     NOTE: You can change `shutdown_interval` using following code in config/init.rb:
