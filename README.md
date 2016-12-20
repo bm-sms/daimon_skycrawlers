@@ -3,6 +3,7 @@
 # DaimonSkycrawlers
 
 [![Gem Version](https://badge.fury.io/rb/daimon_skycrawlers.svg)](https://badge.fury.io/rb/daimon_skycrawlers)
+[![Build Status](https://travis-ci.org/bm-sms/daimon_skycrawlers.svg?branch=master)](https://travis-ci.org/bm-sms/daimon_skycrawlers)
 
 DaimonSkycrawlers is a crawler framework.
 
