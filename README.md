@@ -2,6 +2,8 @@
 
 # DaimonSkycrawlers
 
+[![Gem Version](https://badge.fury.io/rb/daimon_skycrawlers.svg)](https://badge.fury.io/rb/daimon_skycrawlers)
+
 DaimonSkycrawlers is a crawler framework.
 
 ## Requirements
