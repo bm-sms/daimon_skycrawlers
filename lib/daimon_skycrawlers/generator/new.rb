@@ -95,7 +95,7 @@ module DaimonSkycrawlers
 
       def display_post_message
         puts <<MESSAGE
-Check .env and .env.db before run `docker-compose build` or `docker-compose up`.
+Check .env and .env.db before running `docker-compose build` or `docker-compose up`.
 MESSAGE
       end
     end
