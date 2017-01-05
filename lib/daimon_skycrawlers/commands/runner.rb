@@ -11,7 +11,7 @@ module DaimonSkycrawlers
       def crawler
         load_init
         load_crawlers
-        require(File.expand_path("app/crawler.rb", Dri.pwd))
+        require(File.expand_path("app/crawler.rb", Dir.pwd))
         DaimonSkycrawlers::Crawler.run
       rescue => ex
         puts ex.message
