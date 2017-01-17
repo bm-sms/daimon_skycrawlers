@@ -1,5 +1,6 @@
 require "uri"
 require "faraday"
+require "typhoeus/adapters/faraday"
 
 require "daimon_skycrawlers/logger"
 require "daimon_skycrawlers/config"
@@ -9,6 +10,8 @@ require "daimon_skycrawlers/storage"
 require "daimon_skycrawlers/processor"
 require "daimon_skycrawlers/filter/update_checker"
 require "daimon_skycrawlers/filter/robots_txt_checker"
+
+Faraday.default_adapter = :typhoeus
 
 module DaimonSkycrawlers
   module Crawler
