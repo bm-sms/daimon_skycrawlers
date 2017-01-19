@@ -1,5 +1,3 @@
-## Caution!! This product is NOT production-ready.
-
 # DaimonSkycrawlers
 
 [![Gem Version](https://badge.fury.io/rb/daimon_skycrawlers.svg)](https://badge.fury.io/rb/daimon_skycrawlers)
