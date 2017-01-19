@@ -1,0 +1,13 @@
+---
+- url: http://example.com/1
+  message:
+    key1: value1
+    key2: value2
+- url: http://example.com/2
+  message:
+    key1: value1
+    key2: value2
+- url: http://example.com/3
+  message:
+    key1: value1
+    key2: value2

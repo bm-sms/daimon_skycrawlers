@@ -122,4 +122,80 @@ class EnqueueCommandTest < Test::Unit::TestCase
       @command.invoke("list", [path.to_s], type: "response")
     end
   end
+
+  sub_test_case "yaml" do
+    test "unknown type" do
+      path = fixture_path("urls.yml")
+      assert_raise(ArgumentError.new("Unknown type: unknown")) do
+        @command.invoke("yaml", [path.to_s], type: "unknown")
+      end
+    end
+
+    test "no url" do
+      path = fixture_path("no-url.yml")
+      assert_raise(RuntimeError.new("Could not find URL: {\"ulr\"=>\"http://example.com/1\"}")) do
+        @command.invoke("yaml", [path.to_s], type: "response")
+      end
+    end
+
+    test "urls" do
+      path = fixture_path("urls.yml")
+      urls = [
+        "http://example.com/1",
+        "http://example.com/2",
+        "http://example.com/3",
+      ]
+      urls.each do |url|
+        mock(DaimonSkycrawlers::Crawler).enqueue_url(url, {})
+      end
+      @command.invoke("yaml", [path.to_s])
+    end
+
+    test "urls with message" do
+      path = fixture_path("urls-with-message.yml")
+      urls = [
+        "http://example.com/1",
+        "http://example.com/2",
+        "http://example.com/3",
+      ]
+      message = {
+        "key1" => "value1",
+        "key2" => "value2",
+      }
+      urls.each do |url|
+        mock(DaimonSkycrawlers::Crawler).enqueue_url(url, message)
+      end
+      @command.invoke("yaml", [path.to_s])
+    end
+
+    test "response" do
+      path = fixture_path("urls.yml")
+      urls = [
+        "http://example.com/1",
+        "http://example.com/2",
+        "http://example.com/3",
+      ]
+      urls.each do |url|
+        mock(DaimonSkycrawlers::Processor).enqueue_http_response(url, {})
+      end
+      @command.invoke("yaml", [path.to_s], type: "response")
+    end
+
+    test "response with message" do
+      path = fixture_path("urls-with-message.yml")
+      urls = [
+        "http://example.com/1",
+        "http://example.com/2",
+        "http://example.com/3",
+      ]
+      message = {
+        "key1" => "value1",
+        "key2" => "value2",
+      }
+      urls.each do |url|
+        mock(DaimonSkycrawlers::Processor).enqueue_http_response(url, message)
+      end
+      @command.invoke("yaml", [path.to_s], type: "response")
+    end
+  end
 end

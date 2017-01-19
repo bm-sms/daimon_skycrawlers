@@ -68,6 +68,25 @@ module DaimonSkycrawlers
         end
       end
 
+      desc "yaml PATH", "Enqueue URLs from PATH."
+      method_option("type", aliases: ["-t"], type: :string, default: "url", desc: "Specify type for URLs")
+      def yaml(path)
+        load_init
+        YAML.load_file(path).each do |hash|
+          url = hash["url"]
+          message = hash["message"] || {}
+          raise "Could not find URL: #{hash}" unless url
+          case options["type"]
+          when "response"
+            DaimonSkycrawlers::Processor.enqueue_http_response(url, message)
+          when "url"
+            DaimonSkycrawlers::Crawler.enqueue_url(url, message)
+          else
+            raise ArgumentError, "Unknown type: #{options["type"]}"
+          end
+        end
+      end
+
       private
 
       def load_init
