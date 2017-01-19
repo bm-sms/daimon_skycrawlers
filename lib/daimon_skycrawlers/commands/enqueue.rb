@@ -3,6 +3,7 @@ require "daimon_skycrawlers/crawler"
 require "daimon_skycrawlers/processor"
 require "daimon_skycrawlers/sitemap_parser"
 require "daimon_skycrawlers/version"
+require "thor"
 require "webrobots"
 
 module DaimonSkycrawlers
