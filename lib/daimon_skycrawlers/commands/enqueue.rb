@@ -49,7 +49,7 @@ module DaimonSkycrawlers
       end
 
       desc "list PATH", "Enqueue URLs from PATH. PATH content includes a URL per line"
-      method_option("type", aliases: ["-t"], type: :string, default: "url", desc: "URLs are response")
+      method_option("type", aliases: ["-t"], type: :string, default: "url", desc: "Specify type for URLs")
       def list(path)
         load_init
         File.open(path, "r") do |file|
