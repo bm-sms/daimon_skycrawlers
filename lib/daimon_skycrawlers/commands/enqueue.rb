@@ -49,12 +49,21 @@ module DaimonSkycrawlers
       end
 
       desc "list PATH", "Enqueue URLs from PATH. PATH content includes a URL per line"
+      method_option("type", aliases: ["-t"], type: :string, default: "url", desc: "URLs are response")
       def list(path)
         load_init
         File.open(path, "r") do |file|
-          file.each_line(chomp: true) do |line|
-            line.chomp! # For Ruby 2.3.3 or earlier
-            DaimonSkycrawlers::Crawler.enqueue_url(line)
+          file.each_line do |line|
+            line.chomp!
+            next if /\A#/ =~ line
+            case options["type"]
+            when "response"
+              DaimonSkycrawlers::Processor.enqueue_http_response(line)
+            when "url"
+              DaimonSkycrawlers::Crawler.enqueue_url(line)
+            else
+              raise ArgumentError, "Unknown type: #{options["type"]}"
+            end
           end
         end
       end
