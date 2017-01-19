@@ -4,6 +4,12 @@ require "daimon_skycrawlers/commands/enqueue"
 class EnqueueCommandTest < Test::Unit::TestCase
   setup do
     @command = DaimonSkycrawlers::Commands::Enqueue.new
+    @current_directory = Dir.pwd
+    Dir.chdir(fixture_path("sample-project"))
+  end
+
+  teardown do
+    Dir.chdir(@current_directory)
   end
 
   sub_test_case "url" do
