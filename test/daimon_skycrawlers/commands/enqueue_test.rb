@@ -74,4 +74,52 @@ class EnqueueCommandTest < Test::Unit::TestCase
       @command.invoke("sitemap", [robots_txt], "robots-txt" => true)
     end
   end
+
+  sub_test_case "list" do
+    test "default" do
+      path = fixture_path("urls.txt")
+      urls = [
+        "http://example.com/1",
+        "http://example.com/2",
+        "http://example.com/3",
+      ]
+      urls.each do |url|
+        mock(DaimonSkycrawlers::Crawler).enqueue_url(url)
+      end
+      @command.invoke("list", [path.to_s])
+    end
+
+    test "comment" do
+      path = fixture_path("urls-with-comment.txt")
+      urls = [
+        "http://example.com/1",
+        # "http://example.com/2",
+        "http://example.com/3",
+      ]
+      urls.each do |url|
+        mock(DaimonSkycrawlers::Crawler).enqueue_url(url)
+      end
+      @command.invoke("list", [path.to_s])
+    end
+
+    test "unknown type" do
+      path = fixture_path("urls.txt")
+      assert_raise(ArgumentError, "Unknown type: unknown") do
+        @command.invoke("list", [path.to_s], type: "unknown")
+      end
+    end
+
+    test "response" do
+      path = fixture_path("urls.txt")
+      urls = [
+        "http://example.com/1",
+        "http://example.com/2",
+        "http://example.com/3",
+      ]
+      urls.each do |url|
+        mock(DaimonSkycrawlers::Processor).enqueue_http_response(url)
+      end
+      @command.invoke("list", [path.to_s], type: "response")
+    end
+  end
 end
