@@ -47,6 +47,17 @@ module DaimonSkycrawlers
         end
       end
 
+      desc "list PATH", "Enqueue URLs from PATH. PATH content includes a URL per line"
+      def list(path)
+        load_init
+        File.open(path, "r") do |file|
+          file.each_line(chomp: true) do |line|
+            line.chomp! # For Ruby 2.3.3 or earlier
+            DaimonSkycrawlers::Crawler.enqueue_url(line)
+          end
+        end
+      end
+
       private
 
       def load_init
