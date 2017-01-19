@@ -34,3 +34,9 @@ DaimonSkycrawlers.configure do |config|
   config.queue_name_prefix = "daimon-skycrawlers.test"
   config.logger = ::Logger.new(nil)
 end
+
+# To run test
+module Nokogiri
+  module HTML
+  end
+end
