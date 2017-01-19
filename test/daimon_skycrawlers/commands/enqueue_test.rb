@@ -104,7 +104,7 @@ class EnqueueCommandTest < Test::Unit::TestCase
 
     test "unknown type" do
       path = fixture_path("urls.txt")
-      assert_raise(ArgumentError, "Unknown type: unknown") do
+      assert_raise(ArgumentError.new("Unknown type: unknown")) do
         @command.invoke("list", [path.to_s], type: "unknown")
       end
     end
