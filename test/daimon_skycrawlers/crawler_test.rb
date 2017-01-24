@@ -4,7 +4,10 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
   sub_test_case "fetch html" do
     setup do
       stubs = Faraday::Adapter::Test::Stubs.new do |stub|
-        stub.get("/") {|env|
+        stub.get("/") {|_env|
+          [200, {}, "body"]
+        }
+        stub.post("/") {|_env|
           [200, {}, "body"]
         }
       end
@@ -14,13 +17,26 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
       end
     end
 
-    def test_fetch
+    def test_fetch_get
       @crawler.fetch("http://example.com/", depth: 3) do |data|
         url = data[:url]
         message = data[:message]
         response = data[:response]
         assert_equal("http://example.com/", url)
         assert_equal({ depth: 3 }, message)
+        assert_equal({}, response.headers)
+        assert_equal("body", response.body)
+      end
+      assert_equal(1, @crawler.instance_variable_get(:@after_process_callbacks).size)
+    end
+
+    def test_fetch_post
+      @crawler.fetch("http://example.com/", "depth" => 3, "method" => "POST") do |data|
+        url = data[:url]
+        message = data[:message]
+        response = data[:response]
+        assert_equal("http://example.com/", url)
+        assert_equal({ "depth" => 3, "method" => "POST" }, message)
         assert_equal({}, response.headers)
         assert_equal("body", response.body)
       end
