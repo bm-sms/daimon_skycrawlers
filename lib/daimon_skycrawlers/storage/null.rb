@@ -10,7 +10,7 @@ module DaimonSkycrawlers
       #
       # Save nothing
       #
-      def save(url, headers, body)
+      def save(data)
       end
 
       #

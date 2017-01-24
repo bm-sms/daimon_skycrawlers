@@ -11,7 +11,12 @@ module DaimonSkycrawlers
         @base_dir = Pathname(base_dir)
       end
 
-      def save(url, headers, body)
+      def save(data)
+        url = data[:url]
+        # message = data[:message]
+        response = data[:response]
+        headers = response.headers
+        body = response.body
         @base_dir.mkpath
         body_path(url).dirname.mkpath
         body_path(url).open("wb+") do |file|

@@ -13,7 +13,13 @@ class DaimonSkycrawlers::Storage::FileTest < Test::Unit::TestCase
 
   test "save/read file" do
     url = "http://example.com/blog/index.html"
-    @storage.save(url, {}, "body")
+    response = Struct.new(:headers, :body).new({}, "body")
+    data = {
+      url: url,
+      message: {},
+      response: response
+    }
+    @storage.save(data)
     assert { File.exist?(@base_dir + "/blog/index.html") }
     assert { File.exist?(@base_dir + "/blog/index.html-headers.json") }
     page = @storage.read(url)

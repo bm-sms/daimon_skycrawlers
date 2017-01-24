@@ -7,7 +7,7 @@ module DaimonSkycrawlers
       include DaimonSkycrawlers::LoggerMixin
       include DaimonSkycrawlers::ConfigMixin
 
-      def save(url, headers, body)
+      def save(data)
         raise "Implement this in subclass"
       end
 

@@ -16,11 +16,17 @@ module DaimonSkycrawlers
       #
       # Save
       #
-      # @param [String] url identity of the page
-      # @param [Hash] header of URL
-      # @param [String] body
+      # @param [Hash] data has following keys
+      #   * :url: URL
+      #   * :message: Given message
+      #   * :response: HTTP response
       #
-      def save(url, headers, body)
+      def save(data)
+        url = data[:url]
+        # message = data[:message]
+        response = data[:response]
+        headers = response.headers
+        body = response.body
         Page.create(url: url,
                     headers: JSON.generate(headers),
                     body: body,
