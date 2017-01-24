@@ -20,9 +20,21 @@ require "test/unit/rr"
 require "pry"
 require "tapp"
 require "pathname"
+require "stringio"
 
 def fixture_path(path)
   Pathname(__FILE__).dirname + "fixtures" + path
+end
+
+def capture_stdout
+  begin
+    out = StringIO.new
+    $stdout = out
+    yield
+    out.string
+  ensure
+    $stdout = STDOUT
+  end
 end
 
 ENV["SKYCRAWLERS_ENV"] = "test"
