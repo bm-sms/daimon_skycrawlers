@@ -16,6 +16,12 @@ class DaimonSkycrawlersCallbacksTest < Test::Unit::TestCase
       proceeding = run_before_callbacks(message)
       return unless proceeding
       @processed = true
+      data = {
+        url: "http://example.com",
+        message: message,
+        response: ""
+      }
+      run_after_callbacks(data)
     end
   end
 
@@ -25,6 +31,14 @@ class DaimonSkycrawlersCallbacksTest < Test::Unit::TestCase
       @called = true
       @stamp = Time.now.to_f
       true
+    end
+  end
+
+  class DummyAfterProcess
+    attr_reader :called, :stamp
+    def call(data)
+      @called = true
+      @stamp = Time.now.to_f
     end
   end
 
@@ -122,6 +136,51 @@ class DaimonSkycrawlersCallbacksTest < Test::Unit::TestCase
       dummy.clear_before_process_callbacks
       dummy.process({})
       assert_true(filter_logs.empty?)
+    end
+
+    test "no filter" do
+      dummy = Dummy.new
+      dummy.process({})
+      assert { dummy.processed }
+    end
+  end
+
+  sub_test_case "after" do
+    test "call" do
+      dummy = Dummy.new
+      dummy.after_process do |data|
+        assert_equal({ url: "http://example.com", message: {}, response: "" }, data)
+      end
+      dummy.process({})
+    end
+
+    test "sequence" do
+      dummy = Dummy.new
+      after_process_logs = []
+      dummy.after_process do |_data|
+        after_process_logs << 1
+      end
+      dummy.after_process do |_data|
+        after_process_logs << 2
+      end
+      dummy.after_process do |_data|
+        after_process_logs << 3
+      end
+      dummy.process({})
+      assert_equal([1, 2, 3], after_process_logs)
+    end
+
+    test "sequense class" do
+      dummy = Dummy.new
+      after_process1 = DummyAfterProcess.new
+      after_process2 = DummyAfterProcess.new
+      after_process3 = DummyAfterProcess.new
+      dummy.after_process(after_process1)
+      dummy.after_process(after_process2)
+      dummy.after_process(after_process3)
+      dummy.process({})
+      stamps = [after_process1.stamp, after_process2.stamp, after_process3.stamp]
+      assert_equal(stamps, stamps.sort)
     end
   end
 end
