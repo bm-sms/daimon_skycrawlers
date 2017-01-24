@@ -12,16 +12,19 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
       @crawler.setup_connection do |faraday|
         faraday.adapter :test, stubs
       end
-      @crawler.storage = DaimonSkycrawlers::Storage::Null.new
-      mock(@crawler).schedule_to_process("http://example.com/", { depth: 3 })
     end
 
-    def test_on_fetch
-      @crawler.fetch("http://example.com/", depth: 3) do |url, headers, body|
+    def test_fetch
+      @crawler.fetch("http://example.com/", depth: 3) do |data|
+        url = data[:url]
+        message = data[:message]
+        response = data[:response]
         assert_equal("http://example.com/", url)
-        assert_equal({}, headers)
-        assert_equal("body", body)
+        assert_equal({ depth: 3 }, message)
+        assert_equal({}, response.headers)
+        assert_equal("body", response.body)
       end
+      assert_equal(1, @crawler.instance_variable_get(:@after_process_callbacks).size)
     end
   end
 
@@ -46,10 +49,14 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
         url: "http://example.com/blog",
         depth: 1
       }
-      @crawler.process(message) do |url, headers, body|
+      @crawler.process(message) do |data|
+        url = data[:url]
+        m = data[:message]
+        response = data[:response]
         assert_equal(url, "http://example.com/blog")
-        assert_equal(headers, {})
-        assert_equal(body, @body)
+        assert_equal(m, message)
+        assert_equal(response.headers, {})
+        assert_equal(response.body, @body)
       end
     end
   end
