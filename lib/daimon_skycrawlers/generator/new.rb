@@ -39,6 +39,7 @@ module DaimonSkycrawlers
         }
         invoke(MigrationGenerator, [
                  "CreatePages",
+                 "key:string",
                  "url:string",
                  "headers:text",
                  "body:binary",
@@ -56,6 +57,8 @@ module DaimonSkycrawlers
             <<-CODE.chomp
 #{indent}t.timestamps
 
+#{indent}t.index [:key]
+#{indent}t.index [:key, :updated_at]
 #{indent}t.index [:url]
 #{indent}t.index [:url, :updated_at]
             CODE
