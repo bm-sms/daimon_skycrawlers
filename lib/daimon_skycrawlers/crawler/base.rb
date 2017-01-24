@@ -104,7 +104,9 @@ module DaimonSkycrawlers
         url = (URI(connection.url_prefix) + url).to_s
 
         @prepare.call(connection)
-        fetch(url, message, &block)
+        response = fetch(url, message, &block)
+        data = { url: url, message: message, response: response }
+        run_after_callbacks(data)
       end
 
       def fetch(path, message = {})
