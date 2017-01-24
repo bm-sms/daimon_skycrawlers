@@ -24,7 +24,7 @@ module DaimonSkycrawlers
 You can register your processor in `app/processor.rb` to run your processor.
 Following code snippet is useful:
 
-    processor = #{naem.classify}.new
+    processor = #{name.classify}.new
     DaimonSkycrawlers.register_processor(processor)
 
 MESSAGE
