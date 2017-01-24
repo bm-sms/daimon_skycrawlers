@@ -31,12 +31,12 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
     end
 
     def test_fetch_post
-      @crawler.fetch("http://example.com/", "depth" => 3, "method" => "POST") do |data|
+      @crawler.fetch("http://example.com/", depth: 3, method: "POST") do |data|
         url = data[:url]
         message = data[:message]
         response = data[:response]
         assert_equal("http://example.com/", url)
-        assert_equal({ "depth" => 3, "method" => "POST" }, message)
+        assert_equal({ depth: 3, method: "POST" }, message)
         assert_equal({}, response.headers)
         assert_equal("body", response.body)
       end
