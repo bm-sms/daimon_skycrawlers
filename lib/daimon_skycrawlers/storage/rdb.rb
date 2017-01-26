@@ -23,11 +23,13 @@ module DaimonSkycrawlers
       #
       def save(data)
         url = data[:url]
-        # message = data[:message]
+        message = data[:message]
+        key = message[:key] || url
         response = data[:response]
         headers = response.headers
         body = response.body
         Page.create(url: url,
+                    key: key,
                     headers: JSON.generate(headers),
                     body: body,
                     last_modified_at: headers["last-modified"],
@@ -39,8 +41,13 @@ module DaimonSkycrawlers
       #
       # @param [String] url identity of the page
       #
-      def find(url)
-        Page.where(url: url).order(updated_at: :desc).limit(1).first
+      def find(url, message)
+        key = message[:key]
+        if key
+          Page.where(key: key).order(updated_at: :desc).limit(1).first
+        else
+          Page.where(url: url).order(updated_at: :desc).limit(1).first
+        end
       end
 
       class Base < ActiveRecord::Base
