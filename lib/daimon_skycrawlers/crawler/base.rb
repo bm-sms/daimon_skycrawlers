@@ -94,7 +94,6 @@ module DaimonSkycrawlers
 
         proceeding = run_before_callbacks(message)
         unless proceeding
-          @skipped = true
           skip(message[:url])
           return
         end
