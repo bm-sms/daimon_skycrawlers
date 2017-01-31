@@ -17,7 +17,8 @@ module DaimonSkycrawlers
       hydra = Typhoeus::Hydra.new(max_concurrency: 1)
       sitemap_urls = []
       @urls.each do |url|
-        if URI(url).scheme&.start_with?("http")
+        uri = URI(url)
+        if uri.scheme && uri.scheme.start_with?("http")
           request = Typhoeus::Request.new(url, followlocation: true)
           request.on_complete do |response|
             sitemap_urls.concat(on_complete(response))
