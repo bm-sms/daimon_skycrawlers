@@ -8,7 +8,11 @@ module DaimonSkycrawlers
     def setup_shutdown_timer(queue_name_prefix, interval: 10)
       timers = Timers::Group.new
       timer = timers.after(interval) do
-        Process.kill(:INT, 0)
+        if block_given?
+          yield
+        else
+          Process.kill(:INT, 0)
+        end
       end
       Thread.new(timers) do |t|
         loop { t.wait }
