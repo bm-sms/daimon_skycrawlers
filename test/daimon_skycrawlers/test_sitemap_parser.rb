@@ -98,7 +98,11 @@ class SitemapParserTest < Test::Unit::TestCase
     assert_equal(expected, sitemap_parser.parse)
   end
 
-  test "sitemapindex w/ compressed" do
+  data("deflate" => "deflate",
+       "gzip" => "gzip",
+       "x-gzip" => "x-gzip",
+       "no" => nil)
+  test "sitemapindex w/ compressed" do |content_encoding|
     index_url = "https://example.com/sitemap-index-gz.xml"
     urls = [
       index_url,
@@ -107,7 +111,9 @@ class SitemapParserTest < Test::Unit::TestCase
     ]
     responses = urls.map do |url|
       headers = {}
-      headers["Content-Encoding"] = "gzip" unless url == index_url
+      unless url == index_url
+        headers["Content-Encoding"] = content_encoding if content_encoding
+      end
       Typhoeus::Response.new(code: 200,
                              effective_url: url,
                              headers: headers,
