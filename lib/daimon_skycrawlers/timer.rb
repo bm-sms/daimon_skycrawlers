@@ -23,6 +23,7 @@ module DaimonSkycrawlers
         DaimonSkycrawlers.configuration.logger.debug("Reset timer: consume message #{queue_name}")
         timer.reset
       end
+      timers
     end
   end
 end
