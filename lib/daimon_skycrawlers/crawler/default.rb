@@ -20,12 +20,6 @@ module DaimonSkycrawlers
 
         yield(data) if block_given?
 
-        if @after_process_callbacks.empty?
-          after_process do |_data|
-            storage.save(data)
-            schedule_to_process(url.to_s, message)
-          end
-        end
         response
       end
     end

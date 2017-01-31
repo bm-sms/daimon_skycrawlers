@@ -91,6 +91,7 @@ module DaimonSkycrawlers
         @n_processed_urls += 1
 
         setup_default_filters
+        setup_default_post_processes
 
         proceeding = run_before_callbacks(message)
         unless proceeding
@@ -138,6 +139,15 @@ module DaimonSkycrawlers
             log.debug("Not updated: #{m[:url]}")
           end
           updated
+        end
+      end
+
+      def setup_default_post_processes
+        after_process do |data|
+          storage.save(data)
+          message = data[:message]
+          url = data[:url]
+          schedule_to_process(url, message)
         end
       end
 
