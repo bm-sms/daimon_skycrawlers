@@ -25,7 +25,7 @@ module DaimonSkycrawlers
           hydra.queue(request)
         else
           if File.exist?(url)
-            extract_urls(File.read(url))
+            sitemap_urls.concat(extract_urls(File.read(url)))
           end
         end
       end

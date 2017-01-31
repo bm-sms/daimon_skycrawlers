@@ -125,4 +125,13 @@ class SitemapParserTest < Test::Unit::TestCase
     ]
     assert_equal(expected, sitemap_parser.parse)
   end
+
+  test "local file" do
+    sitemap_parser = DaimonSkycrawlers::SitemapParser.new([fixture_path("sitemap/sitemap.xml").to_s])
+    expected = [
+      "https://example.com/1",
+      "https://example.com/2",
+    ]
+    assert_equal(expected, sitemap_parser.parse)
+  end
 end
