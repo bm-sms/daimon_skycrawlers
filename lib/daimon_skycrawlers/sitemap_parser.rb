@@ -6,6 +6,9 @@ require "uri"
 module DaimonSkycrawlers
   # Based on https://github.com/benbalter/sitemap-parser
   class SitemapParser
+    class Error < StandardError
+    end
+
     def initialize(urls, options = {})
       @urls = urls
     end
@@ -33,7 +36,7 @@ module DaimonSkycrawlers
     private
 
     def on_complete(response)
-      raise "HTTP requset to #{response.effective_url} failed" unless response.success?
+      raise Error, "HTTP requset to #{response.effective_url} failed. status: #{response.code}" unless response.success?
       raw_sitemap = inflate_response(response)
       extract_urls(raw_sitemap)
     end
@@ -51,7 +54,7 @@ module DaimonSkycrawlers
           url.at("loc").content
         end
       else
-        raise "Malformed sitemap.xml no <sitemapindex> or <urlset>"
+        raise Error, "Malformed sitemap.xml no <sitemapindex> or <urlset>"
       end
     end
 
