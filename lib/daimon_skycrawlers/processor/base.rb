@@ -11,9 +11,22 @@ module DaimonSkycrawlers
       include DaimonSkycrawlers::Callbacks
       include DaimonSkycrawlers::Configurable
 
+      def initialize
+        super
+        @skipped = false
+      end
+
+      def skipped?
+        @skipped
+      end
+
       def process(message)
+        @skipped = false
         proceeding = run_before_callbacks(message)
-        return unless proceeding
+        unless proceeding
+          skip(message[:url])
+          return
+        end
         call(message)
       end
 
@@ -23,6 +36,13 @@ module DaimonSkycrawlers
 
       def storage
         @storage ||= DaimonSkycrawlers::Storage::RDB.new
+      end
+
+      private
+
+      def skip(url)
+        log.info("Skip #{url}")
+        @skipped = true
       end
     end
   end
