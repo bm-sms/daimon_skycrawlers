@@ -18,29 +18,15 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
     end
 
     def test_fetch_get
-      @crawler.fetch("http://example.com/", depth: 3) do |data|
-        url = data[:url]
-        message = data[:message]
-        response = data[:response]
-        assert_equal("http://example.com/", url)
-        assert_equal({ depth: 3 }, message)
-        assert_equal({}, response.headers)
-        assert_equal("body", response.body)
-      end
-      assert_equal(1, @crawler.instance_variable_get(:@after_process_callbacks).size)
+      response = @crawler.fetch("http://example.com/", depth: 3)
+      assert_equal({}, response.headers)
+      assert_equal("body", response.body)
     end
 
     def test_fetch_post
-      @crawler.fetch("http://example.com/", depth: 3, method: "POST") do |data|
-        url = data[:url]
-        message = data[:message]
-        response = data[:response]
-        assert_equal("http://example.com/", url)
-        assert_equal({ depth: 3, method: "POST" }, message)
-        assert_equal({}, response.headers)
-        assert_equal("body", response.body)
-      end
-      assert_equal(1, @crawler.instance_variable_get(:@after_process_callbacks).size)
+      response = @crawler.fetch("http://example.com/", depth: 3, method: "POST")
+      assert_equal({}, response.headers)
+      assert_equal("body", response.body)
     end
   end
 
@@ -65,15 +51,11 @@ class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
         url: "http://example.com/blog",
         depth: 1
       }
-      @crawler.process(message) do |data|
-        url = data[:url]
-        m = data[:message]
-        response = data[:response]
-        assert_equal(url, "http://example.com/blog")
-        assert_equal(m, message)
-        assert_equal(response.headers, {})
-        assert_equal(response.body, @body)
-      end
+      data = @crawler.process(message)
+      assert_equal("http://example.com/blog", data[:url])
+      assert_equal({ depth: 1 }, data[:message])
+      assert_equal({}, data[:response].headers)
+      assert_equal(@body, data[:response].body)
     end
   end
 
