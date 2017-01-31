@@ -41,7 +41,7 @@ module DaimonSkycrawlers
       private
 
       def skip(url)
-        log.info("Skip #{url}")
+        log.info("Skipped '#{url}' by '#{self.class}'")
         @skipped = true
       end
     end

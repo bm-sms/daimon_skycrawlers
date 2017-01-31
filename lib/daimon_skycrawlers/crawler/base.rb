@@ -142,7 +142,7 @@ module DaimonSkycrawlers
       end
 
       def skip(url)
-        log.info("Skip #{url}")
+        log.info("Skipped '#{url}' by '#{self.class}'")
         @skipped = true
         schedule_to_process(url.to_s, heartbeat: true)
       end
