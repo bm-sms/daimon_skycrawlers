@@ -11,16 +11,11 @@ module DaimonSkycrawlers
       def fetch(url, message)
         params = message[:params] || {}
         method = message[:method] || "GET"
-        response = if method == "POST"
-                     post(url, params)
-                   else
-                     get(url, params)
-                   end
-        data = { url: url, message: message, response: response }
-
-        yield(data) if block_given?
-
-        response
+        if method == "POST"
+          post(url, params)
+        else
+          get(url, params)
+        end
       end
     end
   end
