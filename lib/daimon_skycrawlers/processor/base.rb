@@ -22,6 +22,7 @@ module DaimonSkycrawlers
 
       def process(message)
         @skipped = false
+        setup_default_filters
         proceeding = run_before_callbacks(message)
         unless proceeding
           skip(message[:url])
@@ -39,6 +40,12 @@ module DaimonSkycrawlers
       end
 
       private
+
+      def setup_default_filters
+        before_process do |m|
+          !m[:heartbeat]
+        end
+      end
 
       def skip(url)
         log.info("Skipped '#{url}' by '#{self.class}'")
