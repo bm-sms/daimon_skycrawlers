@@ -41,7 +41,7 @@ module DaimonSkycrawlers
       #
       # @param [String] url identity of the page
       #
-      def find(url, message)
+      def find(url, message = {})
         key = message[:key]
         if key
           Page.where(key: key).order(updated_at: :desc).limit(1).first
