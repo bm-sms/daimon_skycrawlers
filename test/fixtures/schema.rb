@@ -17,12 +17,17 @@ ActiveRecord::Schema.define(version: 20160825132310) do
 
   create_table "pages", force: :cascade do |t|
     t.string   "url"
+    t.string   "key"
     t.text     "headers"
     t.binary   "body"
     t.datetime "last_modified_at"
     t.string   "etag"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.index ["url", "updated_at"], name: "index_pages_on_url_and_updated_at", using: :btree
+    t.index ["url"], name: "index_pages_on_url", using: :btree
+    t.index ["key", "updated_at"], name: "index_pages_on_key_and_updated_at", using: :btree
+    t.index ["key"], name: "index_pages_on_key", using: :btree
   end
 
 end
