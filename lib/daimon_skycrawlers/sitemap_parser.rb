@@ -78,7 +78,7 @@ module DaimonSkycrawlers
       when "deflate", "gzip", "x-gzip"
         true
       else
-        signature = response.body[0, 2]
+        signature = response.body[0, 2].b
         signature == "\x1F\x8B".b
       end
     end
