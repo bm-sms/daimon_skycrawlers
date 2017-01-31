@@ -1,4 +1,4 @@
-require "test_helper"
+require "helper"
 require "daimon_skycrawlers/generator/processor"
 
 class GenerateProcessorTest < Test::Unit::TestCase

@@ -1,4 +1,4 @@
-require "test_helper"
+require "helper"
 require "daimon_skycrawlers/filter/update_checker"
 
 class DaimonSkycrawlersUpdateCheckerTest < Test::Unit::TestCase

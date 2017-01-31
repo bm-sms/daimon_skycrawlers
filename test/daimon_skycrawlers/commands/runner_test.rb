@@ -1,4 +1,4 @@
-require "test_helper"
+require "helper"
 require "daimon_skycrawlers/commands/runner"
 
 class RunnerCommandText < Test::Unit::TestCase

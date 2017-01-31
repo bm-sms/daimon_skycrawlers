@@ -1,4 +1,4 @@
-require "test_helper"
+require "helper"
 require "daimon_skycrawlers/storage/file"
 
 class DaimonSkycrawlers::Storage::FileTest < Test::Unit::TestCase

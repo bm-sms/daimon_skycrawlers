@@ -1,4 +1,4 @@
-require "test_helper"
+require "helper"
 
 class DaimonSkycrawlersCrawlerTest < Test::Unit::TestCase
   sub_test_case "fetch html" do

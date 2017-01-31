@@ -1,4 +1,4 @@
-require "test_helper"
+require "helper"
 require "daimon_skycrawlers/generator/crawler"
 
 class GenerateCrawlerTest < Test::Unit::TestCase

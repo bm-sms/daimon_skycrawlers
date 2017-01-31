@@ -1,4 +1,4 @@
-require "test_helper"
+require "helper"
 require "daimon_skycrawlers/generator/filter"
 
 class GenerateFilterTest < Test::Unit::TestCase

@@ -1,4 +1,4 @@
-require "test_helper"
+require "helper"
 
 class DaimonSkycrawlersProcessorTest < Test::Unit::TestCase
   sub_test_case "before process" do
