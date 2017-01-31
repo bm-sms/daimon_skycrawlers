@@ -29,7 +29,10 @@ module DaimonSkycrawlers
           end
         end
       end
-      hydra.run
+      loop do
+        hydra.run
+        break if hydra.queued_requests.empty?
+      end
       sitemap_urls
     end
 
