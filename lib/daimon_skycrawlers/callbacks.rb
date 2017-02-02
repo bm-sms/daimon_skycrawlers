@@ -1,4 +1,7 @@
 module DaimonSkycrawlers
+  #
+  # This module provides simple callback system
+  #
   module Callbacks
     def initialize
       super
@@ -6,6 +9,13 @@ module DaimonSkycrawlers
       @after_process_callbacks = []
     end
 
+    #
+    # Register before process callback
+    #
+    # @param callback [Object] This object must respond to call
+    # @yield [message]
+    # @yieldparam message [Hash]
+    #
     def before_process(callback = nil, &block)
       if block_given?
         @before_process_callbacks << block
@@ -20,10 +30,20 @@ module DaimonSkycrawlers
       end
     end
 
+    #
+    # Clear all before process callbacks
+    #
     def clear_before_process_callbacks
       @before_process_callbacks = []
     end
 
+    #
+    # Register after process callback
+    #
+    # @param callback [Object] This object must respond to call
+    # @yield [message]
+    # @yieldparam message [Hash]
+    #
     def after_process(callback = nil, &block)
       if block_given?
         @after_process_callbacks << block
@@ -38,6 +58,9 @@ module DaimonSkycrawlers
       end
     end
 
+    #
+    # Clear all after process callbacks
+    #
     def clear_after_process_callbacks
       @after_process_callbacks = []
     end
