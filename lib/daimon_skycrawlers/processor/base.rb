@@ -14,6 +14,8 @@ module DaimonSkycrawlers
       def initialize
         super
         @skipped = false
+
+        setup_default_filters
       end
 
       def skipped?
@@ -22,7 +24,6 @@ module DaimonSkycrawlers
 
       def process(message)
         @skipped = false
-        setup_default_filters
         proceeding = run_before_callbacks(message)
         unless proceeding
           skip(message[:url])

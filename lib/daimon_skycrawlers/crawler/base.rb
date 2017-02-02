@@ -46,6 +46,9 @@ module DaimonSkycrawlers
         @prepare = ->(connection) {}
         @skipped = false
         @n_processed_urls = 0
+
+        setup_default_filters
+        setup_default_post_processes
       end
 
       #
@@ -89,9 +92,6 @@ module DaimonSkycrawlers
       def process(message, &block)
         @skipped = false
         @n_processed_urls += 1
-
-        setup_default_filters
-        setup_default_post_processes
 
         proceeding = run_before_callbacks(message)
         unless proceeding
