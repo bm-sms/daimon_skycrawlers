@@ -83,14 +83,22 @@ module DaimonSkycrawlers
       #
       # Retrieve storage instance
       #
+      # @return [DaimonSkycrawlers::Storage::Base]
+      #
       def storage
         @storage ||= Storage::RDB.new
       end
 
+      #
+      # @return [true|false]
+      #
       def skipped?
         @skipped
       end
 
+      #
+      # @return [Faraday]
+      #
       def connection
         @connection ||= Faraday.new(@base_url, @faraday_options)
       end
@@ -132,6 +140,8 @@ module DaimonSkycrawlers
       # @param path [String] URI or path
       # @param message [Hash] message can include anything
       #
+      # @return [Faraday::Response] HTTP response
+      #
       def fetch(path, message = {})
         raise NotImplementedError, "Must implement this method in subclass"
       end
@@ -142,6 +152,8 @@ module DaimonSkycrawlers
       # @param path [String] URI or path
       # @param params [Hash] query parameters
       #
+      # @return [Faraday::Response] HTTP response
+      #
       def get(path, params = {})
         @connection.get(path, params)
       end
@@ -151,6 +163,8 @@ module DaimonSkycrawlers
       #
       # @param path [String] URI or path
       # @param params [Hash] query parameters
+      #
+      # @return [Faraday::Response] HTTP response
       #
       def post(path, params = {})
         @connection.post(path, params)
