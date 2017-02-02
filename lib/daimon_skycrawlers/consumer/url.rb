@@ -14,7 +14,7 @@ module DaimonSkycrawlers
         #
         # Register a given crawler
         #
-        # @param [Crawler] crawler instance which implements `fetch` method
+        # @param crawler [Crawler] crawler instance which implements `fetch` method
         # @return [void]
         #
         def register(crawler)

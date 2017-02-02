@@ -15,7 +15,7 @@ module DaimonSkycrawlers
     # Register a processor
     #
     # @overload register_processor(processor)
-    #   @param [Processor] processor instance which implements `call` method
+    #   @param processor [Processor] instance which implements `call` method
     #   @return [void]
     #
     # @overload register_processor
@@ -31,7 +31,7 @@ module DaimonSkycrawlers
     #
     # Register a crawler
     #
-    # @param [Crawler] crawler instance which implements `fetch` method
+    # @param crawler [Crawler] instance which implements `fetch` method
     # @return [void]
     #
     def register_crawler(crawler)

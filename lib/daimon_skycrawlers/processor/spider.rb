@@ -96,7 +96,7 @@ module DaimonSkycrawlers
       end
 
       #
-      # @param [Hash] message Must have key :url, :depth
+      # @param message [Hash] Must have key :url, :depth
       #
       def call(message)
         key_url = message[:url]

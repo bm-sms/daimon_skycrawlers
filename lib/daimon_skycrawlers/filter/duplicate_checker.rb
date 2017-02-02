@@ -16,7 +16,7 @@ module DaimonSkycrawlers
       end
 
       #
-      # @param [Hash] message to check duplication. If given URL is
+      # @param message [Hash] message to check duplication. If given URL is
       #        relative URL, use `@base_url + url` as absolute URL.
       # @return [true|false] Return false when duplicated, otherwise return true.
       #
@@ -28,7 +28,7 @@ module DaimonSkycrawlers
       end
 
       #
-      # @param [Hash] message to check duplication. If given URL is
+      # @param message [Hash] message to check duplication. If given URL is
       #        relative URL, use `@base_url + url` as absolute URL.
       # @return [true|false] Return true when duplicated, otherwise return false.
       #

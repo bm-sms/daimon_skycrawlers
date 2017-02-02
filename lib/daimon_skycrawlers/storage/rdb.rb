@@ -16,7 +16,7 @@ module DaimonSkycrawlers
       #
       # Save
       #
-      # @param [Hash] data has following keys
+      # @param data [Hash] data has following keys
       #   * :url: URL
       #   * :message: Given message
       #   * :response: HTTP response
@@ -39,7 +39,8 @@ module DaimonSkycrawlers
       #
       # Fetch page identified by url
       #
-      # @param [String] url identity of the page
+      # @param url [String] identity of the page
+      # @param message [Hash] this hash may include `:key` to find page
       #
       def find(url, message = {})
         key = message[:key]

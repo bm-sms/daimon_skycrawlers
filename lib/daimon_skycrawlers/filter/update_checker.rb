@@ -17,7 +17,7 @@ module DaimonSkycrawlers
       end
 
       #
-      # @param [Hash] message
+      # @param message [Hash] message includes `:url`
       # @param connection [Faraday]
       # @return [true|false] Return true when need update, otherwise return false
       #

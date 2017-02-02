@@ -17,7 +17,7 @@ module DaimonSkycrawlers
         # Register a processor
         #
         # @overload register(processor)
-        #   @param [Processor] processor instance which implements `call` method
+        #   @param processor [Processor] processor instance which implements `call` method
         #   @return [void]
         #
         # @overload register

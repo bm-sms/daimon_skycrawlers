@@ -34,7 +34,7 @@ module DaimonSkycrawlers
       # 1. Run registered filters
       # 1. Process HTTP response from message
       #
-      # @param [Hash] message parameters for processor
+      # @param message [Hash] parameters for processor
       #
       def process(message)
         @skipped = false
@@ -51,7 +51,7 @@ module DaimonSkycrawlers
       #
       # Override this method in subclass
       #
-      # @param [Hash] message parameters for processor
+      # @param message [Hash] parameters for processor
       #
       def call(message)
         raise "Implement this method in subclass"

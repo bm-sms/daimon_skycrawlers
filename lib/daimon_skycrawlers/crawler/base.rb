@@ -38,9 +38,9 @@ module DaimonSkycrawlers
       attr_reader :n_processed_urls
 
       #
-      # @param [String] base_url Base URL for crawler
-      # @param [Hash] faraday_options options for Faraday
-      # @param [Hash] options options for crawler
+      # @param base_url [String] Base URL for crawler
+      # @param faraday_options [Hash] options for Faraday
+      # @param options [Hash] options for crawler
       #
       def initialize(base_url = nil, faraday_options: {}, options: {})
         super()
@@ -58,7 +58,7 @@ module DaimonSkycrawlers
       #
       # Set up connection
       #
-      # @param [Hash] options options for Faraday
+      # @param options [Hash] options for Faraday
       # @yield [faraday]
       # @yieldparam faraday [Faraday]
       #
@@ -129,8 +129,8 @@ module DaimonSkycrawlers
       #
       # Override this method in subclass.
       #
-      # @param [String] path URI or path
-      # @param [Hash] message message can include anything
+      # @param path [String] URI or path
+      # @param message [Hash] message can include anything
       #
       def fetch(path, message = {})
         raise NotImplementedError, "Must implement this method in subclass"
@@ -139,8 +139,8 @@ module DaimonSkycrawlers
       #
       # GET URL with params
       #
-      # @param [String] path URI or path
-      # @param [Hash] params query parameters
+      # @param path [String] URI or path
+      # @param params [Hash] query parameters
       #
       def get(path, params = {})
         @connection.get(path, params)
@@ -149,8 +149,8 @@ module DaimonSkycrawlers
       #
       # POST URL with params
       #
-      # @param [String] path URI or path
-      # @param [Hash] params query parameters
+      # @param path [String] URI or path
+      # @param params [Hash] query parameters
       #
       def post(path, params = {})
         @connection.post(path, params)

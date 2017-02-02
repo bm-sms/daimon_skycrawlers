@@ -21,8 +21,8 @@ module DaimonSkycrawlers
       #
       # Enqueue a URL to crawler queue
       #
-      # @param [String] Specify absolute URL
-      # @param [Hash] Extra parameters for crawler
+      # @param url [String] Specify absolute URL
+      # @param message [Hash] Extra parameters for crawler
       # @return [void]
       def enqueue_url(url, message = {})
         message[:url] = url
