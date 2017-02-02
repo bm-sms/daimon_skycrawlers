@@ -75,6 +75,11 @@ module DaimonSkycrawlers
       exit(false)
     end
 
+    #
+    # Load "app/crawlers/**/*.rb"
+    #
+    # @return [void]
+    #
     def load_crawlers
       Dir.glob("app/crawlers/**/*.rb") do |path|
         require(File.expand_path(path, Dir.pwd)) &&
@@ -82,6 +87,11 @@ module DaimonSkycrawlers
       end
     end
 
+    #
+    # Load "app/processors/**/*.rb"
+    #
+    # @return [void]
+    #
     def load_processors
       Dir.glob("app/processors/**/*.rb") do |path|
         require(File.expand_path(path, Dir.pwd)) &&
