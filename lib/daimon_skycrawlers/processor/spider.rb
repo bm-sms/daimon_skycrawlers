@@ -102,7 +102,7 @@ module DaimonSkycrawlers
         key_url = message[:url]
         depth = Integer(message[:depth] || 2)
         return if depth <= 1
-        page = storage.find(key_url)
+        page = storage.find(key_url, message)
         @doc = Nokogiri::HTML(page.body)
         new_message = {
           depth: depth - 1,

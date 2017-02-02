@@ -6,7 +6,7 @@ module DaimonSkycrawlers
     class Default < Base
       def call(message)
         url = message[:url]
-        page = storage.find(url)
+        page = storage.find(url, message)
         headers = JSON.parse(page.headers)
         headers_string = headers.map {|key, value| "  #{key}: #{value}" }.join("\n")
         dumped_message = <<LOG

@@ -16,7 +16,7 @@ module DaimonSkycrawlers
       #
       # Find nothing
       #
-      def find(url)
+      def find(url, message = {})
       end
     end
   end
