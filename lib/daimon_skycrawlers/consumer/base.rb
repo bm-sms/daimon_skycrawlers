@@ -4,6 +4,9 @@ require "daimon_skycrawlers/config"
 
 module DaimonSkycrawlers
   module Consumer
+    #
+    # Base class for consumer
+    #
     class Base
       include DaimonSkycrawlers::LoggerMixin
       include DaimonSkycrawlers::ConfigMixin
