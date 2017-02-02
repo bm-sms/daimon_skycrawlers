@@ -5,6 +5,11 @@ module DaimonSkycrawlers
   module Timer
     module_function
 
+    # Setup timer for shutdown
+    #
+    # @param queue_name_prefix [String] previx of queue name
+    # @param interval [String] shutdown after this interval after the queue is empty
+    #
     def setup_shutdown_timer(queue_name_prefix, interval: 10)
       timers = Timers::Group.new
       timer = timers.after(interval) do
