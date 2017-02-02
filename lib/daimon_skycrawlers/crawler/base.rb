@@ -115,7 +115,7 @@ module DaimonSkycrawlers
         @skipped = false
         @n_processed_urls += 1
 
-        proceeding = run_before_callbacks(message)
+        proceeding = run_before_process_callbacks(message)
         unless proceeding
           skip(message[:url])
           return

@@ -13,7 +13,7 @@ class DaimonSkycrawlersCallbacksTest < Test::Unit::TestCase
     end
 
     def process(message)
-      proceeding = run_before_callbacks(message)
+      proceeding = run_before_process_callbacks(message)
       return unless proceeding
       @processed = true
       data = {

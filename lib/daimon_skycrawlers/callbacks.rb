@@ -24,7 +24,7 @@ module DaimonSkycrawlers
       end
     end
 
-    def run_before_callbacks(message)
+    def run_before_process_callbacks(message)
       @before_process_callbacks.all? do |callback|
         callback.call(message)
       end
