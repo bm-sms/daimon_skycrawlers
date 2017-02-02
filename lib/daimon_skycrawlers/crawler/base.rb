@@ -128,7 +128,7 @@ module DaimonSkycrawlers
         @prepare.call(connection)
         response = fetch(url, message, &block)
         data = { url: url, message: message, response: response }
-        run_after_callbacks(data)
+        run_after_process_callbacks(data)
         data
       end
 

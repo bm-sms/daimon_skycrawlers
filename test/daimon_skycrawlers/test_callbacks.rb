@@ -21,7 +21,7 @@ class DaimonSkycrawlersCallbacksTest < Test::Unit::TestCase
         message: message,
         response: ""
       }
-      run_after_callbacks(data)
+      run_after_process_callbacks(data)
     end
   end
 
