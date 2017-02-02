@@ -5,6 +5,12 @@ require "daimon_skycrawlers/configurable"
 
 module DaimonSkycrawlers
   module Processor
+    #
+    # The base class of processor
+    #
+    # A processor implementation can inherit this class and override
+    # `#call` in the class.
+    #
     class Base
       include DaimonSkycrawlers::LoggerMixin
       include DaimonSkycrawlers::ConfigMixin
@@ -22,6 +28,14 @@ module DaimonSkycrawlers
         @skipped
       end
 
+      #
+      # Process processor sequence
+      #
+      # 1. Run registered filters
+      # 1. Process HTTP response from message
+      #
+      # @param [Hash] message parameters for processor
+      #
       def process(message)
         @skipped = false
         proceeding = run_before_callbacks(message)
@@ -32,10 +46,20 @@ module DaimonSkycrawlers
         call(message)
       end
 
+      #
+      # Process message
+      #
+      # Override this method in subclass
+      #
+      # @param [Hash] message parameters for processor
+      #
       def call(message)
         raise "Implement this method in subclass"
       end
 
+      #
+      # Retrieve storage instance
+      #
       def storage
         @storage ||= DaimonSkycrawlers::Storage::RDB.new
       end
