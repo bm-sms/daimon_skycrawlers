@@ -5,7 +5,7 @@ module DaimonSkycrawlers
     #
     # The default crawler
     #
-    # This crawler can GET given URL and store response to storage
+    # This crawler can GET/POST given URL and store response to storage
     #
     class Default < Base
       def fetch(url, message)
