@@ -55,6 +55,20 @@ module DaimonSkycrawlers
     #
     # Configure DaimonSkycrawlers
     #
+    # ```ruby
+    # DaimonSkycrawlers.configure do |config|
+    #   config.logger = DaimonSkycrawlers::Logger.default
+    #   config.queue_name_prefix = "daimon-skycrawlers"
+    #   config.crawler_interval = 1
+    #   config.shutdown_interval = 10
+    # end
+    # ```
+    #
+    # * logger: logger instance
+    # * queue_name_prefix: prefix of queue name.
+    # * crawler_interval: crawling interval
+    # * shutdown_interval: shutdown after interval after the queue is empty
+    #
     # @return [void]
     # @yield [configuration] configure DaimonSkycrawlers
     # @yieldparam configuration [DaimonSkycrawlers::Configuration] configuration object
