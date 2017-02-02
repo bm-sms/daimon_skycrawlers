@@ -18,6 +18,9 @@ module DaimonSkycrawlers
     #
     # The base class of crawler
     #
+    # A crawler implementation can inherit this class and override
+    # `#fetch` in the class.
+    #
     class Base
       include DaimonSkycrawlers::LoggerMixin
       include DaimonSkycrawlers::ConfigMixin
@@ -35,8 +38,9 @@ module DaimonSkycrawlers
       attr_reader :n_processed_urls
 
       #
-      # @param [String] Base URL for crawler
-      # @param [Hash] options for Faraday
+      # @param [String] base_url Base URL for crawler
+      # @param [Hash] faraday_options options for Faraday
+      # @param [Hash] options options for crawler
       #
       def initialize(base_url = nil, faraday_options: {}, options: {})
         super()
@@ -54,7 +58,7 @@ module DaimonSkycrawlers
       #
       # Set up connection
       #
-      # @param [Hash] options for Faraday
+      # @param [Hash] options options for Faraday
       # @yield [faraday]
       # @yieldparam faraday [Faraday]
       #
@@ -69,6 +73,8 @@ module DaimonSkycrawlers
       #
       # Call this method before DaimonSkycrawlers.register_crawler
       # For example, you can login before fetch URL
+      #
+      # @yield [connection]
       #
       def prepare(&block)
         @prepare = block
@@ -89,6 +95,14 @@ module DaimonSkycrawlers
         @connection ||= Faraday.new(@base_url, @faraday_options)
       end
 
+      #
+      # Process crawler sequence
+      #
+      # 1. Run registered filters
+      # 1. Prepare connection
+      # 1. Download(fetch) data from given URL
+      # 1. Run post processes (store downloaded data to storage)
+      #
       def process(message, &block)
         @skipped = false
         @n_processed_urls += 1
@@ -110,14 +124,34 @@ module DaimonSkycrawlers
         data
       end
 
+      #
+      # Fetch URL
+      #
+      # Override this method in subclass.
+      #
+      # @param [String] path URI or path
+      # @param [Hash] message message can include anything
+      #
       def fetch(path, message = {})
         raise NotImplementedError, "Must implement this method in subclass"
       end
 
+      #
+      # GET URL with params
+      #
+      # @param [String] path URI or path
+      # @param [Hash] params query parameters
+      #
       def get(path, params = {})
         @connection.get(path, params)
       end
 
+      #
+      # POST URL with params
+      #
+      # @param [String] path URI or path
+      # @param [Hash] params query parameters
+      #
       def post(path, params = {})
         @connection.post(path, params)
       end
