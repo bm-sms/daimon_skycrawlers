@@ -3,6 +3,9 @@ require "songkick_queue"
 module DaimonSkycrawlers
   class Queue
     class << self
+      #
+      # Configuration for queue
+      #
       def configuration
         @configuration ||= SongkickQueue.configure do |config|
           config.logger = Logger.new(STDOUT)
