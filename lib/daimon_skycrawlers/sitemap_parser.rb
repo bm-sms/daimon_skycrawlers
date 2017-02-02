@@ -4,15 +4,35 @@ require "zlib"
 require "uri"
 
 module DaimonSkycrawlers
+  #
+  # Parser for sitemap.xml
+  #
   # Based on https://github.com/benbalter/sitemap-parser
+  # See also https://www.sitemaps.org/
+  #
+  # ```ruby
+  # urls = ["https://example.com/sitemap.xml"]
+  # sitemap_parser = DaimonSkycrawlers::SitemapParser.new(urls)
+  # sitemap_urls = sitemap_parser.parse
+  # ```
+  #
   class SitemapParser
+    #
+    # Error class for SitemapParser
+    #
     class Error < StandardError
     end
 
+    #
+    # @param urls [Array] List of sitemap.xml URL
+    #
     def initialize(urls, options = {})
       @urls = urls
     end
 
+    #
+    # Fetch and parse sitemap.xml
+    #
     def parse
       hydra = Typhoeus::Hydra.new(max_concurrency: 1)
       sitemap_urls = []
