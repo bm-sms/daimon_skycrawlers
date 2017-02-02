@@ -16,7 +16,7 @@ module DaimonSkycrawlers
       end
 
       #
-      # @param [Hash] message
+      # @param message [Hash] check given URL is allowed or not by robots.txt
       # @return [true|false] Return true when web site allows to fetch the URL, otherwise return false
       #
       def call(message)
