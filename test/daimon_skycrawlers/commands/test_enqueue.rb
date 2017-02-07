@@ -203,5 +203,25 @@ class EnqueueCommandTest < Test::Unit::TestCase
       end
       @command.invoke("yaml", [path.to_s], type: "response")
     end
+
+    test "urls in ERB" do
+      path = fixture_path("urls-erb.yml")
+      urls = [
+        "http://example.com/1",
+        "http://example.com/2",
+        "http://example.com/3",
+        "http://example.com/4",
+        "http://example.com/5",
+        "http://example.com/6",
+        "http://example.com/7",
+        "http://example.com/8",
+        "http://example.com/9",
+        "http://example.com/10"
+      ]
+      urls.each do |url|
+        mock(DaimonSkycrawlers::Processor).enqueue_http_response(url, {})
+      end
+      @command.invoke("yaml", [path.to_s], type: "response")
+    end
   end
 end

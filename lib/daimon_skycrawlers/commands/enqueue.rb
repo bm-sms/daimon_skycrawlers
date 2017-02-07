@@ -74,7 +74,8 @@ module DaimonSkycrawlers
       method_option("type", aliases: ["-t"], type: :string, default: "url", desc: "Specify type for URLs")
       def yaml(path)
         load_init
-        YAML.load_file(path).each do |hash|
+        yaml_text = ERB.new(File.read(path), nil, "-").result(binding)
+        YAML.load(yaml_text).each do |hash|
           url = hash["url"]
           message = hash["message"] || {}
           raise "Could not find URL: #{hash}" unless url
