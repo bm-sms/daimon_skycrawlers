@@ -1,7 +1,9 @@
 require "thor"
 
 module DaimonSkycrawlers
+  # @private
   module Generator
+    # @private
     class Processor < Thor::Group
       include Thor::Actions
 

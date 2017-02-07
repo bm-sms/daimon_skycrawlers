@@ -3,7 +3,9 @@ require "daimon_skycrawlers"
 require "daimon_skycrawlers/crawler"
 
 module DaimonSkycrawlers
+  # @private
   module Commands
+    # @private
     class Runner < Thor
       namespace "exec"
 

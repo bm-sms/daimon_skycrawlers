@@ -9,6 +9,7 @@ module DaimonSkycrawlers
   #
   # This class provides CLI (Command Line Interface)
   #
+  # @private
   class CLI < Thor
     register(Generator::New, "new", "new NAME", "Create new project")
     register(Generator::Generate, "generate", "generate COMMAND", "Generate new code")

@@ -4,7 +4,9 @@ require "daimon_skycrawlers/generator/processor"
 require "daimon_skycrawlers/generator/filter"
 
 module DaimonSkycrawlers
+  # @private
   module Generator
+    # @private
     class Generate < Thor
       register(Crawler, "crawler", "crawler NAME", "Generate new crawler")
       register(Processor, "processor", "processor NAME", "Generate new processor")

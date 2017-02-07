@@ -6,7 +6,9 @@ require "rails/generators/active_record"
 require "rails/generators/active_record/migration/migration_generator"
 
 module DaimonSkycrawlers
+  # @private
   module Generator
+    # @private
     class New < Thor::Group
       include Thor::Actions
 

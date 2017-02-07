@@ -7,7 +7,9 @@ require "thor"
 require "webrobots"
 
 module DaimonSkycrawlers
+  # @private
   module Commands
+    # @private
     class Enqueue < Thor
       desc "url URL [key1:value1 key2:value2...]", "Enqueue URL for URL consumer"
       def url(url, *rest)
