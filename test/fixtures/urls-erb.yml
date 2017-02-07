@@ -1,0 +1,4 @@
+---
+<%- 1.upto(10) do |n| -%>
+- url: http://example.com/<%= n %>
+<%- end -%>
