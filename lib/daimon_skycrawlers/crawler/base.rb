@@ -115,7 +115,7 @@ module DaimonSkycrawlers
         @skipped = false
         @n_processed_urls += 1
 
-        proceeding = run_before_callbacks(message)
+        proceeding = run_before_process_callbacks(message)
         unless proceeding
           skip(message[:url])
           return
@@ -128,7 +128,7 @@ module DaimonSkycrawlers
         @prepare.call(connection)
         response = fetch(url, message, &block)
         data = { url: url, message: message, response: response }
-        run_after_callbacks(data)
+        run_after_process_callbacks(data)
         data
       end
 

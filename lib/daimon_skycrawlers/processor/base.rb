@@ -38,7 +38,7 @@ module DaimonSkycrawlers
       #
       def process(message)
         @skipped = false
-        proceeding = run_before_callbacks(message)
+        proceeding = run_before_process_callbacks(message)
         unless proceeding
           skip(message[:url])
           return
