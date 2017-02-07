@@ -33,6 +33,8 @@ module DaimonSkycrawlers
     #
     # Fetch and parse sitemap.xml
     #
+    # @return [Array] URLs in sitemap.xml
+    #
     def parse
       hydra = Typhoeus::Hydra.new(max_concurrency: 1)
       sitemap_urls = []
