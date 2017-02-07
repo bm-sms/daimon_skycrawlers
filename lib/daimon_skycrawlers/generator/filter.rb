@@ -10,7 +10,7 @@ module DaimonSkycrawlers
       argument :name
 
       def self.source_root
-        File.join(__dir__, "templates")
+        (Pathname(__dir__) + "../../../templates").to_s
       end
 
       def create_files
