@@ -1,5 +1,6 @@
 require "securerandom"
 require "thor"
+require "pathname"
 require "rails/generators"
 require "rails/generators/actions"
 require "rails/generators/active_record"

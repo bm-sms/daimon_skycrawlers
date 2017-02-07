@@ -1,4 +1,5 @@
 require "thor"
+require "pathname"
 require "daimon_skycrawlers/generator/crawler"
 require "daimon_skycrawlers/generator/processor"
 require "daimon_skycrawlers/generator/filter"
