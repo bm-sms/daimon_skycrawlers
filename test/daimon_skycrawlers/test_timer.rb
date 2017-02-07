@@ -8,8 +8,8 @@ class TimerTest < Test::Unit::TestCase
       called = true
     end
     sleep(2)
-    assert(called)
     timers.cancel
+    assert(called)
   end
 
   test "reset timer" do
@@ -20,7 +20,7 @@ class TimerTest < Test::Unit::TestCase
     sleep(0.5)
     ActiveSupport::Notifications.publish("consume_message.songkick_queue", Time.now, Time.now, 1, { queue_name: "test" })
     sleep(1)
-    assert(!called)
     timers.cancel
+    assert(!called)
   end
 end
