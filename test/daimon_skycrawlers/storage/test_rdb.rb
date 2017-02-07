@@ -9,7 +9,7 @@ class DaimonSkycrawlers::Storage::RDBTest < Test::Unit::TestCase
     load(fixture_path("schema.rb"))
   end
 
-  test "save/find w/ key" do
+  test "save/read w/ key" do
     time = Time.now
     headers = { "last-modified" => time.rfc2822, "etag" => "xxx" }
     data = {
@@ -23,7 +23,7 @@ class DaimonSkycrawlers::Storage::RDBTest < Test::Unit::TestCase
     assert_nothing_raised do
       @storage.save(data)
     end
-    page = @storage.find("http://example.com", key: "example.com")
+    page = @storage.read("http://example.com", key: "example.com")
     expected_page = {
       url: "http://example.com",
       key: "example.com",
@@ -40,7 +40,7 @@ class DaimonSkycrawlers::Storage::RDBTest < Test::Unit::TestCase
     assert_equal(expected_page[:etag], page.etag)
   end
 
-  test "save/find w/o key" do
+  test "save/read w/o key" do
     time = Time.now
     headers = { "last-modified" => time.rfc2822, "etag" => "xxx" }
     data = {
@@ -53,7 +53,7 @@ class DaimonSkycrawlers::Storage::RDBTest < Test::Unit::TestCase
     assert_nothing_raised do
       @storage.save(data)
     end
-    page = @storage.find("http://example.com")
+    page = @storage.read("http://example.com")
     expected_page = {
       url: "http://example.com",
       key: "http://example.com",

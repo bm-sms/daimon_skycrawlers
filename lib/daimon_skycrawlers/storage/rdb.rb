@@ -42,7 +42,7 @@ module DaimonSkycrawlers
       # @param url [String] identity of the page
       # @param message [Hash] this hash may include `:key` to find page
       #
-      def find(url, message = {})
+      def read(url, message = {})
         key = message[:key]
         if key
           Page.where(key: key).order(updated_at: :desc).limit(1).first

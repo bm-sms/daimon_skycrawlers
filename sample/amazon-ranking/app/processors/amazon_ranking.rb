@@ -7,7 +7,7 @@ class AmazonRanking < DaimonSkycrawlers::Processor::Base
   Item = Struct.new(:rank, :name, :url, :star, :review)
   def call(message)
     url = message[:url]
-    page = storage.find(url)
+    page = storage.read(url)
     doc = Nokogiri::HTML(page.body)
     ranking = []
     doc.search(".zg_itemRow").each do |item|

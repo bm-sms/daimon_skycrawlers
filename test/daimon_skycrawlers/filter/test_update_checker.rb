@@ -11,7 +11,7 @@ class DaimonSkycrawlersUpdateCheckerTest < Test::Unit::TestCase
   end
 
   test "url does not exist in storage" do
-    mock(@storage).find(@url, url: @url) { nil }
+    mock(@storage).read(@url, url: @url) { nil }
     assert_true(@filter.call({ url: @url }))
   end
 
@@ -19,7 +19,7 @@ class DaimonSkycrawlersUpdateCheckerTest < Test::Unit::TestCase
     test "need update when no etag and no last-modified" do
       page = DaimonSkycrawlers::Storage::RDB::Page.new(url: @url)
       connection = create_stub_connection(@url)
-      mock(@storage).find(@url, url: @url) { page }
+      mock(@storage).read(@url, url: @url) { page }
       assert_true(@filter.call({ url: @url }, connection: connection))
     end
 
@@ -27,7 +27,7 @@ class DaimonSkycrawlersUpdateCheckerTest < Test::Unit::TestCase
       now = Time.now
       page = DaimonSkycrawlers::Storage::RDB::Page.new(url: @url, last_modified_at: Time.at(now - 1))
       connection = create_stub_connection(@url, "last-modified" => now)
-      mock(@storage).find(@url, url: @url) { page }
+      mock(@storage).read(@url, url: @url) { page }
       assert_true(@filter.call({ url: @url }, connection: connection))
     end
 
@@ -35,14 +35,14 @@ class DaimonSkycrawlersUpdateCheckerTest < Test::Unit::TestCase
       now = Time.now
       page = DaimonSkycrawlers::Storage::RDB::Page.new(url: @url, last_modified_at: Time.at(now - 1))
       connection = create_stub_connection(@url, "last-modified" => Time.at(now - 2))
-      mock(@storage).find(@url, url: @url) { page }
+      mock(@storage).read(@url, url: @url) { page }
       assert_false(@filter.call({ url: @url }, connection: connection))
     end
 
     test "etag matches" do
       page = DaimonSkycrawlers::Storage::RDB::Page.new(url: @url, etag: "xxxxx")
       connection = create_stub_connection(@url, "etag" => "xxxxx")
-      mock(@storage).find(@url, url: @url) { page }
+      mock(@storage).read(@url, url: @url) { page }
       assert_false(@filter.call({ url: @url }, connection: connection))
     end
 
@@ -50,14 +50,14 @@ class DaimonSkycrawlersUpdateCheckerTest < Test::Unit::TestCase
       now = Time.now
       page = DaimonSkycrawlers::Storage::RDB::Page.new(url: @url, etag: "xxxxx", last_modified_at: now)
       connection = create_stub_connection(@url, "etag" => "yyyyy", "last-modified" => Time.at(now + 1))
-      mock(@storage).find(@url, url: @url) { page }
+      mock(@storage).read(@url, url: @url) { page }
       assert_true(@filter.call({ url: @url }, connection: connection))
     end
 
     test "need update with relative path w/o headers" do
       page = DaimonSkycrawlers::Storage::RDB::Page.new(url: @url)
       connection = create_stub_connection("/blog/2016/1.html")
-      mock(@storage).find(@url, url: "./2016/1.html") { page }
+      mock(@storage).read(@url, url: "./2016/1.html") { page }
       assert_true(@filter.call({ url: "./2016/1.html" }, connection: connection))
     end
 

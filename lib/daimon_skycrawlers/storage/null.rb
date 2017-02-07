@@ -14,9 +14,9 @@ module DaimonSkycrawlers
       end
 
       #
-      # Find nothing
+      # Read nothing
       #
-      def find(url, message = {})
+      def read(url, message = {})
       end
     end
   end
