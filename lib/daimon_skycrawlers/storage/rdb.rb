@@ -14,12 +14,12 @@ module DaimonSkycrawlers
       end
 
       #
-      # Save
+      # Save data to RDB
       #
       # @param data [Hash] data has following keys
-      #   * :url: URL
-      #   * :message: Given message
-      #   * :response: HTTP response
+      #   * `:url`: URL
+      #   * `:message`: Given message
+      #   * `:response`: HTTP response
       #
       def save(data)
         url = data[:url]
@@ -51,10 +51,27 @@ module DaimonSkycrawlers
         end
       end
 
+      # @private
       class Base < ActiveRecord::Base
         self.abstract_class = true
       end
 
+      #
+      # Model represents page
+      #
+      #   * key
+      #     * The key to identify page
+      #   * url
+      #     * The URL of page
+      #   * headers
+      #     * HTTP response header
+      #   * body
+      #     * HTTP response body
+      #   * last_modified_at
+      #     * Last-Modified header
+      #   * etag
+      #     * ETag header
+      #
       class Page < Base
         self.table_name = "pages"
       end

@@ -8,6 +8,14 @@ module DaimonSkycrawlers
     # This crawler can GET/POST given URL and store response to storage
     #
     class Default < Base
+      #
+      # GET/POST given url
+      #
+      # @param url [String] URI or path
+      # @param message [Hash] message can include anything
+      #
+      # @return [Faraday::Response] HTTP response
+      #
       def fetch(url, message)
         params = message[:params] || {}
         method = message[:method] || "GET"

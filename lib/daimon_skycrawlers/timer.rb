@@ -2,6 +2,9 @@ require "timers"
 require "daimon_skycrawlers"
 
 module DaimonSkycrawlers
+  #
+  # Name space for timer
+  #
   module Timer
     module_function
 
@@ -9,6 +12,7 @@ module DaimonSkycrawlers
     #
     # @param queue_name_prefix [String] previx of queue name
     # @param interval [String] shutdown after this interval after the queue is empty
+    # @return [Timers::Group] timers
     #
     def setup_shutdown_timer(queue_name_prefix, interval: 10)
       timers = Timers::Group.new

@@ -106,6 +106,7 @@ MESSAGE
       end
     end
 
+    # @private
     class MigrationGenerator < ActiveRecord::Generators::MigrationGenerator
       def self.source_root
         ActiveRecord::Generators::MigrationGenerator.source_root

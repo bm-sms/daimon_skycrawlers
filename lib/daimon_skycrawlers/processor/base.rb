@@ -24,6 +24,7 @@ module DaimonSkycrawlers
         setup_default_filters
       end
 
+      # @private
       def skipped?
         @skipped
       end

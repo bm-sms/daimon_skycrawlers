@@ -4,6 +4,9 @@ require "daimon_skycrawlers/timer"
 require "daimon_skycrawlers/consumer/url"
 
 module DaimonSkycrawlers
+  #
+  # Name space for crawler related classes
+  #
   module Crawler
     class << self
       #

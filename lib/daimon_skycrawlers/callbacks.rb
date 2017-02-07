@@ -3,6 +3,7 @@ module DaimonSkycrawlers
   # This module provides simple callback system
   #
   module Callbacks
+    # @private
     def initialize
       super
       @before_process_callbacks = []
@@ -24,6 +25,9 @@ module DaimonSkycrawlers
       end
     end
 
+    #
+    # Run registered before process callbacks
+    #
     def run_before_process_callbacks(message)
       @before_process_callbacks.all? do |callback|
         callback.call(message)
@@ -52,6 +56,9 @@ module DaimonSkycrawlers
       end
     end
 
+    #
+    # Run registered before process callbacks
+    #
     def run_after_process_callbacks(message)
       @after_process_callbacks.each do |callback|
         callback.call(message)

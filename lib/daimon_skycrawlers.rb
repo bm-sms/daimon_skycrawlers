@@ -3,7 +3,13 @@ require "bundler/setup"
 require "daimon_skycrawlers/version"
 require "daimon_skycrawlers/logger"
 
+#
+# Name space for this library
+#
 module DaimonSkycrawlers
+  #
+  # Configuration class
+  #
   Configuration = Struct.new(
     :logger,
     :queue_name_prefix,

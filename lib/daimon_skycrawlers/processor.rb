@@ -4,6 +4,9 @@ require "daimon_skycrawlers/timer"
 require "daimon_skycrawlers/consumer/http_response"
 
 module DaimonSkycrawlers
+  #
+  # Name space for processors
+  #
   module Processor
     class << self
       #

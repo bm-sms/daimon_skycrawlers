@@ -1,6 +1,9 @@
 require "songkick_queue"
 
 module DaimonSkycrawlers
+  #
+  # Wrapper for queue configuration class
+  #
   class Queue
     class << self
       #

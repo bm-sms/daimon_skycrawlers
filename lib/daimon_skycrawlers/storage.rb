@@ -1,4 +1,7 @@
 module DaimonSkycrawlers
+  #
+  # Name space for storage
+  #
   module Storage
   end
 end

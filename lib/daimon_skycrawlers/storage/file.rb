@@ -11,6 +11,14 @@ module DaimonSkycrawlers
         @base_dir = Pathname(base_dir)
       end
 
+      #
+      # Save data to files under base directory
+      #
+      # @param data [Hash] data has following keys
+      #   * `:url`: URL
+      #   * `:message`: Given message
+      #   * `:response`: HTTP response
+      #
       def save(data)
         url = data[:url]
         message = data[:message]
@@ -28,6 +36,11 @@ module DaimonSkycrawlers
         end
       end
 
+      #
+      # Read data from files under base directory
+      #
+      # @return [DaimonSkycrawlers::Storage::File::Page]
+      #
       def read(url, message)
         key = message[:key]
         headers = JSON.parse(headers_path(url, key).read)
@@ -35,6 +48,9 @@ module DaimonSkycrawlers
         Page.new(url, key, headers, body, headers["last-modified"], headers["etag"])
       end
 
+      #
+      # Page for file storage
+      #
       Page = Struct.new(:url, :key, :headers, :body, :last_modified, :etag)
 
       private

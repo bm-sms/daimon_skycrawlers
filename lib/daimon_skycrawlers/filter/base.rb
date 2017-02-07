@@ -20,10 +20,22 @@ module DaimonSkycrawlers
         @storage = storage
       end
 
+      #
+      # Retrieve storage instance
+      #
       def storage
         @storage ||= DaimonSkycrawlers::Storage::RDB.new
       end
 
+      #
+      # Filter message
+      #
+      # Override this method in subclass.
+      #
+      # @param message [Hash] message can include anything
+      #
+      # @return [true|false] process the message if true otherwise skip message.
+      #
       def call(message)
         raise NotImplementedError, "Must implement this method in subclass"
       end
