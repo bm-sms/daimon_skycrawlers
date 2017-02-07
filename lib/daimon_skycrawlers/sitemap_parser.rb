@@ -26,7 +26,7 @@ module DaimonSkycrawlers
     #
     # @param urls [Array] List of sitemap.xml URL
     #
-    def initialize(urls, options = {})
+    def initialize(urls)
       @urls = urls
     end
 
