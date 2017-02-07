@@ -1,11 +1,13 @@
-require "simplecov"
-SimpleCov.start do
-  add_filter "/test/"
-  add_group "Consumer", ["consumer.rb", "/consumer/"]
-  add_group "Crawler", ["crawler.rb", "/crawler/"]
-  add_group "Filter", ["filter.rb", "/filter/"]
-  add_group "Processor", ["processor.rb", "/processor/"]
-  add_group "Storage", ["storage.rb", "/storage/"]
+if ENV["COVERAGE"] == "yes"
+  require "simplecov"
+  SimpleCov.start do
+    add_filter "/test/"
+    add_group "Consumer", ["consumer.rb", "/consumer/"]
+    add_group "Crawler", ["crawler.rb", "/crawler/"]
+    add_group "Filter", ["filter.rb", "/filter/"]
+    add_group "Processor", ["processor.rb", "/processor/"]
+    add_group "Storage", ["storage.rb", "/storage/"]
+  end
 end
 
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
