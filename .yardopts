@@ -1,0 +1,11 @@
+--markup markdown
+--markup-provider redcarpet
+--format html
+--exclude /test/
+--exclude /sample/
+--exclude /db/
+--exclude /bin/
+--no-private
+-
+README.md
+LICENSE.txt
