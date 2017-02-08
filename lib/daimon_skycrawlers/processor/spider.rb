@@ -128,7 +128,7 @@ module DaimonSkycrawlers
 
       def retrieve_links
         urls = @doc.search(*link_rules).map do |element|
-          @extract_next_page_link.call(element)
+          @extract_link.call(element)
         end
         urls.uniq!
         apply_link_filters(urls) || []
