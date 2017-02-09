@@ -39,9 +39,11 @@ module DaimonSkycrawlers
       #
       # Read data from files under base directory
       #
+      # @param message [Hash] this hash can include `:url`, `:key` to find page
       # @return [DaimonSkycrawlers::Storage::File::Page]
       #
-      def read(url, message)
+      def read(message)
+        url = message[:url]
         key = message[:key]
         headers = JSON.parse(headers_path(url, key).read)
         body = body_path(url, key).read

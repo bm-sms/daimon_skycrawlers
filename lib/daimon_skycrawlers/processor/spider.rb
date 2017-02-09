@@ -99,10 +99,9 @@ module DaimonSkycrawlers
       # @param message [Hash] Must have key :url, :depth
       #
       def call(message)
-        key_url = message[:url]
         depth = Integer(message[:depth] || 2)
         return if depth <= 1
-        page = storage.read(key_url, message)
+        page = storage.read(message)
         unless page
           log.warn("Could not read page: url=#{message[:url]}, key=#{message[:key]}")
           return
