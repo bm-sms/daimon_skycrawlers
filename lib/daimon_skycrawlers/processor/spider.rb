@@ -111,8 +111,8 @@ module DaimonSkycrawlers
         links.each do |url|
           enqueue_url(url, link_message)
         end
-        next_page_url = find_next_page_link
-        if next_page_link
+        next_page_url = next_page_link
+        if next_page_url
           next_page_link_message = new_message.merge(@next_page_link_message)
           enqueue_url(next_page_url, next_page_link_message)
         end
