@@ -23,7 +23,7 @@ class DaimonSkycrawlers::Storage::RDBTest < Test::Unit::TestCase
     assert_nothing_raised do
       @storage.save(data)
     end
-    page = @storage.read("http://example.com", key: "example.com")
+    page = @storage.read(url: "http://example.com", key: "example.com")
     expected_page = {
       url: "http://example.com",
       key: "example.com",
@@ -53,7 +53,7 @@ class DaimonSkycrawlers::Storage::RDBTest < Test::Unit::TestCase
     assert_nothing_raised do
       @storage.save(data)
     end
-    page = @storage.read("http://example.com")
+    page = @storage.read(url: "http://example.com")
     expected_page = {
       url: "http://example.com",
       key: "http://example.com",

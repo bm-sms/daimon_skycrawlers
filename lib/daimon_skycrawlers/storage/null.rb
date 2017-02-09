@@ -16,7 +16,7 @@ module DaimonSkycrawlers
       #
       # Read nothing
       #
-      def read(url, message = {})
+      def read(message = {})
       end
     end
   end

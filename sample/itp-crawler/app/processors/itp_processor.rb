@@ -7,7 +7,7 @@ require_relative "../models/itp_shop"
 class ItpProcessor < DaimonSkycrawlers::Processor::Base
   def call(message)
     key_url = message[:url]
-    page = storage.read(key_url)
+    page = storage.read(message)
     @doc = Nokogiri::HTML(page.body.encode("UTF-8", "CP932"))
     ItpShop.transaction do
       prepare_shops do |shop|

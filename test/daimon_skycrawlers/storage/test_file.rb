@@ -22,7 +22,7 @@ class DaimonSkycrawlers::Storage::FileTest < Test::Unit::TestCase
     @storage.save(data)
     assert { File.exist?(@base_dir + "/blog/index.html") }
     assert { File.exist?(@base_dir + "/blog/index.html-headers.json") }
-    page = @storage.read(url, {})
+    page = @storage.read(url: url)
     expected = {
       url: url,
       key: nil,

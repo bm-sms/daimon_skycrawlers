@@ -11,8 +11,7 @@ module DaimonSkycrawlers
       # Display page information
       #
       def call(message)
-        url = message[:url]
-        page = storage.read(url, message)
+        page = storage.read(message)
         headers = JSON.parse(page.headers)
         headers_string = headers.map {|key, value| "  #{key}: #{value}" }.join("\n")
         dumped_message = <<LOG

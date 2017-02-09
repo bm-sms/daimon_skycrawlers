@@ -29,9 +29,9 @@ module DaimonSkycrawlers
       #
       # Override this method in subclass
       #
-      # @param url [String] the key to find data in storage
+      # @param message [Hash] this hash can include `:url`, `:key` to find page
       #
-      def read(url, message = {})
+      def read(message = {})
         raise "Implement this in subclass"
       end
     end

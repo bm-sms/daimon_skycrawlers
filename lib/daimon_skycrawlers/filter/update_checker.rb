@@ -23,7 +23,8 @@ module DaimonSkycrawlers
       #
       def call(message, connection: nil)
         url = normalize_url(message[:url])
-        page = storage.read(url, message)
+        message[:url] = url
+        page = storage.read(message)
         return true unless page
         if connection
           response = connection.head(url)

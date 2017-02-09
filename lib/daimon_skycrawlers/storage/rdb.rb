@@ -39,10 +39,10 @@ module DaimonSkycrawlers
       #
       # Fetch page identified by url
       #
-      # @param url [String] identity of the page
-      # @param message [Hash] this hash may include `:key` to find page
+      # @param message [Hash] this hash can include `:url`, `:key` to find page
       #
-      def read(url, message = {})
+      def read(message = {})
+        url = message[:url]
         key = message[:key]
         if key
           Page.where(key: key).order(updated_at: :desc).limit(1).first

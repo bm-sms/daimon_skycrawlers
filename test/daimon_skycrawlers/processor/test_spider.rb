@@ -22,7 +22,7 @@ class DaimonSkycrawlersSpiderTest < Test::Unit::TestCase
       end
     end
     page = OpenStruct.new(headers: {}, body: "")
-    mock(@storage).read(url, { url: url }).returns { page }
+    mock(@storage).read(url: url).returns { page }
     @spider.process(url: url)
   end
 
@@ -31,7 +31,7 @@ class DaimonSkycrawlersSpiderTest < Test::Unit::TestCase
       @spider.enqueue = false
       @url = "http://www.clear-code.com/blog.html"
       page = OpenStruct.new(headers: {}, body: fixture_path("www.clear-code.com/blog.html").read)
-      mock(@storage).read(@url, { url: @url}).returns { page }
+      mock(@storage).read(url: @url).returns { page }
     end
 
     test "enqueue all links" do
@@ -95,7 +95,7 @@ class DaimonSkycrawlersSpiderTest < Test::Unit::TestCase
       @spider.enqueue = false
       @url = "http://www.clear-code.com/search-result.html"
       page = OpenStruct.new(headers: {}, body: fixture_path("www.clear-code.com/search-result.html").read)
-      mock(@storage).read(@url, { url: @url}).returns { page }
+      mock(@storage).read(url: @url).returns { page }
     end
 
     test "search result and next page" do
@@ -125,7 +125,7 @@ class DaimonSkycrawlersSpiderTest < Test::Unit::TestCase
       @spider.enqueue = false
       @url = "http://www.clear-code.com/search-result.html"
       page = OpenStruct.new(headers: {}, body: fixture_path("www.clear-code.com/search-result-last-page.html").read)
-      mock(@storage).read(@url, { url: @url}).returns { page }
+      mock(@storage).read(url: @url).returns { page }
     end
 
     test "search result w/o next page" do
