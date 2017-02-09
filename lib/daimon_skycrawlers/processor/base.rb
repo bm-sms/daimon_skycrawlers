@@ -17,6 +17,11 @@ module DaimonSkycrawlers
       include DaimonSkycrawlers::Callbacks
       include DaimonSkycrawlers::Configurable
 
+      # @!attribute [w] storage
+      #   Set storage to crawler instance.
+      #   @return [void]
+      attr_writer :storage
+
       def initialize
         super
         @skipped = false
