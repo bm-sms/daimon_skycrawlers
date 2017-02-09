@@ -111,6 +111,8 @@ module DaimonSkycrawlers
       # 1. Download(fetch) data from given URL
       # 1. Run post processes (store downloaded data to storage)
       #
+      # @param message [Hash] parameters for crawler
+      #
       def process(message, &block)
         @skipped = false
         @n_processed_urls += 1
