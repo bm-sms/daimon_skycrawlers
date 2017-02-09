@@ -103,6 +103,10 @@ module DaimonSkycrawlers
         depth = Integer(message[:depth] || 2)
         return if depth <= 1
         page = storage.read(key_url, message)
+        unless page
+          log.warn("Could not read page: url=#{message[:url]}, key=#{message[:key]}")
+          return
+        end
         @doc = Nokogiri::HTML(page.body)
         new_message = {
           depth: depth - 1,
