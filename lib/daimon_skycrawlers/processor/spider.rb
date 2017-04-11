@@ -141,6 +141,10 @@ module DaimonSkycrawlers
         return unless next_page_link_rules
         element = @doc.at(*next_page_link_rules)
         return unless element
+        if element.is_a?(Enumerable)
+          log.info("element: #{element}. element is Enumerable. next_page_link must be just one.")
+          return
+        end
         @extract_next_page_link.call(element)
       end
 
