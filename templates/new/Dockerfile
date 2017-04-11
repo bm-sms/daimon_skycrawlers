@@ -1,4 +1,4 @@
-FROM ruby:2.4.0-alpine
+FROM ruby:2.4.1-alpine
 
 RUN apk --no-cache --update add build-base ruby-dev libxml2-dev postgresql-dev libcurl openssl git
 
